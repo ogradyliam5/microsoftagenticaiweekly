@@ -18,6 +18,7 @@ def issue_id_today():
 def run():
     issue_id = issue_id_today()
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/build_queue.py"), "--issue-id", issue_id])
+    subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/validate_queue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/generate_issue.py"), "--issue-id", issue_id])
 
     draft_path = ROOT / "drafts" / f"email-{issue_id}.md"

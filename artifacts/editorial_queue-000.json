@@ -1,0 +1,63 @@
+{
+  "issue_id": "000",
+  "generated_at": "2026-02-27T20:00:58.797974Z",
+  "items": [
+    {
+      "id": "sample-official-copilot-studio",
+      "title": "Sample: Copilot Studio capability update",
+      "url": "https://example.com/official-copilot-update",
+      "canonical_url": "https://example.com/official-copilot-update",
+      "author": "",
+      "publisher": "Microsoft (sample)",
+      "published_at": "2026-02-27T20:00:58.797974Z",
+      "fetched_at": "2026-02-27T20:00:58.797974Z",
+      "product_area": "Power Platform",
+      "source_type": "rss",
+      "summary_bullets": [
+        "Sample draft item for pipeline verification only."
+      ],
+      "why_it_matters": "Demonstrates issue generation format.",
+      "audience": "Architect",
+      "effort": "Low",
+      "confidence": "High",
+      "tags": [
+        "Power Platform",
+        "Official"
+      ],
+      "evidence": [
+        "Sample source title for validation."
+      ]
+    },
+    {
+      "id": "sample-community-foundry",
+      "title": "Sample: Foundry agent ops pattern",
+      "url": "https://example.com/foundry-pattern",
+      "canonical_url": "https://example.com/foundry-pattern",
+      "author": "",
+      "publisher": "Community (sample)",
+      "published_at": "2026-02-27T20:00:58.797974Z",
+      "fetched_at": "2026-02-27T20:00:58.797974Z",
+      "product_area": "Foundry",
+      "source_type": "rss",
+      "summary_bullets": [
+        "Sample community item for queue + issue rendering."
+      ],
+      "why_it_matters": "Shows confidence and attribution fields.",
+      "audience": "Dev",
+      "effort": "Medium",
+      "confidence": "Medium",
+      "tags": [
+        "Foundry",
+        "Community"
+      ],
+      "evidence": [
+        "Sample evidence snippet."
+      ]
+    }
+  ],
+  "clusters": [],
+  "excluded": [],
+  "questions_for_liam": [
+    "Sample run only: approve moving to live ingestion."
+  ]
+}

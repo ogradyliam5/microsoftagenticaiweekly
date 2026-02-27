@@ -10,13 +10,19 @@
      - `artifacts/editorial_queue-<issue_id>.json`
      - `artifacts/editorial_queue-<issue_id>.md`
 
-2. `scripts/pipeline/generate_issue.py`
+2. `scripts/pipeline/validate_queue.py`
+   - Enforces minimum quality gates:
+     - title/canonical URL/published date required
+     - summary bullet length caps
+     - evidence snippet cap (<=25 words)
+
+3. `scripts/pipeline/generate_issue.py`
    - Converts queue into draft website issue + email draft
    - Outputs:
      - `posts/issue-<issue_id>.md`
      - `drafts/email-<issue_id>.md`
 
-3. `scripts/pipeline/buttondown_draft.py`
+4. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)
    - Records idempotency metadata:
      - `artifacts/buttondown_drafts.json`
@@ -31,6 +37,12 @@
 
 ```bash
 python3 scripts/pipeline/run_weekly.py
+```
+
+## Sample dry run (Issue 000)
+
+```bash
+python3 scripts/pipeline/make_sample_issue000.py
 ```
 
 ## GitHub Actions
