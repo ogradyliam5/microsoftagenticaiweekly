@@ -3,29 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Microsoft Agentic AI Weekly — Cross-stack briefing for Microsoft AI operators</title>
-  <meta name="description" content="A weekly cross-stack briefing for Microsoft Agentic AI operators. Practical updates across Copilot Studio, Azure AI Foundry, Microsoft 365, governance, and production operations." />
+  <title>Microsoft Agentic AI Weekly — Cross-stack signals for teams shipping on Microsoft</title>
+  <meta name="description" content="Weekly cross-stack Microsoft Agentic AI briefing for builders, platform owners, and leaders. Track what changed, why it matters, and what to do next with approval-first publishing and transparent source provenance." />
   <link rel="alternate" type="application/rss+xml" title="Microsoft Agentic AI Weekly RSS" href="feed.xml" />
   <link rel="stylesheet" href="assets/styles.css" />
-  <style>
-    .home-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-    .topbar { display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:28px; }
-    .topnav { display:flex; gap:14px; flex-wrap:wrap; }
-    .hero-clean { padding:36px 0 24px; border-bottom:1px solid var(--border); margin-bottom:28px; }
-    .hero-clean h1 { font-size:2.4rem; max-width:900px; margin:0 0 12px; }
-    .hero-clean p { max-width:860px; color:var(--muted); margin:0 0 14px; }
-    .cta-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-    .mini { font-size:.92rem; color:var(--muted); }
-    .pillar-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:18px 0 26px; }
-    .plain-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px; }
-    .signals { margin-top:22px; }
-  </style>
 </head>
 <body>
-  <main class="home-wrap">
-    <div class="topbar">
+  <header class="site-header">
+    <div class="container">
       <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
-      <nav class="topnav">
+      <nav class="nav">
         <a href="posts/issue-008.html">Latest</a>
         <a href="archive.html">Archive</a>
         <a href="sources.html">Sources</a>
@@ -33,59 +20,85 @@
         <a href="about.html">About</a>
       </nav>
     </div>
+  </header>
 
-    <section class="hero-clean">
-      <p class="mini">WEEKLY BRIEFING · MICROSOFT AGENTIC AI</p>
-      <h1>One place for the most important Microsoft Agentic AI signals each week.</h1>
-      <p>
-        Built for people shipping and operating real systems — across Copilot Studio, Azure AI Foundry, Microsoft 365 extensibility, governance, and operations.
-        No hype. Just what changed, why it matters, and what to do next.
-      </p>
-      <div class="cta-row">
-        <a class="btn" href="posts/issue-008.html">Read latest issue</a>
-        <a class="btn secondary" href="archive.html">Start from January</a>
-        <a class="btn secondary" href="mailto:ogradyliam5@gmail.com?subject=Subscribe">Subscribe</a>
-      </div>
-    </section>
+  <main>
+    <div class="container home-shell">
+      <section class="home-hero panel">
+        <p class="kicker">Weekly briefing · Microsoft Agentic AI</p>
+        <h1>Cross-stack intelligence for teams building and operating Microsoft agents in production.</h1>
+        <p class="lead">
+          Coverage spans Copilot Studio, Azure AI Foundry, Microsoft 365/Teams/Graph extensibility, governance, and runtime operations.
+          We publish only the changes that move delivery, reliability, or risk posture.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="posts/issue-008.html">Read latest issue</a>
+          <a class="btn ghost" href="archive.html">Browse archive</a>
+          <a class="btn ghost" href="mailto:ogradyliam5@gmail.com?subject=Subscribe">Subscribe</a>
+        </div>
+      </section>
 
-    <section>
-      <h2>What you get every week</h2>
-      <div class="pillar-grid">
-        <article class="plain-card"><strong>Top signals</strong><br/><span class="mini">The 5 changes that actually matter this week.</span></article>
-        <article class="plain-card"><strong>Impact by role</strong><br/><span class="mini">Builder, Platform Owner, or Leader — exactly who should care.</span></article>
-        <article class="plain-card"><strong>Action guidance</strong><br/><span class="mini">Watch, pilot, or adopt — with practical next steps.</span></article>
-        <article class="plain-card"><strong>Provenance & confidence</strong><br/><span class="mini">Canonical links, source context, and confidence labels.</span></article>
-      </div>
-    </section>
-
-    <section class="signals">
-      <h2>Coverage areas</h2>
-      <div class="pillar-grid">
-        <article class="plain-card">Agent architecture, orchestration, memory, tools, evals</article>
-        <article class="plain-card">Copilot Studio and Power Platform delivery patterns</article>
-        <article class="plain-card">Azure AI Foundry + model/runtime capability changes</article>
-        <article class="plain-card">Microsoft 365/Teams/Graph extensibility and governance</article>
-        <article class="plain-card">Security, ALM, telemetry, cost, and operational maturity</article>
-        <article class="plain-card">Independent community lessons learned in production</article>
-      </div>
-    </section>
-
-    <section>
-      <h2>Trust and process</h2>
-      <div class="pillar-grid">
-        <article class="plain-card">
-          <strong>Approval-first publishing</strong><br/>
-          <span class="mini">Drafts are automated. Publishing and sending are human-approved only.</span>
+      <section class="trust-strip grid three">
+        <article class="signal-card">
+          <h3>Approval-first publishing</h3>
+          <p class="meta">Automation drafts content. A human explicitly approves every publish/send action.</p>
         </article>
-        <article class="plain-card">
-          <strong>Transparent sourcing</strong><br/>
-          <span class="mini">See the tracked sources, inclusion rules, and correction policy.</span>
+        <article class="signal-card">
+          <h3>Source provenance</h3>
+          <p class="meta">Every issue ties signals back to trackable sources with confidence and context.</p>
         </article>
-      </div>
-      <p class="mini">
-        Read our <a href="sources.html">Sources & Method</a> and <a href="corrections.html">Corrections Policy</a>.
-      </p>
-    </section>
+        <article class="signal-card">
+          <h3>Operator intent</h3>
+          <p class="meta">Each signal includes impact framing and recommended action: Watch, Pilot, or Adopt.</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>What each issue includes</h2>
+        <div class="grid three">
+          <article class="signal-card">
+            <h3>Top 5 weekly signals</h3>
+            <p class="meta">Only material platform, product, and ecosystem changes.</p>
+          </article>
+          <article class="signal-card">
+            <h3>Role-targeted impact</h3>
+            <p class="meta">Builder, Platform Owner, and Leader implications called out explicitly.</p>
+          </article>
+          <article class="signal-card">
+            <h3>Immediate next steps</h3>
+            <p class="meta">Decision-ready action guidance with operational tradeoffs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Coverage lanes</h2>
+        <div class="grid two">
+          <article class="signal-card">
+            <h3>Build + runtime</h3>
+            <p class="meta">Agent architecture, orchestration, evals, memory/tooling, and production runtime behavior.</p>
+          </article>
+          <article class="signal-card">
+            <h3>Copilot Studio + Power Platform</h3>
+            <p class="meta">Delivery patterns, ALM readiness, governance controls, and enterprise handoff.</p>
+          </article>
+          <article class="signal-card">
+            <h3>Azure AI Foundry stack</h3>
+            <p class="meta">Model/runtime capability shifts, release readiness, and integration implications.</p>
+          </article>
+          <article class="signal-card">
+            <h3>Microsoft 365 surface area</h3>
+            <p class="meta">Teams, Graph, admin controls, compliance, and ecosystem signals from the field.</p>
+          </article>
+        </div>
+      </section>
+
+      <p class="small">See <a href="sources.html">Sources & Method</a> and <a href="corrections.html">Corrections Policy</a> for full provenance and update handling.</p>
+    </div>
   </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Microsoft Agentic AI Weekly · <a href="feed.xml">RSS</a></div>
+  </footer>
 </body>
 </html>

@@ -85,6 +85,35 @@ a:hover { color: #c4dbff; }
 
 main { padding: 34px 0 56px; }
 
+.home-shell {
+  display: grid;
+  gap: 18px;
+}
+
+.home-hero .lead {
+  color: #d4e0ff;
+  max-width: 960px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.trust-strip {
+  margin-top: 2px;
+}
+
+.archive-guidance ul {
+  margin: 8px 0 0 20px;
+}
+
+.archive-grid {
+  margin-top: 14px;
+}
+
 .console-hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
