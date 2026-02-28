@@ -6,34 +6,52 @@
     <description>Weekly operator briefing for Microsoft Agentic AI builders, platform owners, and leaders.</description>
     <language>en-gb</language>
     <item>
+      <title>Issue #008 — Platform teams standardize agent delivery</title>
+      <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-008.html</link>
+      <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-008.html</guid>
+      <pubDate>Sun, 22 Feb 2026 21:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Issue #007 — Evaluation discipline hardens</title>
+      <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-007.html</link>
+      <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-007.html</guid>
+      <pubDate>Sun, 15 Feb 2026 21:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Issue #006 — Enterprise agent handoff matures</title>
+      <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-006.html</link>
+      <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-006.html</guid>
+      <pubDate>Sun, 08 Feb 2026 21:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Issue #005 — Governance gets practical: policy-as-code and rollout controls</title>
       <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-005.html</link>
       <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-005.html</guid>
-      <pubDate>Thu, 05 Feb 2026 09:00:00 GMT</pubDate>
+      <pubDate>Sun, 01 Feb 2026 21:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Issue #004 — Retrieval quality becomes a board-level risk</title>
       <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-004.html</link>
       <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-004.html</guid>
-      <pubDate>Thu, 29 Jan 2026 09:00:00 GMT</pubDate>
+      <pubDate>Sun, 25 Jan 2026 21:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Issue #003 — From prototypes to managed agents</title>
       <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-003.html</link>
       <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-003.html</guid>
-      <pubDate>Thu, 22 Jan 2026 09:00:00 GMT</pubDate>
+      <pubDate>Sun, 18 Jan 2026 21:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Issue #002 — Agent operations is the new differentiator</title>
       <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-002.html</link>
       <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-002.html</guid>
-      <pubDate>Thu, 15 Jan 2026 09:00:00 GMT</pubDate>
+      <pubDate>Sun, 11 Jan 2026 21:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Issue #001 — From MCP deployment patterns to admin telemetry</title>
       <link>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-001.html</link>
       <guid>https://ogradyliam5.github.io/microsoftagenticaiweekly/posts/issue-001.html</guid>
-      <pubDate>Thu, 08 Jan 2026 09:00:00 GMT</pubDate>
+      <pubDate>Sun, 04 Jan 2026 21:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>
