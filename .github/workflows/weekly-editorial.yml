@@ -47,6 +47,15 @@ jobs:
             - website issue draft
             - Buttondown draft metadata (if created)
 
-            Please use the PR checklist before merge/send.
+            ## Quick links
+            - Checklist template: [.github/pull_request_template.md](.github/pull_request_template.md)
+            - Pipeline run summary: [artifacts/last_run.json](artifacts/last_run.json)
+            - Draft mapping: [artifacts/buttondown_drafts.json](artifacts/buttondown_drafts.json)
+
+            ## Editorial checklist
+            - [ ] Review artifacts listed in `artifacts/last_run.json`
+            - [ ] Validate queue markdown/json and drafted site/email content
+            - [ ] Confirm Buttondown draft details (ID/URL) before send
+            - [ ] Complete remaining items in the PR template checklist before merge/send
           branch: chore/weekly-editorial
           delete-branch: true

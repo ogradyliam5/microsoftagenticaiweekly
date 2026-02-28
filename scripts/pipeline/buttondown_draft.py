@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import os
 import pathlib
+import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -21,6 +22,17 @@ def api(method, path, token, payload=None):
     with urllib.request.urlopen(req, timeout=30) as r:
         txt = r.read().decode("utf-8")
         return json.loads(txt) if txt else {}
+
+
+def load_state():
+    if not STATE.exists():
+        return {}
+    return json.loads(STATE.read_text(encoding="utf-8"))
+
+
+def save_state(state):
+    STATE.parent.mkdir(exist_ok=True)
+    STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 
 def main():
@@ -43,18 +55,31 @@ def main():
         "description": f"Draft for issue {args.issue_id} (approval required)",
     }
 
-    created = api("POST", "/emails", token, payload)
+    state = load_state()
+    existing_draft_id = str(state.get(args.issue_id, {}).get("draft_id", "")).strip()
 
-    STATE.parent.mkdir(exist_ok=True)
-    state = {}
-    if STATE.exists():
-        state = json.loads(STATE.read_text(encoding="utf-8"))
+    created_or_updated = None
+    action = "created"
+    if existing_draft_id:
+        try:
+            created_or_updated = api("PATCH", f"/emails/{existing_draft_id}", token, payload)
+            action = "updated"
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise
+            # stale local state; recreate and replace saved draft id
+            created_or_updated = api("POST", "/emails", token, payload)
+            action = "recreated"
+    else:
+        created_or_updated = api("POST", "/emails", token, payload)
+
     state[args.issue_id] = {
-        "draft_id": created.get("id"),
-        "absolute_url": created.get("absolute_url", ""),
-        "updated_at": dt.datetime.utcnow().isoformat() + "Z"
+        "draft_id": created_or_updated.get("id"),
+        "absolute_url": created_or_updated.get("absolute_url", ""),
+        "updated_at": dt.datetime.utcnow().isoformat() + "Z",
+        "action": action,
     }
-    STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    save_state(state)
     print(json.dumps(state[args.issue_id], indent=2))
 
 

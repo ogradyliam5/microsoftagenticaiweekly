@@ -21,7 +21,9 @@
 - 
 
 ### Artifacts
-- `artifacts/editorial_queue.md`
-- `artifacts/editorial_queue.json`
+- [`artifacts/last_run.json`](artifacts/last_run.json)
+- [`artifacts/buttondown_drafts.json`](artifacts/buttondown_drafts.json)
+- `artifacts/editorial_queue-<issue_id>.md`
+- `artifacts/editorial_queue-<issue_id>.json`
 - `drafts/email-<issue_id>.md`
 - `posts/issue-<issue_id>.md`
