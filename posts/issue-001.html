@@ -3,88 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Issue #001 — Microsoft Agentic AI Weekly</title>
+  <title>Issue #001 — From MCP deployment patterns to admin telemetry</title>
+  <meta name="description" content="Issue #001: operational signals for Microsoft agent teams, including MCP deployment patterns and admin telemetry." />
   <link rel="stylesheet" href="../assets/styles.css" />
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container">
-      <nav>
-        <a class="brand" href="../index.html">Microsoft Agentic AI Weekly</a>
-        <a href="../archive.html">Archive</a>
-        <a href="../about.html">About</a>
+      <a class="brand" href="../index.html">Microsoft Agentic AI Weekly</a>
+      <nav class="nav">
+        <a href="../index.html">Home</a><a class="active" href="../archive.html">Archive</a><a href="../sources.html">Sources</a><a href="../about.html">About</a>
       </nav>
     </div>
   </header>
+  <main>
+    <div class="container issue-layout">
+      <article>
+        <p class="kicker">Issue #001 · 08 Jan 2026 · 8 min read</p>
+        <h1>From MCP deployment patterns to admin telemetry: what Microsoft agent teams should operationalize now</h1>
+        <p class="meta">Audience: Builder · Platform Owner · Leader</p>
 
-  <main class="container">
-    <p class="meta">Issue #001 · 13 Feb 2026</p>
-    <h1>From MCP deployment patterns to admin telemetry: what Microsoft agent builders should ship next</h1>
+        <section class="panel" id="summary">
+          <h2>Executive summary</h2>
+          <ul>
+            <li>Teams moving fastest have standardized tool contracts before scaling agent count.</li>
+            <li>Grounding quality and observability are now the main blockers, not model access.</li>
+            <li>Admin telemetry features are becoming core for proving adoption and risk posture.</li>
+          </ul>
+        </section>
 
-    <div class="card">
-      <p><strong>TL;DR</strong><br/>
-      The Microsoft agent ecosystem is moving from experimentation to operations. This week’s strongest signal comes from independent community builders sharing practical Copilot Studio + Dataverse techniques, while Microsoft continues to push readiness and governance frameworks.</p>
+        <h2 id="signals">Signal ledger (provenance view)</h2>
+        <section class="grid">
+          <article class="signal-card"><span class="badge high">Adopt</span><span class="badge">Confidence: Reputable community</span><h3>MCP server deployment pattern into Copilot Studio</h3><p><strong>Why it matters:</strong> Repeatable tool integration cuts cycle time and lowers runtime surprises.</p><p class="small"><strong>Who should care:</strong> Builder, Platform Owner</p><p class="small"><a href="https://www.matthewdevaney.com/video-create-an-mcp-server-and-deploy-to-copilot-studio/">Primary source</a></p></article>
+          <article class="signal-card"><span class="badge medium">Pilot</span><span class="badge">Confidence: Reputable community</span><h3>Dataverse multiline and file-field search grounding pattern</h3><p><strong>Why it matters:</strong> Better retrieval coverage boosts answer quality for enterprise knowledge workflows.</p><p class="small"><strong>Who should care:</strong> Builder</p><p class="small"><a href="https://www.matthewdevaney.com/copilot-studio-search-multiline-text-file-dataverse-fields/">Primary source</a></p></article>
+          <article class="signal-card"><span class="badge watch">Watch</span><span class="badge">Confidence: Official</span><h3>Power Platform admin center usage page public preview</h3><p><strong>Why it matters:</strong> Teams can quantify adoption and detect capability drift earlier.</p><p class="small"><strong>Who should care:</strong> Platform Owner, Leader</p><p class="small"><a href="https://www.microsoft.com/en-us/power-platform/blog/2026/01/27/announcing-the-public-preview-of-the-new-usage-page-in-the-power-platform-admin-center/">Primary source</a></p></article>
+        </section>
+
+        <h2 id="build-next">Build next (next 7 days)</h2>
+        <div class="panel">
+          <ol>
+            <li>Define one MCP contract standard (naming, auth, retries, timeout budget).</li>
+            <li>Add a retrieval quality smoke test before each release (10 canonical queries).</li>
+            <li>Publish a weekly telemetry note: active users, success rate, fallback rate.</li>
+          </ol>
+        </div>
+
+        <h2 id="governance">Risks and caveats</h2>
+        <div class="signal-card">
+          <ul>
+            <li>Community patterns may omit enterprise controls (key rotation, DLP, tenant boundary checks).</li>
+            <li>Public preview metrics can change semantics—treat trend direction as signal, not absolute truth.</li>
+          </ul>
+        </div>
+      </article>
+      <aside class="sidebar panel">
+        <h3>Issue controls</h3>
+        <p class="small">Action bias: ship safely, then scale.</p>
+        <p><a href="#summary">Summary</a><br><a href="#signals">Signals</a><br><a href="#build-next">Build next</a><br><a href="#governance">Risks</a></p>
+        <hr class="sep">
+        <p class="small">Approval-first: draft assembled automatically; publication requires human approval.</p>
+      </aside>
     </div>
-
-    <h2>Top stories</h2>
-
-    <div class="card">
-      <h3>1) Create an MCP server and deploy it to Copilot Studio (Matthew Devaney)</h3>
-      <p><strong>Source:</strong> Independent<br/>
-      <a href="https://www.matthewdevaney.com/video-create-an-mcp-server-and-deploy-to-copilot-studio/">https://www.matthewdevaney.com/video-create-an-mcp-server-and-deploy-to-copilot-studio/</a></p>
-      <p><strong>Why it matters:</strong> A concrete path from pro-code tool server to low-code agent integration—exactly the hybrid pattern most teams need.</p>
-    </div>
-
-    <div class="card">
-      <h3>2) Copilot Studio search for multiline text and file fields in Dataverse (Matthew Devaney)</h3>
-      <p><strong>Source:</strong> Independent<br/>
-      <a href="https://www.matthewdevaney.com/copilot-studio-search-multiline-text-file-dataverse-fields/">https://www.matthewdevaney.com/copilot-studio-search-multiline-text-file-dataverse-fields/</a></p>
-      <p><strong>Why it matters:</strong> Search/grounding quality is often the first production bottleneck; this pattern improves agent answer quality quickly.</p>
-    </div>
-
-    <div class="card">
-      <h3>3) Dataverse implementation troubleshooting patterns (Nishant Rana)</h3>
-      <p><strong>Source:</strong> Independent<br/>
-      <a href="https://nishantrana.me/2026/02/10/renaming-sitemap-display-name-in-dataverse-dynamics-365/">https://nishantrana.me/2026/02/10/renaming-sitemap-display-name-in-dataverse-dynamics-365/</a></p>
-      <p><strong>Why it matters:</strong> Real-world Dataverse friction points still decide rollout speed; practical fixes reduce deployment drag.</p>
-    </div>
-
-    <div class="card">
-      <h3>4) Build environment-aware flows via metadata APIs (Power Community)</h3>
-      <p><strong>Source:</strong> Independent<br/>
-      <a href="https://www.powercommunity.com/how-to-build-environment-aware-flows-by-fetching-crm-metadata-dynamically-in-power-automate/">https://www.powercommunity.com/how-to-build-environment-aware-flows-by-fetching-crm-metadata-dynamically-in-power-automate/</a></p>
-      <p><strong>Why it matters:</strong> Clean environment portability patterns are critical for serious ALM across dev/test/prod.</p>
-    </div>
-
-    <div class="card">
-      <h3>5) The 6 pillars that define agent readiness in 2026 (Microsoft)</h3>
-      <p><strong>Source:</strong> Official<br/>
-      <a href="https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/the-6-pillars-that-will-define-agent-readiness-in-2026/">https://www.microsoft.com/en-us/microsoft-copilot/blog/copilot-studio/the-6-pillars-that-will-define-agent-readiness-in-2026/</a></p>
-      <p><strong>Why it matters:</strong> Useful framework to align security, governance, and adoption before scaling to multi-agent estates.</p>
-    </div>
-
-    <div class="card">
-      <h3>6) New Usage page in Power Platform admin center (public preview) (Microsoft)</h3>
-      <p><strong>Source:</strong> Official<br/>
-      <a href="https://www.microsoft.com/en-us/power-platform/blog/2026/01/27/announcing-the-public-preview-of-the-new-usage-page-in-the-power-platform-admin-center/">https://www.microsoft.com/en-us/power-platform/blog/2026/01/27/announcing-the-public-preview-of-the-new-usage-page-in-the-power-platform-admin-center/</a></p>
-      <p><strong>Why it matters:</strong> Better cross-product telemetry helps teams prove value and find underperforming assets faster.</p>
-    </div>
-
-    <h2>Builder takeaway</h2>
-    <blockquote>
-      If you only do three things this week: standardize your MCP/tool integration pattern, improve Dataverse grounding/search, and start weekly usage telemetry reviews.
-    </blockquote>
-
-    <h2>This week’s action checklist</h2>
-    <ul>
-      <li>Define one reusable Copilot Studio + MCP integration blueprint</li>
-      <li>Audit Dataverse fields currently indexed for agent grounding</li>
-      <li>Start a Thursday usage-review ritual in PPAC</li>
-    </ul>
   </main>
-
-  <footer>
-    <div class="container">© 2026 Microsoft Agentic AI Weekly</div>
-  </footer>
+  <footer class="footer"><div class="container">© 2026 Microsoft Agentic AI Weekly</div></footer>
 </body>
 </html>

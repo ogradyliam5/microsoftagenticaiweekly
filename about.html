@@ -4,42 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Microsoft Agentic AI Weekly</title>
+  <meta name="description" content="Editorial charter and audience promise for Microsoft Agentic AI Weekly." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container">
-      <nav>
-        <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
+      <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="posts/issue-005.html">Latest Issue</a>
         <a href="archive.html">Archive</a>
         <a href="sources.html">Sources</a>
-        <a href="corrections.html">Corrections</a>
-        <a href="about.html">About</a>
+        <a class="active" href="about.html">About</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1>About</h1>
-    <div class="card">
-      <p><strong>Microsoft Agentic AI Weekly</strong> is a weekly newsletter for Microsoft Agentic AI professionals.</p>
-      <p>We curate high-signal updates from:</p>
-      <ul>
-        <li>Independent MVP/community blogs</li>
-        <li>Microsoft official announcements and docs</li>
-        <li>Practical implementation tutorials</li>
-      </ul>
-      <p>Format: concise summaries + practical “what to do this week” guidance.</p>
-    </div>
+  <main>
+    <div class="container grid">
+      <section class="panel">
+        <p class="kicker">Editorial Charter</p>
+        <h1>Decision-useful intelligence for the Microsoft agentic stack.</h1>
+        <p>Microsoft Agentic AI Weekly serves three audiences every week: builders, platform owners, and technical leaders. We prioritize implementation realities over product marketing.</p>
+      </section>
 
-    <h2>Submit a source</h2>
-    <div class="card">
-      <p>Know a great independent blog we should track? Send it here:</p>
-      <p><a href="mailto:hello@microsoftagenticaiweekly.com?subject=Source%20Suggestion">hello@microsoftagenticaiweekly.com</a></p>
+      <section class="grid two">
+        <article class="signal-card">
+          <h3>What we cover</h3>
+          <ul>
+            <li>Copilot Studio, Power Platform, and M365 extensibility patterns</li>
+            <li>Azure AI model/platform shifts with practical implications</li>
+            <li>Security, governance, cost, ALM, and production operations</li>
+            <li>Independent field lessons and community implementation guidance</li>
+          </ul>
+        </article>
+        <article class="signal-card">
+          <h3>How each issue is structured</h3>
+          <ul>
+            <li><strong>Why it matters</strong> in one line</li>
+            <li><strong>Who should care</strong> (Builder / Platform Owner / Leader)</li>
+            <li><strong>Action signal</strong> (Watch / Pilot / Adopt)</li>
+            <li><strong>Confidence level</strong> (Official / Reputable / Early signal)</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h3>Approval-first policy (non-negotiable)</h3>
+        <p>Automation prepares source queues and issue drafts. Final publish to the site and newsletter send always require explicit human approval.</p>
+        <p class="meta">Contact: <a href="mailto:hello@microsoftagenticaiweekly.com?subject=Editorial%20query">hello@microsoftagenticaiweekly.com</a></p>
+      </section>
     </div>
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="container">© 2026 Microsoft Agentic AI Weekly</div>
   </footer>
 </body>
