@@ -4,37 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Archive — Microsoft Agentic AI Weekly</title>
+  <meta name="description" content="Issue archive for Microsoft Agentic AI Weekly with decision-focused weekly briefings." />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container">
-      <nav>
-        <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
-        <a href="archive.html">Archive</a>
+      <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="posts/issue-005.html">Latest Issue</a>
+        <a class="active" href="archive.html">Archive</a>
         <a href="sources.html">Sources</a>
-        <a href="corrections.html">Corrections</a>
         <a href="about.html">About</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1>Archive</h1>
-    <div class="card">
-      <p class="meta">16 Feb 2026</p>
-      <h3><a href="posts/issue-002.html">Issue #002 — Agent operations is the new differentiator</a></h3>
-      <p>MCP patterns, grounding strategy, and telemetry-first operations.</p>
-    </div>
-    <div class="card">
-      <p class="meta">13 Feb 2026</p>
-      <h3><a href="posts/issue-001.html">Issue #001 — From MCP deployment patterns to admin telemetry</a></h3>
-      <p>Community-heavy curation for Microsoft Agentic AI builders.</p>
+  <main>
+    <div class="container">
+      <p class="kicker">Issue Log</p>
+      <h1>Archive</h1>
+      <p class="meta">Chronological operator briefings. Format: what changed, why it matters, build-next actions.</p>
+
+      <section class="grid">
+        <article class="signal-card">
+          <p class="meta">Issue #005 · 05 Feb 2026</p>
+          <h3><a href="posts/issue-005.html">Governance gets practical: agent policy-as-code, observability baselines, and rollout controls</a></h3>
+          <p>How teams are turning governance from static documents into executable guardrails.</p>
+        </article>
+        <article class="signal-card">
+          <p class="meta">Issue #004 · 29 Jan 2026</p>
+          <h3><a href="posts/issue-004.html">Retrieval quality becomes a board-level risk: data lineage, confidence scoring, and answer accountability</a></h3>
+          <p>Grounding quality now directly influences trust, escalation paths, and adoption outcomes.</p>
+        </article>
+        <article class="signal-card">
+          <p class="meta">Issue #003 · 22 Jan 2026</p>
+          <h3><a href="posts/issue-003.html">From prototypes to managed agents: ALM templates, deployment rings, and runtime safety checks</a></h3>
+          <p>The first repeatable patterns for making Copilot and Azure agent delivery durable.</p>
+        </article>
+        <article class="signal-card">
+          <p class="meta">Issue #002 · 15 Jan 2026</p>
+          <h3><a href="posts/issue-002.html">Agent operations is the new differentiator: MCP tooling, telemetry, and enterprise readiness patterns</a></h3>
+          <p>MCP patterns, grounding strategy, and telemetry-first operations.</p>
+        </article>
+        <article class="signal-card">
+          <p class="meta">Issue #001 · 08 Jan 2026</p>
+          <h3><a href="posts/issue-001.html">From MCP deployment patterns to admin telemetry: what Microsoft agent teams should operationalize now</a></h3>
+          <p>Early 2026 signals for builders balancing speed, reliability, and governance.</p>
+        </article>
+      </section>
     </div>
   </main>
 
-  <footer>
-    <div class="container">© 2026 Microsoft Agentic AI Weekly</div>
+  <footer class="footer">
+    <div class="container">© 2026 Microsoft Agentic AI Weekly · <a href="feed.xml">RSS</a></div>
   </footer>
 </body>
 </html>
