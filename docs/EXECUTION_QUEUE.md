@@ -64,7 +64,7 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 2 complete — `a4b2627`
 - [x] Stage 3 complete — `e2c7c5f`
 - [x] Stage 4 complete — see `docs/STAGE4_QA_RELEASE_READINESS.md`
-- [x] Stage 5 complete — `40ce054`
+- [x] Stage 5 complete — `9816f96`
 - [ ] Stage 6 pending
 - [ ] Stage 7 pending
 - [ ] Stage 8 pending
