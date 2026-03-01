@@ -12,13 +12,14 @@ def section(items, label):
     if not items:
         return out + ["No qualifying items this run.", ""]
     for it in items[:5]:
+        lead = "Microsoft updated" if "Official" in it.get("tags", []) else f"{it['publisher']} published"
         out += [
             f"### {it['title']}",
-            f"- Why it matters: {it['why_it_matters']}",
-            f"- Who it’s for: {it['audience']}",
-            f"- Effort / prereqs: {it['effort']}",
-            f"- Confidence: {it['confidence']}",
-            f"- Source: [{it['publisher']}]({it['canonical_url']})",
+            f"- {lead}: {it['why_it_matters']}",
+            f"- Best fit for: {it['audience']}",
+            f"- Lift required: {it['effort']}",
+            f"- Confidence level: {it['confidence']}",
+            f"- Read: [{it['publisher']}]({it['canonical_url']})",
             ""
         ]
     return out
@@ -46,7 +47,8 @@ def main():
         "",
     ]
     for it in items[:5]:
-        post += [f"- **{it['title']}** — {it['why_it_matters']} ([source]({it['canonical_url']}))"]
+        lead = "Microsoft updated" if "Official" in it.get("tags", []) else f"{it['publisher']} published"
+        post += [f"- **{it['title']}** — {lead.lower()} and the key takeaway is: {it['why_it_matters']} ([read]({it['canonical_url']}))"]
 
     post += [""]
     post += section([i for i in items if "Official" in i.get("tags", [])], "Official updates")

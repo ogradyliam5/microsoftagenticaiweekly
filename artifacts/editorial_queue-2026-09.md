@@ -1,8 +1,8 @@
 # Weekly Editorial Queue — 2026-09
 
-Generated: 2026-02-28T18:37:36.001777Z
+Generated: 2026-03-01T17:10:51.815187Z
 Total included: 24
-Excluded: 3
+Excluded: 2
 
 ## Top candidates
 
@@ -38,10 +38,10 @@ Excluded: 3
    - Publisher: Azure Blog
    - Confidence: High
    - URL: https://devblogs.microsoft.com/azure-sql/introducing-budget-bytes/
-9. **Microsoft Sovereign Cloud adds governance, productivity, and support for large AI models securely running even when completely disconnected**
+9. **PostgreSQL on Azure supercharged for AI**
    - Publisher: Azure Blog
    - Confidence: High
-   - URL: http://aka.ms/MicrosoftSovereignCloudDisconnectedBlog
+   - URL: https://azure.microsoft.com/en-us/blog/postgresql-on-azure-supercharged-for-ai/
 10. **The data behind the design: How Pantone built agentic AI with an AI-ready database**
    - Publisher: Azure Blog
    - Confidence: High

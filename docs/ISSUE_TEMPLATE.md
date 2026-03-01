@@ -5,32 +5,32 @@
 ## TL;DR
 [2-3 sentence summary]
 
-## Top Stories
+## What changed this week
 
 ### 1) [Headline]
-**Source:** [Independent/Official]
-**Link:** [URL]
-**Why it matters:** [1-2 lines]
+[Microsoft updated... / <Creator> published... / Teams reported...]
+- Read: [URL]
+- Why now: [1-2 lines]
 
 ### 2) [Headline]
-**Source:** [Independent/Official]
-**Link:** [URL]
-**Why it matters:** [1-2 lines]
+[Microsoft updated... / <Creator> published... / Teams reported...]
+- Read: [URL]
+- Why now: [1-2 lines]
 
 ### 3) [Headline]
-**Source:** [Independent/Official]
-**Link:** [URL]
-**Why it matters:** [1-2 lines]
+[Microsoft updated... / <Creator> published... / Teams reported...]
+- Read: [URL]
+- Why now: [1-2 lines]
 
 ### 4) [Headline]
-**Source:** [Independent/Official]
-**Link:** [URL]
-**Why it matters:** [1-2 lines]
+[Microsoft updated... / <Creator> published... / Teams reported...]
+- Read: [URL]
+- Why now: [1-2 lines]
 
 ### 5) [Headline]
-**Source:** [Independent/Official]
-**Link:** [URL]
-**Why it matters:** [1-2 lines]
+[Microsoft updated... / <Creator> published... / Teams reported...]
+- Read: [URL]
+- Why now: [1-2 lines]
 
 ## Builder Takeaway
 [Short practical summary]
