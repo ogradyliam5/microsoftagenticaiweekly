@@ -2,40 +2,48 @@
 
 **Date:** [DD Mon YYYY]
 
-## TL;DR
-[2-3 sentence summary]
-
 ## What changed this week
+[One short setup line. Keep it human and practical.]
 
-### 1) [Headline]
-[Microsoft updated... / <Creator> published... / Teams reported...]
-- Read: [URL]
-- Why now: [1-2 lines]
+## Top 5 you shouldn’t miss
 
-### 2) [Headline]
-[Microsoft updated... / <Creator> published... / Teams reported...]
-- Read: [URL]
-- Why now: [1-2 lines]
+1. **[Headline]**
+- Microsoft updated / [Creator] published: [why it matters, one line]. **Signal:** Watch/Pilot/Adopt · **For:** Builder/Platform Owner/Leader · [Read source](URL)
 
-### 3) [Headline]
-[Microsoft updated... / <Creator> published... / Teams reported...]
-- Read: [URL]
-- Why now: [1-2 lines]
+2. **[Headline]**
+- Microsoft updated / [Creator] published: [why it matters, one line]. **Signal:** Watch/Pilot/Adopt · **For:** Builder/Platform Owner/Leader · [Read source](URL)
 
-### 4) [Headline]
-[Microsoft updated... / <Creator> published... / Teams reported...]
-- Read: [URL]
-- Why now: [1-2 lines]
+3. **[Headline]**
+- Microsoft updated / [Creator] published: [why it matters, one line]. **Signal:** Watch/Pilot/Adopt · **For:** Builder/Platform Owner/Leader · [Read source](URL)
 
-### 5) [Headline]
-[Microsoft updated... / <Creator> published... / Teams reported...]
-- Read: [URL]
-- Why now: [1-2 lines]
+4. **[Headline]**
+- Microsoft updated / [Creator] published: [why it matters, one line]. **Signal:** Watch/Pilot/Adopt · **For:** Builder/Platform Owner/Leader · [Read source](URL)
 
-## Builder Takeaway
-[Short practical summary]
+5. **[Headline]**
+- Microsoft updated / [Creator] published: [why it matters, one line]. **Signal:** Watch/Pilot/Adopt · **For:** Builder/Platform Owner/Leader · [Read source](URL)
 
-## This Week’s Action Checklist
-- [ ] [Action 1]
-- [ ] [Action 2]
-- [ ] [Action 3]
+## Official updates
+### [Headline]
+- Microsoft updated: [one-line impact]. **Signal:** [Watch/Pilot/Adopt] · **For:** [role] · [Read source](URL)
+
+## Power Platform
+### [Headline]
+- [one-line impact + signal + role + link]
+
+## M365
+### [Headline]
+- [one-line impact + signal + role + link]
+
+## Foundry
+### [Headline]
+- [one-line impact + signal + role + link]
+
+## Community picks + creator spotlight
+### [Headline]
+- [one-line impact + signal + role + link]
+
+## Builder takeaway
+[One short practical instruction for next week’s planning.]
+
+## Corrections
+If you spot an error or context miss, email [address].
