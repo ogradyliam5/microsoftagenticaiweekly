@@ -10,6 +10,9 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
   3) dev preview sync confirmation.
 - Progress updates must include tangible outputs only.
 - If interrupted by chat/system events, resume current stage immediately.
+- Never idle between stages: immediately dispatch next stage/subagent unless a hard blocker exists.
+- Overnight mode: continue autonomous execution without waiting for user pings; send milestone updates with proof only.
+- PM cadence: checkpoint updates are outcome-based (not time-based) and must include next concrete step already in progress.
 
 ## Stage Plan
 
@@ -31,3 +34,10 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 ### Stage 4 — Final QA + Release Readiness
 - Link checks, metadata consistency, feed correctness, schedule notes.
 - Publish final dev sync and handoff checklist.
+
+## Stage completion log
+
+- [x] Stage 1 complete — `ee0d109`
+- [x] Stage 2 complete — `a4b2627`
+- [x] Stage 3 complete — `e2c7c5f`
+- [x] Stage 4 complete — see `docs/STAGE4_QA_RELEASE_READINESS.md` (this run)

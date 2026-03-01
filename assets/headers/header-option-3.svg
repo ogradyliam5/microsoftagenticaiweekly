@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0b1020"/>
+    </linearGradient>
+    <linearGradient id="pill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1536" height="1024" fill="url(#bg)"/>
+  <g opacity="0.25">
+    <rect x="860" y="180" width="540" height="24" rx="12" fill="url(#pill)"/>
+    <rect x="910" y="250" width="470" height="20" rx="10" fill="url(#pill)"/>
+    <rect x="840" y="320" width="600" height="22" rx="11" fill="url(#pill)"/>
+    <rect x="930" y="400" width="430" height="20" rx="10" fill="url(#pill)"/>
+    <rect x="800" y="480" width="650" height="24" rx="12" fill="url(#pill)"/>
+    <rect x="950" y="570" width="410" height="20" rx="10" fill="url(#pill)"/>
+  </g>
+  <g stroke="#38bdf8" stroke-opacity="0.45" fill="none">
+    <path d="M730 180 C 820 250, 820 330, 730 410 C 640 490, 640 570, 730 650" stroke-width="2"/>
+    <path d="M680 210 C 760 280, 760 360, 680 430 C 600 500, 600 580, 680 650" stroke-width="1.5"/>
+  </g>
+  <rect x="110" y="230" width="700" height="390" rx="24" fill="#000" opacity="0.16"/>
+</svg>

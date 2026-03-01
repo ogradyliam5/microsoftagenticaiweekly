@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-02-28T18:36:44Z",
+  "updated_at": "2026-03-01T06:30:00Z",
   "policy": {
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
@@ -225,7 +225,7 @@
     }
   ],
   "candidates": {
-    "updated_at": "2026-02-28T18:36:44Z",
+    "updated_at": "2026-03-01T06:30:00Z",
     "policy": "Discovery only. Do not merge into sources[] without Liam approval.",
     "add": [
       {
@@ -339,6 +339,54 @@
           "https://michelcarlo.com/2025/07/21/using-dataverse-low-code-plugins-to-validate-data-added-via-power-pages/"
         ],
         "last_checked": "2026-02-28"
+      },
+      {
+        "id": "futurework-blog",
+        "name": "Future Work (Vesa Nopanen)",
+        "type": "rss",
+        "url": "https://futurework.blog/feed/",
+        "product_area": "Mixed",
+        "trust": "community",
+        "status": "pending_approval",
+        "priority": 8,
+        "rationale": "Individual practitioner coverage across Copilot Studio, Microsoft Foundry, and M365 Copilot roadmap shifts with high signal-to-noise.",
+        "evidence_posts": [
+          "https://futurework.blog/2025/11/21/multi-agent-workflows-in-microsoft-copilot-studio/",
+          "https://futurework.blog/2026/02/10/claude-opus-4-6-now-available-in-microsoft-foundry/"
+        ],
+        "last_checked": "2026-03-01"
+      },
+      {
+        "id": "reshmee-auckloo",
+        "name": "Reshmee Auckloo",
+        "type": "rss",
+        "url": "https://reshmeeauckloo.com/posts/index.xml",
+        "product_area": "M365",
+        "trust": "community",
+        "status": "pending_approval",
+        "priority": 8,
+        "rationale": "Hands-on M365/Copilot Studio implementation content (agents + Power Automate + SharePoint MCP) from an individual practitioner.",
+        "evidence_posts": [
+          "https://reshmeeauckloo.com/posts/agentstoolkit-invoking-powerautomate/",
+          "https://reshmeeauckloo.com/posts/copilot-sharepoint-mcp-tools/"
+        ],
+        "last_checked": "2026-03-01"
+      },
+      {
+        "id": "baeke",
+        "name": "Geert Baeke",
+        "type": "rss",
+        "url": "https://baeke.info/feed/",
+        "product_area": "Foundry",
+        "trust": "community",
+        "status": "pending_approval",
+        "priority": 7,
+        "rationale": "Deep technical Azure AI/agent engineering writeups (Agent Framework, MCP, multi-agent deployment) suitable for advanced practitioner readers.",
+        "evidence_posts": [
+          "https://baeke.info/2025/12/07/building-an-ai-agent-server-with-ag-ui-and-microsoft-agent-framework/",
+          "https://baeke.info/2025/07/18/deploying-a-multi-agent-solution-with-mcp-and-a2a-to-azure-container-apps/"
+        ],
+        "last_checked": "2026-03-01"
       }
     ],
     "reject": [
