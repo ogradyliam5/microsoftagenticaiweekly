@@ -1,54 +1,39 @@
 # Source Shortlist (Stage 1 Stabilization)
 
-_Last updated: 2026-03-01 06:30 UTC_
+_Last updated: 2026-03-01 17:20 UTC_
 
-Stage 1 remains in approval-first mode: discovery updates were applied only to `data/sources.json -> candidates`, with no direct changes to approved `sources[]`.
+Promotions have now been applied to core `sources[]` in `data/sources.json` for validated practitioner feeds. Broken/unreliable feeds remain excluded.
 
-## Discovery update (2026-03-01)
+## Promoted to core sources (approved set)
 
-### Added to `candidates.add` (pending approval)
+- `futurework-blog` — Future Work (Vesa Nopanen)
+- `reshmee-auckloo` — Reshmee Auckloo
+- `baeke` — Geert Baeke
+- `rob-quickenden` — Rob Quickenden
+- `karlex` — Karl-Johan Spiik (Karlex)
+- Prior approved practitioner additions retained in core:
+  - `forwardforever`
+  - `megan-v-walker`
+  - `nishant-rana`
+  - `readyxrm`
+  - `eliostruyf`
+  - `sharepains`
+  - `michelcarlo`
 
-1. **Future Work (Vesa Nopanen)** (`futurework-blog`) — https://futurework.blog/feed/
-   - Why: strong individual-practitioner signal across Copilot Studio + Microsoft Foundry + M365 Copilot changes.
-   - Evidence:
-     - https://futurework.blog/2025/11/21/multi-agent-workflows-in-microsoft-copilot-studio/
-     - https://futurework.blog/2026/02/10/claude-opus-4-6-now-available-in-microsoft-foundry/
+## Discovery candidates still pending
 
-2. **Reshmee Auckloo** (`reshmee-auckloo`) — https://reshmeeauckloo.com/posts/index.xml
-   - Why: practical M365 extensibility + Copilot Studio implementation content (Agents Toolkit, Power Automate HTTP triggers, SharePoint MCP).
-   - Evidence:
-     - https://reshmeeauckloo.com/posts/agentstoolkit-invoking-powerautomate/
-     - https://reshmeeauckloo.com/posts/copilot-sharepoint-mcp-tools/
+- None at this time.
 
-3. **Geert Baeke** (`baeke`) — https://baeke.info/feed/
-   - Why: advanced Azure AI/agent engineering depth (Agent Framework, MCP, multi-agent deployment on Azure).
-   - Evidence:
-     - https://baeke.info/2025/12/07/building-an-ai-agent-server-with-ag-ui-and-microsoft-agent-framework/
-     - https://baeke.info/2025/07/18/deploying-a-multi-agent-solution-with-mcp-and-a2a-to-azure-container-apps/
+## Rejected / excluded (keep out of automated ingestion)
 
-### Removed from `candidates.add`
+- `holgerimbery` — 404 feed endpoint
+- `powertricks` — 406 feed endpoint
+- `mmsharepoint` — stale cadence for current weekly format
+- `medium-tag-powerplatform` — high-noise tag aggregator
+- `medium-tag-microsoft365` — high-noise tag aggregator
 
-- None in this run.
+## Validation notes
 
-### De-duplication / validation notes
-
-- Candidate IDs were deduped by `id`; no pre-existing collisions with the three additions.
-- Feed endpoints validated as reachable and parseable during discovery.
-- No promotions into `sources[]` were made (approval-first policy preserved).
-
-## Pending candidates (current)
-
-- `forwardforever`
-- `megan-v-walker`
-- `nishant-rana`
-- `readyxrm`
-- `eliostruyf`
-- `sharepains`
-- `michelcarlo`
-- `futurework-blog`
-- `reshmee-auckloo`
-- `baeke`
-
-## Existing known feed issue (unchanged)
-
-- `azure-updates` — XML parse failure (`not well-formed (invalid token): line 5, column 31`)
+- Promoted feeds were validated as parseable RSS/Atom sources.
+- Rejected endpoints remain excluded from core sources.
+- `azure-updates` stays in core official list but has known XML parsing fragility and should be monitored.

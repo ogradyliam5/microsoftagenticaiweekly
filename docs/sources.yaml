@@ -29,6 +29,21 @@ sources:
     - name: Nishant Rana
       url: https://nishantrana.me/feed/
       type: rss
+    - name: Future Work (Vesa Nopanen)
+      url: https://futurework.blog/feed/
+      type: rss
+    - name: Reshmee Auckloo
+      url: https://reshmeeauckloo.com/posts/index.xml
+      type: rss
+    - name: Geert Baeke
+      url: https://baeke.info/feed/
+      type: rss
+    - name: Rob Quickenden
+      url: https://robquickenden.blog/feed
+      type: rss
+    - name: Karl-Johan Spiik (Karlex)
+      url: https://www.karlex.fi/feed
+      type: rss
     - name: Power Community
       url: https://www.powercommunity.com/feed/
       type: rss
