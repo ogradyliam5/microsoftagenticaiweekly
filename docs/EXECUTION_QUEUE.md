@@ -67,4 +67,4 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 5 complete — `9816f96`
 - [x] Stage 6 complete — `94b2b63`
 - [x] Stage 7 complete — source mix tuning + freshness/quality scoring notes added (see latest develop commit)
-- [ ] Stage 8 pending
+- [x] Stage 8 complete — see `docs/STAGE8_FINAL_POLISH_PRODUCTION_PLAN.md`
