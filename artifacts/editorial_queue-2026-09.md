@@ -1,71 +1,97 @@
 # Weekly Editorial Queue — 2026-09
 
-Generated: 2026-03-01T17:10:51.815187Z
+Generated: 2026-03-01T22:18:01.010042+00:00
 Total included: 24
-Excluded: 2
+Excluded: 3
+
+## Source mix tuning
+
+- Target mix: independent 60% / official 40%
+- Actual mix: independent 58.3% (14) / official 41.7% (10)
+
+## Freshness + quality scoring notes
+
+- Freshness: Based on published date recency bands (<=3d highest, >30d lowest).
+- Quality: Based on source priority + trust, with light title noise penalty.
+- Total: score_total = freshness*0.55 + quality*0.45.
 
 ## Top candidates
 
-1. **Agentic cloud operations: A new way to run the cloud**
-   - Publisher: Azure Blog
+1. **5 Steps to Connect your Vibe Coded Apps with Git**
+   - Publisher: SharePains (Pieter Veenstra) (independent)
+   - Scores: total 0.95 · freshness 1.00 · quality 0.88
+   - Confidence: Medium
+   - URL: https://sharepains.com/2026/02/27/connect-your-vibe-coded-apps-with-git/
+2. **Forged but Valid: How to Test API Authentication and RBAC Safely**
+   - Publisher: Karl-Johan Spiik (Karlex) (independent)
+   - Scores: total 0.92 · freshness 1.00 · quality 0.82
+   - Confidence: Medium
+   - URL: https://www.karlex.fi/forged-but-valid-how-to-test-api-authentication-and-rbac-safely/#utm_source=rss&utm_medium=rss
+3. **Mastering Power Automate Flows: Structure, Error Handling, Child Flows, and AI in Real Projects**
+   - Publisher: Karl-Johan Spiik (Karlex) (independent)
+   - Scores: total 0.92 · freshness 1.00 · quality 0.82
+   - Confidence: Medium
+   - URL: https://www.karlex.fi/mastering-power-automate-flows-structure-error-handling-child-flows-and-ai-in-real-projects/#utm_source=rss&utm_medium=rss
+4. **The end of Power Pages? (As we know it?)**
+   - Publisher: ReadyXRM (Nick Doelman) (independent)
+   - Scores: total 0.92 · freshness 1.00 · quality 0.82
+   - Confidence: Medium
+   - URL: https://readyxrm.blog/2026/02/26/the-end-of-power-pages-as-we-know-it/
+5. **Windows 365 Devices: ASUS, Dell, and Microsoft Expand the Cloud PC Ecosystem**
+   - Publisher: Rob Quickenden (independent)
+   - Scores: total 0.92 · freshness 1.00 · quality 0.82
+   - Confidence: Medium
+   - URL: https://robquickenden.blog/2026/02/new-windows365-devices/
+6. **Ways to Build Agents: Nube to Pro**
+   - Publisher: Rob Quickenden (independent)
+   - Scores: total 0.92 · freshness 1.00 · quality 0.82
+   - Confidence: Medium
+   - URL: https://robquickenden.blog/2026/02/building-ai-agents-nube-to-pro/
+7. **SharePoint Framework (SPFx) roadmap update – February 2026**
+   - Publisher: Microsoft 365 Developer Blog (official)
+   - Scores: total 0.92 · freshness 0.85 · quality 1.00
    - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/agentic-cloud-operations-a-new-way-to-run-the-cloud/
-2. **Azure reliability, resiliency, and recoverability: Build continuity by design**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/azure-reliability-resiliency-and-recoverability-build-continuity-by-design/
-3. **Can high-temperature superconductors transform the power infrastructure of datacenters?**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/can-high-temperature-superconductors-transform-the-power-infrastructure-of-datacenters/
-4. **Claude Opus 4.6: Anthropic’s powerful model for coding, agents, and enterprise workflows is now available in Microsoft Foundry**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/claude-opus-4-6-anthropics-powerful-model-for-coding-agents-and-enterprise-workflows-is-now-available-in-microsoft-foundry-on-azure/
-5. **Claude Sonnet 4.6 in Microsoft Foundry-Frontier Performance for Scale**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-sonnet-4-6-in-microsoft-foundry-frontier-performance-for-scale/4494873
-6. **Enhanced storage resiliency with Azure NetApp Files Elastic zone-redundant service**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/enhanced-storage-resiliency-with-azure-netapp-files-elastic-zone-redundant-service/
-7. **Five Reasons to attend SQLCon**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://blog.fabric.microsoft.com/en-us/blog/32624
-8. **Introducing Budget Bytes: Build powerful AI apps for under $25**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://devblogs.microsoft.com/azure-sql/introducing-budget-bytes/
-9. **PostgreSQL on Azure supercharged for AI**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/postgresql-on-azure-supercharged-for-ai/
-10. **The data behind the design: How Pantone built agentic AI with an AI-ready database**
-   - Publisher: Azure Blog
-   - Confidence: High
-   - URL: https://azure.microsoft.com/en-us/blog/the-data-behind-the-design-how-pantone-built-agentic-ai-with-an-ai-ready-database/
-11. **Copilot Studio Extension for Visual Studio Code Is Now Generally Available**
-   - Publisher: Microsoft 365 Developer Blog
-   - Confidence: High
-   - URL: https://devblogs.microsoft.com/microsoft365dev/copilot-studio-extension-for-visual-studio-code-is-now-generally-available/
-12. **Deprecation notice: Teams Live Events meeting creation via Microsoft Graph**
-   - Publisher: Microsoft 365 Developer Blog
-   - Confidence: High
-   - URL: https://devblogs.microsoft.com/microsoft365dev/deprecation-notice-teams-live-events-meeting-creation-via-microsoft-graph/
-13. **Dev Proxy v2.1 with configuration hot reload and stdio proxying**
-   - Publisher: Microsoft 365 Developer Blog
-   - Confidence: High
-   - URL: https://devblogs.microsoft.com/microsoft365dev/dev-proxy-v2-1-with-configuration-hot-reload-and-stdio-proxying/
-14. **Handling Legacy User Settings in SharePoint Framework**
-   - Publisher: Microsoft 365 Developer Blog
-   - Confidence: High
-   - URL: https://devblogs.microsoft.com/microsoft365dev/handling-legacy-user-settings-in-sharepoint-framework/
-15. **Increased control over Office Add-in user experiences**
-   - Publisher: Microsoft 365 Developer Blog
+   - URL: https://devblogs.microsoft.com/microsoft365dev/sharepoint-framework-spfx-roadmap-update-february-2026/
+8. **Increased control over Office Add-in user experiences**
+   - Publisher: Microsoft 365 Developer Blog (official)
+   - Scores: total 0.92 · freshness 0.85 · quality 1.00
    - Confidence: High
    - URL: https://devblogs.microsoft.com/microsoft365dev/increased-control-over-office-add-in-user-experiences/
+9. **Microsoft and OpenAI joint statement on continuing partnership**
+   - Publisher: Microsoft Blogs (Global) (official)
+   - Scores: total 0.91 · freshness 1.00 · quality 0.81
+   - Confidence: High
+   - URL: https://blogs.microsoft.com/blog/2026/02/27/microsoft-and-openai-joint-statement-on-continuing-partnership/
+10. **How to make Deep Links with Code Apps and call them from Model Driven Apps**
+   - Publisher: Diana Birkelbach (PCF Lady) (independent)
+   - Scores: total 0.89 · freshness 1.00 · quality 0.75
+   - Confidence: Medium
+   - URL: https://dianabirkelbach.wordpress.com/2026/02/28/how-to-make-deep-links-with-code-apps-and-call-them-from-model-driven-apps/
+11. **PowerFx Formula Columns to overcome some Power Pages table permissions limitations for WebAPI access in Power Pages**
+   - Publisher: Michel Mendes (independent)
+   - Scores: total 0.89 · freshness 1.00 · quality 0.75
+   - Confidence: Medium
+   - URL: https://michelcarlo.com/2026/03/01/powerfx-formula-columns-to-overcome-some-power-pages-table-permissions-limitations-for-webapi-access-in-power-pages/
+12. **Microsoft Sovereign Cloud adds governance, productivity, and support for large AI models securely running even when completely disconnected**
+   - Publisher: Azure Blog (official)
+   - Scores: total 0.89 · freshness 0.85 · quality 0.94
+   - Confidence: High
+   - URL: http://aka.ms/MicrosoftSovereignCloudDisconnectedBlog
+13. **What Does Vibe Coding Mean for Low-Code Platforms?**
+   - Publisher: Forward Forever (independent)
+   - Scores: total 0.86 · freshness 0.85 · quality 0.88
+   - Confidence: Medium
+   - URL: https://forwardforever.com/what-does-vibe-coding-mean-for-low-code-platforms/
+14. **Show Loading Screen In Your Custom Page While Your Collection Is Created**
+   - Publisher: Megan V. Walker (independent)
+   - Scores: total 0.86 · freshness 0.85 · quality 0.88
+   - Confidence: Medium
+   - URL: https://meganvwalker.com/show-loading-screen-in-your-custom-page/
+15. **Calculate Working Day Connector In Power Automate**
+   - Publisher: Megan V. Walker (independent)
+   - Scores: total 0.86 · freshness 0.85 · quality 0.88
+   - Confidence: Medium
+   - URL: https://meganvwalker.com/calculate-working-day-connector-in-power-automate/
 
 ## Questions for Liam
 

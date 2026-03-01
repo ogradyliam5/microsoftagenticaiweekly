@@ -66,5 +66,5 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 4 complete — see `docs/STAGE4_QA_RELEASE_READINESS.md`
 - [x] Stage 5 complete — `9816f96`
 - [x] Stage 6 complete — `94b2b63`
-- [ ] Stage 7 pending
+- [x] Stage 7 complete — source mix tuning + freshness/quality scoring notes added (see latest develop commit)
 - [ ] Stage 8 pending

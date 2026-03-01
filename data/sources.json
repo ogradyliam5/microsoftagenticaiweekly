@@ -5,6 +5,10 @@
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
   },
+  "mix_target": {
+    "independent": 0.6,
+    "official": 0.4
+  },
   "sources": [
     {
       "id": "devblogs-m365dev",
