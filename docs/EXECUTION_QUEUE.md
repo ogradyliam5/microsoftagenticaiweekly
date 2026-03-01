@@ -35,9 +35,36 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Link checks, metadata consistency, feed correctness, schedule notes.
 - Publish final dev sync and handoff checklist.
 
+## Stage Plan (next cycle)
+
+### Stage 5 — Content Personality Upgrade
+- Rewrite homepage hero + section intros in the approved human/quirky brief voice.
+- Replace rigid labels with natural phrasing and short punchy summaries.
+- Keep trust/provenance cues but reduce corporate tone.
+
+### Stage 6 — Weekly Issue Format Upgrade
+- Refactor issue pages to preferred format:
+  - short narrative line per item ("Microsoft updated...", "X published...")
+  - easier scanning and better engagement
+  - drop rigid moat-style/over-structured blocks
+- Apply to latest issue and template for future issues.
+
+### Stage 7 — Source Mix Tuning
+- Increase individual-practitioner ratio in weekly outputs.
+- Reduce low-signal/noisy entries.
+- Add lightweight freshness + quality scoring notes in generated queue report.
+
+### Stage 8 — Final Polish + Production Promotion Plan
+- Final readability QA pass on dev.
+- Produce merge checklist and promote-ready handoff.
+
 ## Stage completion log
 
 - [x] Stage 1 complete — `ee0d109`
 - [x] Stage 2 complete — `a4b2627`
 - [x] Stage 3 complete — `e2c7c5f`
-- [x] Stage 4 complete — see `docs/STAGE4_QA_RELEASE_READINESS.md` (this run)
+- [x] Stage 4 complete — see `docs/STAGE4_QA_RELEASE_READINESS.md`
+- [x] Stage 5 complete — `40ce054`
+- [ ] Stage 6 pending
+- [ ] Stage 7 pending
+- [ ] Stage 8 pending
