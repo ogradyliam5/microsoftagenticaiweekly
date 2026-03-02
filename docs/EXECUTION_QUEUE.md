@@ -99,3 +99,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 11 complete — see `docs/STAGE11_HOMEPAGE_VOICE_V3.md` (latest develop commit)
 - [x] Stage 12 complete — see `docs/STAGE12_WEEKLY_RENDERER_V2_EVERYWHERE.md` (latest develop commit)
 - [x] Stage 13 complete — see `docs/STAGE13_PRODUCTION_PROMOTION_READINESS.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 14 — Automated Release Audit Script
+- Convert final QA checks into a single reusable script.
+- Validate internal links, archive coverage, and RSS coverage in one command.
+- Document evidence so promotion checks are repeatable.
+
+## Stage completion log (current cycle)
+- [x] Stage 14 complete — see `docs/STAGE14_AUTOMATED_RELEASE_AUDIT_SCRIPT.md` (latest develop commit)
