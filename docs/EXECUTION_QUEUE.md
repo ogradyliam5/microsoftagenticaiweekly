@@ -150,3 +150,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 19 complete — legacy issue artifacts regenerated for `000` and `2026-09` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 20 — Release Audit Coverage Repair (Legacy Issue 000)
+- Fix release audit failures caused by `issue-000` missing from archive and RSS coverage.
+- Re-run automated release audit and verify zero archive/feed coverage gaps.
+- Record evidence and keep audit parity for future `develop -> main` promotion checks.
+
+## Stage completion log (next cycle)
+- [x] Stage 20 complete — archive + RSS coverage repaired for `issue-000`; release audit passes (latest develop commit)
