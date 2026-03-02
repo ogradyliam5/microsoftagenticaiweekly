@@ -140,3 +140,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 18 complete — see `docs/STAGE18_WEEKLY_DIGEST_STRUCTURE_RELEVANCE_CORRECTION.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 19 — Legacy Issue Format Backfill
+- Regenerate older issue artifacts that still used deprecated Adopt/Pilot/Watch framing.
+- Align markdown + HTML issue pages to the current 4-section digest renderer.
+- Ensure archived issue outputs match latest narrative style and publication metadata format.
+
+## Stage completion log (current cycle)
+- [x] Stage 19 complete — legacy issue artifacts regenerated for `000` and `2026-09` (latest develop commit)

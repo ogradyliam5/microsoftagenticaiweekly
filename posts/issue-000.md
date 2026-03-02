@@ -1,47 +1,28 @@
 # Microsoft Agentic AI Weekly — Issue 000
 
-_Generated draft on 2026-03-02 (requires human editorial approval before publishing)._
+_Published: Friday, 27 February 2026 · Coverage window (UTC): unknown to unknown (end exclusive). Requires human editorial approval before publishing._
 
-## What changed this week
-
-Short list, fast read: focus on what changes your build plan this week.
-
-## Top 5 you shouldn’t miss
-
-1. **Sample: Copilot Studio capability update**
-- Microsoft updated: Demonstrates issue generation format. Action: **Pilot** (Architect). [Read source](https://example.com/official-copilot-update)
-
-2. **Sample: Foundry agent ops pattern**
-- Community (sample) published: Shows confidence and attribution fields. Action: **Watch** (Dev). [Read source](https://example.com/foundry-pattern)
-
-## Official updates
-
-### Sample: Copilot Studio capability update
-- Microsoft updated: Demonstrates issue generation format. Action: **Pilot** (Architect). [Read source](https://example.com/official-copilot-update)
+Single weekly digest focused on high-signal agentic AI updates for Microsoft builders.
 
 ## Power Platform
 
 ### Sample: Copilot Studio capability update
-- Microsoft updated: Demonstrates issue generation format. Action: **Pilot** (Architect). [Read source](https://example.com/official-copilot-update)
+- **Microsoft:** Demonstrates issue generation format. [Read source](https://example.com/official-copilot-update)
 
 ## M365
 
 No qualifying items this run.
 
-## Foundry
+## Microsoft Foundry
 
 ### Sample: Foundry agent ops pattern
-- Community (sample) published: Shows confidence and attribution fields. Action: **Watch** (Dev). [Read source](https://example.com/foundry-pattern)
+- **Community (sample):** Shows confidence and attribution fields. [Read source](https://example.com/foundry-pattern)
 
-## Community picks + creator spotlight
+## Everything else
 
-### Sample: Foundry agent ops pattern
-- Community (sample) published: Shows confidence and attribution fields. Action: **Watch** (Dev). [Read source](https://example.com/foundry-pattern)
+No qualifying items this run.
 
-## Builder takeaway
 
-Triage quickly: run with **Adopt**, trial **Pilot**, and park **Watch** items in backlog.
-
-## Corrections
+Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.
 
 If you spot an error or context miss, email [ogradyliam5@gmail.com](mailto:ogradyliam5@gmail.com?subject=Correction%20request).

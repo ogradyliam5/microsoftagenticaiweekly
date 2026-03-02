@@ -1,10 +1,23 @@
 # Microsoft Agentic AI Weekly — Issue 000
 
 Draft only. Do not send without Liam approval.
+Published: Friday, 27 February 2026
+Coverage window (UTC): unknown to unknown (end exclusive).
 
-## Top 5 you shouldn’t miss
+## Power Platform
 
 - **Sample: Copilot Studio capability update**
-  Microsoft updated: Demonstrates issue generation format. Action: **Pilot** (Architect). [Read source](https://example.com/official-copilot-update)
+  **Microsoft:** Demonstrates issue generation format. [Read source](https://example.com/official-copilot-update)
+
+## M365
+
+No qualifying items this run.
+
+## Microsoft Foundry
+
 - **Sample: Foundry agent ops pattern**
-  Community (sample) published: Shows confidence and attribution fields. Action: **Watch** (Dev). [Read source](https://example.com/foundry-pattern)
+  **Community (sample):** Shows confidence and attribution fields. [Read source](https://example.com/foundry-pattern)
+
+## Everything else
+
+No qualifying items this run.
