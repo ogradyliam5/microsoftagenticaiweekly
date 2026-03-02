@@ -94,7 +94,7 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Prepare `develop -> main` promotion handoff.
 
 ## Stage completion log (next cycle)
-- [ ] Stage 9 pending
+- [x] Stage 9 complete — see `docs/STAGE9_BUTTONDOWN_RELIABILITY_HARDENING.md` (latest develop commit)
 - [ ] Stage 10 pending
 - [ ] Stage 11 pending
 - [ ] Stage 12 pending

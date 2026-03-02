@@ -5,6 +5,7 @@ import json
 import os
 import pathlib
 import urllib.error
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -50,6 +51,34 @@ def api(method, path, token, payload=None):
     with urllib.request.urlopen(req, timeout=30) as r:
         txt = r.read().decode("utf-8")
         return json.loads(txt) if txt else {}
+
+
+def list_drafts(token, subject=None, limit=100):
+    params = {"status": "draft", "page_size": min(max(limit, 1), 100)}
+    if subject:
+        params["subject"] = subject
+
+    path = f"/emails?{urllib.parse.urlencode(params)}"
+    payload = api("GET", path, token)
+
+    if isinstance(payload, list):
+        return payload
+
+    if isinstance(payload, dict):
+        for key in ("results", "items", "data"):
+            value = payload.get(key)
+            if isinstance(value, list):
+                return value
+
+    return []
+
+
+def find_draft_by_subject(token, subject):
+    drafts = list_drafts(token, subject=subject)
+    for draft in drafts:
+        if str(draft.get("subject", "")).strip() == subject:
+            return draft
+    return None
 
 
 def load_state():
@@ -100,43 +129,80 @@ def main():
             except urllib.error.HTTPError as e:
                 detail = read_http_error(e)
 
-                if e.code == 404:
+                if e.code in (404, 422):
                     log(
                         "warn",
-                        "Buttondown draft id not found; recreating",
-                        issue_id=args.issue_id,
-                        draft_id=existing_draft_id,
-                    )
-                    created_or_updated = api("POST", "/emails", token, create_payload)
-                    action = "recreated"
-                elif e.code == 422:
-                    log(
-                        "warn",
-                        "Buttondown rejected PATCH (422); creating replacement draft",
+                        "Stored Buttondown draft id unusable; attempting subject-based recovery",
                         issue_id=args.issue_id,
                         draft_id=existing_draft_id,
                         http_code=detail["code"],
                         response=detail["json"] if detail["json"] is not None else detail["body"][:400],
                     )
-                    created_or_updated = api("POST", "/emails", token, create_payload)
-                    action = "recreated_after_422"
+
+                    matched = find_draft_by_subject(token, args.subject)
+                    if matched and matched.get("id"):
+                        matched_id = str(matched.get("id"))
+                        created_or_updated = api("PATCH", f"/emails/{matched_id}", token, update_payload)
+                        action = "recovered_by_subject"
+                    else:
+                        created_or_updated = api("POST", "/emails", token, create_payload)
+                        action = "recreated"
                 else:
                     raise
         else:
-            created_or_updated = api("POST", "/emails", token, create_payload)
+            matched = find_draft_by_subject(token, args.subject)
+            if matched and matched.get("id"):
+                matched_id = str(matched.get("id"))
+                created_or_updated = api("PATCH", f"/emails/{matched_id}", token, update_payload)
+                action = "updated_existing_by_subject"
+            else:
+                created_or_updated = api("POST", "/emails", token, create_payload)
+                action = "created"
     except urllib.error.HTTPError as e:
         detail = read_http_error(e)
-        log(
-            "error",
-            "Buttondown draft sync failed",
-            issue_id=args.issue_id,
-            existing_draft_id=existing_draft_id,
-            http_code=detail["code"],
-            reason=str(detail["reason"]),
-            response=detail["json"] if detail["json"] is not None else detail["body"][:600],
-            action="continuing_without_email_draft",
-        )
-        return
+
+        if e.code == 422:
+            matched = find_draft_by_subject(token, args.subject)
+            if matched and matched.get("id"):
+                try:
+                    matched_id = str(matched.get("id"))
+                    created_or_updated = api("PATCH", f"/emails/{matched_id}", token, update_payload)
+                    action = "recovered_after_create_422"
+                except Exception as patch_error:
+                    log(
+                        "error",
+                        "Buttondown 422 recovery patch failed",
+                        issue_id=args.issue_id,
+                        existing_draft_id=existing_draft_id,
+                        matched_draft_id=matched.get("id"),
+                        error=str(patch_error),
+                        action="continuing_without_email_draft",
+                    )
+                    return
+            else:
+                log(
+                    "error",
+                    "Buttondown draft sync failed (422 and no matching draft found)",
+                    issue_id=args.issue_id,
+                    existing_draft_id=existing_draft_id,
+                    http_code=detail["code"],
+                    reason=str(detail["reason"]),
+                    response=detail["json"] if detail["json"] is not None else detail["body"][:600],
+                    action="continuing_without_email_draft",
+                )
+                return
+        else:
+            log(
+                "error",
+                "Buttondown draft sync failed",
+                issue_id=args.issue_id,
+                existing_draft_id=existing_draft_id,
+                http_code=detail["code"],
+                reason=str(detail["reason"]),
+                response=detail["json"] if detail["json"] is not None else detail["body"][:600],
+                action="continuing_without_email_draft",
+            )
+            return
     except Exception as e:
         log(
             "error",
