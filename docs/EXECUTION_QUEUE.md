@@ -107,5 +107,11 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Validate internal links, archive coverage, and RSS coverage in one command.
 - Document evidence so promotion checks are repeatable.
 
+### Stage 15 — CI Release Audit Guardrail
+- Add a GitHub Actions workflow that runs the release audit script on PRs/pushes.
+- Ensure failures block regressions before `develop -> main` promotion.
+- Document the CI guardrail and local parity command.
+
 ## Stage completion log (current cycle)
 - [x] Stage 14 complete — see `docs/STAGE14_AUTOMATED_RELEASE_AUDIT_SCRIPT.md` (latest develop commit)
+- [x] Stage 15 complete — see `docs/STAGE15_CI_RELEASE_AUDIT_GUARDRAIL.md` (latest develop commit)
