@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 QUEUE_LIMIT = 24
 DEFAULT_MIX_TARGET = {"independent": 0.60, "official": 0.40}
+RELEVANCE_MIN_SCORE = 0.45
 
 
 CONTENT_TYPE_WEIGHTS = {
@@ -150,8 +151,39 @@ def quality_score(source, title):
     return max(0.0, min(1.0, quality)), content_type, round(content_type_weight, 4)
 
 
-def total_score(freshness, quality):
-    return round((freshness * 0.50) + (quality * 0.50), 4)
+def total_score(freshness, quality, relevance):
+    return round((freshness * 0.35) + (quality * 0.35) + (relevance * 0.30), 4)
+
+
+def relevance_score(title, source_area, content_type):
+    t = (title or "").lower()
+    area = (source_area or "").lower()
+
+    high_signal = [
+        "agent", "agentic", "copilot", "copilot studio", "foundry", "azure ai",
+        "semantic kernel", "mcp", "automation", "power automate", "dataverse",
+        "governance", "guardrail", "policy", "eval", "evaluation", "prompt", "orchestration"
+    ]
+    medium_signal = [
+        "power platform", "power apps", "m365", "microsoft 365", "teams", "graph",
+        "security", "compliance", "rbac", "plugin", "connector", "workflow"
+    ]
+    off_topic = [
+        "windows", "xbox", "surface", "gaming", "holiday", "conference recap",
+        "career", "job", "culture", "merch", "investor"
+    ]
+
+    score = 0.0
+    score += 0.55 if any(k in t for k in high_signal) else 0.0
+    score += 0.20 if any(k in t for k in medium_signal) else 0.0
+    score += 0.15 if any(k in area for k in ["power platform", "m365", "foundry"]) else 0.0
+
+    if content_type in {"marketing", "news"}:
+        score -= 0.15
+    if any(k in t for k in off_topic):
+        score -= 0.45
+
+    return max(0.0, min(1.0, round(score, 4)))
 
 
 def select_mix_scored(items, limit, mix_target):
@@ -217,7 +249,11 @@ def main():
                 tags = classify(title, s.get("product_area", "Mixed"))
                 freshness = recency_score(pub, now)
                 quality, content_type, content_type_weight = quality_score(s, title)
-                score = total_score(freshness, quality)
+                relevance = relevance_score(title, s.get("product_area", "Mixed"), content_type)
+                if relevance < RELEVANCE_MIN_SCORE:
+                    excluded.append({"url": link, "reason": "low_relevance", "relevance": relevance})
+                    continue
+                score = total_score(freshness, quality, relevance)
                 source_bucket = "official" if s.get("trust") == "official" else "independent"
 
                 items.append({
@@ -243,6 +279,7 @@ def main():
                     "score_freshness": round(freshness, 4),
                     "score_quality": round(quality, 4),
                     "score_content_type": content_type_weight,
+                    "score_relevance": relevance,
                     "score_total": score,
                 })
         except Exception as e:
@@ -271,7 +308,8 @@ def main():
             "freshness": "Based on published date recency bands (<=3d highest, >30d lowest).",
             "quality": "Based on source priority + trust + title noise penalty.",
             "content_type": "Weighted toward updates/guides/how-tos/demos/build reports; down-ranks marketing/news-noise.",
-            "total": "score_total = freshness*0.50 + quality*0.50 (quality includes content-type weighting).",
+            "relevance": "Boosts agentic AI/Copilot/Foundry/automation/governance topics and filters low-signal items.",
+            "total": "score_total = freshness*0.35 + quality*0.35 + relevance*0.30.",
         },
         "questions_for_liam": [
             "Any sources to add/remove this week? (approval required)",
@@ -303,6 +341,7 @@ def main():
         f"- Freshness: {queue['scoring_notes']['freshness']}",
         f"- Quality: {queue['scoring_notes']['quality']}",
         f"- Content type: {queue['scoring_notes']['content_type']}",
+        f"- Relevance: {queue['scoring_notes']['relevance']}",
         f"- Total: {queue['scoring_notes']['total']}",
         "",
         "## Top candidates",
@@ -313,7 +352,7 @@ def main():
             f"{i}. **{it['title']}**",
             f"   - Publisher: {it['publisher']} ({it['source_mix_bucket']})",
             f"   - Type: {it['content_type']} (weight {it['score_content_type']:.2f})",
-            f"   - Scores: total {it['score_total']:.2f} · freshness {it['score_freshness']:.2f} · quality {it['score_quality']:.2f}",
+            f"   - Scores: total {it['score_total']:.2f} · freshness {it['score_freshness']:.2f} · quality {it['score_quality']:.2f} · relevance {it['score_relevance']:.2f}",
             f"   - Confidence: {it['confidence']}",
             f"   - URL: {it['canonical_url']}",
         ]

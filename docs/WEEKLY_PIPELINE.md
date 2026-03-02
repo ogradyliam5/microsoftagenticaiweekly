@@ -6,6 +6,8 @@
    - Reads `data/sources.json`
    - Fetches RSS/Atom sources
    - Normalizes basic metadata
+   - Applies relevance scoring tuned for agentic AI/Copilot/Foundry/automation/governance topics
+   - Down-ranks or excludes low-signal/non-AI posts before queue selection
    - Outputs:
      - `artifacts/editorial_queue-<issue_id>.json`
      - `artifacts/editorial_queue-<issue_id>.md`
@@ -17,7 +19,10 @@
      - evidence snippet cap (<=25 words)
 
 3. `scripts/pipeline/generate_issue.py`
-   - Converts queue into draft website issue + email draft
+   - Converts queue into one main weekly digest + email draft
+   - Adds full human-readable publication date in the issue header
+   - Enforces a single placement per item (no repeated items across sections)
+   - Uses exactly 4 sections: Power Platform, M365, Microsoft Foundry, Everything else
    - Outputs:
      - `posts/issue-<issue_id>.md`
      - `drafts/email-<issue_id>.md`

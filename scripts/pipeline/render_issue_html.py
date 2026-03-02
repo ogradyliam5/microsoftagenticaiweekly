@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import argparse
+import datetime as dt
 import html
 import json
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+SECTION_ORDER = ["Power Platform", "M365", "Microsoft Foundry", "Everything else"]
 
 
 def speaker(item):
@@ -21,7 +23,6 @@ def concise_summary(item):
     rules = [
         (["copilot studio", "mcp"], "Concrete Copilot Studio build pattern teams can reuse quickly."),
         (["dataverse", "search"], "Improves retrieval quality for Dataverse-grounded copilots."),
-        (["roadmap", "spfx"], "Signals near-term platform changes likely to impact planning and maintenance."),
         (["rbac", "authentication"], "Practical security testing approach for auth and role boundaries."),
     ]
     for keys, text in rules:
@@ -33,6 +34,17 @@ def concise_summary(item):
     return f"{title} — useful if this is in your active delivery scope."
 
 
+def assign_section(item):
+    tags = set(item.get("tags", []))
+    if "Power Platform" in tags:
+        return "Power Platform"
+    if "M365" in tags:
+        return "M365"
+    if "Foundry" in tags:
+        return "Microsoft Foundry"
+    return "Everything else"
+
+
 def card(item):
     title = html.escape(item.get("title", "Untitled"))
     by = html.escape(speaker(item))
@@ -42,8 +54,16 @@ def card(item):
 
 
 def section(title, items):
-    cards = "\n      ".join(card(i) for i in items[:5]) if items else '<p class="small">No qualifying items this run.</p>'
+    cards = "\n      ".join(card(i) for i in items) if items else '<p class="small">No qualifying items this run.</p>'
     return f'<h2>{html.escape(title)}</h2>\n      {cards}'
+
+
+def format_human_date(iso_value):
+    try:
+        parsed = dt.datetime.fromisoformat(iso_value.replace("Z", "+00:00"))
+        return parsed.strftime("%A, %d %B %Y")
+    except Exception:
+        return dt.datetime.utcnow().strftime("%A, %d %B %Y")
 
 
 def main():
@@ -53,13 +73,25 @@ def main():
 
     q = json.loads((ROOT / "artifacts" / f"editorial_queue-{args.issue_id}.json").read_text(encoding="utf-8"))
     items = q.get("items", [])
-    official = [i for i in items if "Official" in i.get("tags", [])]
-    community = [i for i in items if "Community" in i.get("tags", [])]
+
+    unique_items = []
+    seen_ids = set()
+    for item in items:
+        key = item.get("id") or item.get("canonical_url") or item.get("url") or item.get("title")
+        if key in seen_ids:
+            continue
+        seen_ids.add(key)
+        unique_items.append(item)
+
+    sections = {name: [] for name in SECTION_ORDER}
+    for item in unique_items:
+        sections[assign_section(item)].append(item)
 
     window_start = html.escape(q.get("window_start_utc", "unknown"))
     window_end = html.escape(q.get("window_end_utc", "unknown"))
+    publication_date = html.escape(format_human_date(q.get("generated_at", "")))
 
-    top_cards = "\n      ".join(card(i) for i in items[:5]) if items else '<p class="small">No qualifying items this run.</p>'
+    section_html = "\n\n        ".join(section(name, sections[name]) for name in SECTION_ORDER)
 
     body = f'''<!doctype html>
 <html lang="en">
@@ -85,13 +117,10 @@ def main():
       <article class="panel">
         <p class="kicker">Issue {args.issue_id}</p>
         <h1>Microsoft Agentic AI Weekly</h1>
+        <p class="meta">Published: {publication_date}</p>
         <p class="meta">Coverage window (UTC): {window_start} to {window_end} (end exclusive).</p>
 
-        <h2>Top 5 you shouldn’t miss</h2>
-        {top_cards}
-
-        {section("Official updates", official)}
-        {section("Community picks + creator spotlight", community)}
+        {section_html}
 
         <h2>Builder takeaway</h2>
         <p>Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.</p>

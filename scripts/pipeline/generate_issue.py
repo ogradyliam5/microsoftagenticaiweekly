@@ -6,6 +6,7 @@ import pathlib
 import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+SECTION_ORDER = ["Power Platform", "M365", "Microsoft Foundry", "Everything else"]
 
 
 def speaker(item):
@@ -22,10 +23,9 @@ def concise_summary(item):
     heuristics = [
         (["copilot studio", "mcp"], "Shows a concrete Copilot Studio build pattern you can reuse quickly."),
         (["dataverse", "search"], "Improves retrieval quality for Dataverse-grounded copilots."),
-        (["roadmap", "spfx"], "Signals near-term platform changes likely to affect planning and maintenance."),
-        (["power pages", "webapi"], "Highlights a practical workaround for Power Pages permission constraints."),
         (["agent framework", "semantic kernel", "autogen"], "Useful migration guidance for teams moving to Microsoft Agent Framework."),
         (["rbac", "authentication"], "Practical security testing guidance for auth and role-boundary validation."),
+        (["governance"], "Useful governance pattern for safer AI workload delivery and scale."),
     ]
 
     for keys, text in heuristics:
@@ -46,13 +46,32 @@ def narrative_line(item):
     return f"- **{who}:** {why} [Read source]({url})"
 
 
-def section(items, label, limit=5):
+def assign_section(item):
+    tags = set(item.get("tags", []))
+    if "Power Platform" in tags:
+        return "Power Platform"
+    if "M365" in tags:
+        return "M365"
+    if "Foundry" in tags:
+        return "Microsoft Foundry"
+    return "Everything else"
+
+
+def section(label, items):
     out = [f"## {label}", ""]
     if not items:
         return out + ["No qualifying items this run.", ""]
-    for it in items[:limit]:
+    for it in items:
         out += [f"### {it['title']}", narrative_line(it), ""]
     return out
+
+
+def format_human_date(iso_value):
+    try:
+        parsed = dt.datetime.fromisoformat(iso_value.replace("Z", "+00:00"))
+        return parsed.strftime("%A, %d %B %Y")
+    except Exception:
+        return dt.datetime.utcnow().strftime("%A, %d %B %Y")
 
 
 def main():
@@ -64,39 +83,36 @@ def main():
     q = json.loads(queue_path.read_text(encoding="utf-8"))
     items = q.get("items", [])
 
-    pp = [i for i in items if "Power Platform" in i.get("tags", [])]
-    m365 = [i for i in items if "M365" in i.get("tags", [])]
-    foundry = [i for i in items if "Foundry" in i.get("tags", [])]
-    official = [i for i in items if "Official" in i.get("tags", [])]
-    community = [i for i in items if "Community" in i.get("tags", [])]
+    seen_ids = set()
+    unique_items = []
+    for item in items:
+        key = item.get("id") or item.get("canonical_url") or item.get("url") or item.get("title")
+        if key in seen_ids:
+            continue
+        seen_ids.add(key)
+        unique_items.append(item)
+
+    sections = {name: [] for name in SECTION_ORDER}
+    for item in unique_items:
+        sections[assign_section(item)].append(item)
 
     window_start = q.get("window_start_utc", "unknown")
     window_end = q.get("window_end_utc", "unknown")
+    publication_date = format_human_date(q.get("generated_at", ""))
 
     post = [
         f"# Microsoft Agentic AI Weekly — Issue {args.issue_id}",
         "",
-        f"_Generated on {dt.datetime.utcnow().date().isoformat()} · Coverage window (UTC): {window_start} to {window_end} (end exclusive). Requires human editorial approval before publishing._",
+        f"_Published: {publication_date} · Coverage window (UTC): {window_start} to {window_end} (end exclusive). Requires human editorial approval before publishing._",
         "",
         "## What changed this week",
         "",
-        "Fast scan of updates published in last week’s window that can affect active Microsoft agent delivery work.",
-        "",
-        "## Top 5 you shouldn’t miss",
+        "Single weekly digest focused on high-signal agentic AI updates for Microsoft builders.",
         "",
     ]
 
-    if not items:
-        post += ["No qualifying items this run.", ""]
-    else:
-        for idx, it in enumerate(items[:5], start=1):
-            post += [f"{idx}. **{it['title']}**", narrative_line(it), ""]
-
-    post += section(official, "Official updates")
-    post += section(pp, "Power Platform")
-    post += section(m365, "M365")
-    post += section(foundry, "Foundry")
-    post += section(community, "Community picks + creator spotlight")
+    for section_name in SECTION_ORDER:
+        post += section(section_name, sections[section_name])
 
     post += [
         "## Builder takeaway",
@@ -113,18 +129,20 @@ def main():
         f"# Microsoft Agentic AI Weekly — Issue {args.issue_id}",
         "",
         "Draft only. Do not send without Liam approval.",
+        f"Published: {publication_date}",
         f"Coverage window (UTC): {window_start} to {window_end} (end exclusive).",
-        "",
-        "## Top 5 you shouldn’t miss",
         "",
     ]
 
-    if not items:
-        email += ["No qualifying items this run."]
-    else:
-        for it in items[:5]:
-            email.append(f"- **{it['title']}**")
-            email.append(f"  {narrative_line(it).lstrip('- ')}")
+    for section_name in SECTION_ORDER:
+        email += [f"## {section_name}", ""]
+        if not sections[section_name]:
+            email += ["No qualifying items this run.", ""]
+            continue
+        for item in sections[section_name]:
+            email.append(f"- **{item['title']}**")
+            email.append(f"  {narrative_line(item).lstrip('- ')}")
+        email.append("")
 
     posts = ROOT / "posts"
     drafts = ROOT / "drafts"

@@ -1,49 +1,37 @@
-# Issue #[N] — [TITLE]
+# Microsoft Agentic AI Weekly — Issue [YYYY-WW]
 
-**Date:** [DD Mon YYYY]
+**Published:** [Day, DD Month YYYY]
+**Coverage window (UTC):** [YYYY-MM-DDThh:mm:ss+00:00] to [YYYY-MM-DDThh:mm:ss+00:00] (end exclusive)
 
 ## What changed this week
-[One short setup line. Keep it human and practical.]
-
-## Top 5 you shouldn’t miss
-
-1. **[Headline]**
-- Microsoft updated / [Creator] published: [one-line impact]. Action: **Watch/Pilot/Adopt** ([audience]). [Read source](URL)
-
-2. **[Headline]**
-- Microsoft updated / [Creator] published: [one-line impact]. Action: **Watch/Pilot/Adopt** ([audience]). [Read source](URL)
-
-3. **[Headline]**
-- Microsoft updated / [Creator] published: [one-line impact]. Action: **Watch/Pilot/Adopt** ([audience]). [Read source](URL)
-
-4. **[Headline]**
-- Microsoft updated / [Creator] published: [one-line impact]. Action: **Watch/Pilot/Adopt** ([audience]). [Read source](URL)
-
-5. **[Headline]**
-- Microsoft updated / [Creator] published: [one-line impact]. Action: **Watch/Pilot/Adopt** ([audience]). [Read source](URL)
-
-## Official updates
-### [Headline]
-- Microsoft updated: [one-line impact]. Action: **[Watch/Pilot/Adopt]** ([audience]). [Read source](URL)
+[One short setup line. Keep it practical and focused on agentic AI delivery impact.]
 
 ## Power Platform
 ### [Headline]
-- [one-line impact + action + audience + source link]
+- Microsoft / [Creator]: [one-line impact tied to Copilot Studio, Power Apps, Dataverse, automation, or governance]. [Read source](URL)
 
 ## M365
 ### [Headline]
-- [one-line impact + action + audience + source link]
+- Microsoft / [Creator]: [one-line impact tied to Microsoft 365 Copilot, Teams AI, Graph automation, or governance]. [Read source](URL)
 
-## Foundry
+## Microsoft Foundry
 ### [Headline]
-- [one-line impact + action + audience + source link]
+- Microsoft / [Creator]: [one-line impact tied to Foundry, Azure AI, agents, evaluation, orchestration, or guardrails]. [Read source](URL)
 
-## Community picks + creator spotlight
+## Everything else
 ### [Headline]
-- [one-line impact + action + audience + source link]
+- Microsoft / [Creator]: [one-line impact; include only if still useful for AI builders]. [Read source](URL)
 
 ## Builder takeaway
 [One short practical instruction for next week’s planning.]
 
 ## Corrections
 If you spot an error or context miss, email [address].
+
+---
+
+Rules:
+- Single weekly digest only.
+- Exactly 4 sections (Power Platform, M365, Microsoft Foundry, Everything else).
+- No repeated items across sections (each item appears once only).
+- Prefer agentic AI/Copilot/Foundry/automation/governance relevance; exclude weakly related posts.
