@@ -127,3 +127,16 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 15 complete — see `docs/STAGE15_CI_RELEASE_AUDIT_GUARDRAIL.md` (latest develop commit)
 - [x] Stage 16 complete — see `docs/STAGE16_PIPELINE_EXECUTION_MODES.md` (latest develop commit)
 - [x] Stage 17 complete — see `docs/STAGE17_WEEKLY_RUN_ANALYTICS_REPORT.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 18 — Weekly Digest Structure + Relevance Correction
+- Enforce one-pass digest structure with only 4 sections: Power Platform, M365, Microsoft Foundry, Everything else.
+- Ensure each item appears once only (global dedupe across sections).
+- Add full human-readable publication date in issue header.
+- Remove disliked labels/phrases (Adopt/Pilot/Watch, best-fit, what-to-do-next, keep-an-eye-on).
+- Ensure creator names are used directly in item lines.
+- Tighten relevance filter to reduce non-AI content in latest issue.
+
+## Stage completion log (next cycle)
+- [ ] Stage 18 pending
