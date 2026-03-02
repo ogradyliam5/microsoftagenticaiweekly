@@ -160,3 +160,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 20 complete — archive + RSS coverage repaired for `issue-000`; release audit passes (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 21 — Bidirectional Release Audit Coverage Guardrail
+- Extend release audit checks to detect stale issue references in archive/feed (items that no longer exist in `posts/`).
+- Keep fail-fast behavior for both missing and stale issue coverage so promotion checks catch drift in both directions.
+- Record verification evidence and local parity command.
+
+## Stage completion log (current cycle)
+- [x] Stage 21 complete — stale archive/feed reference checks added to release audit (latest develop commit)

@@ -96,6 +96,8 @@ def main() -> int:
 
     archive_missing = sorted(published_slugs - archive_slugs)
     feed_missing = sorted(published_slugs - feed_slugs)
+    archive_stale = sorted(archive_slugs - published_slugs)
+    feed_stale = sorted(feed_slugs - published_slugs)
 
     print(f"Audited HTML files: {len(files)}")
     print(f"Published issues: {len(published_slugs)}")
@@ -107,8 +109,10 @@ def main() -> int:
 
     print(f"Archive missing issues: {archive_missing or 'none'}")
     print(f"Feed missing issues: {feed_missing or 'none'}")
+    print(f"Archive stale issues: {archive_stale or 'none'}")
+    print(f"Feed stale issues: {feed_stale or 'none'}")
 
-    if missing_links or archive_missing or feed_missing:
+    if missing_links or archive_missing or feed_missing or archive_stale or feed_stale:
         return 1
 
     print("Release audit OK")
