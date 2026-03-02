@@ -98,4 +98,4 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - [x] Stage 10 complete — see `docs/STAGE10_INTERESTING_ONLY_SOURCE_RANKING.md` (latest develop commit)
 - [x] Stage 11 complete — see `docs/STAGE11_HOMEPAGE_VOICE_V3.md` (latest develop commit)
 - [x] Stage 12 complete — see `docs/STAGE12_WEEKLY_RENDERER_V2_EVERYWHERE.md` (latest develop commit)
-- [ ] Stage 13 pending
+- [x] Stage 13 complete — see `docs/STAGE13_PRODUCTION_PROMOTION_READINESS.md` (latest develop commit)
