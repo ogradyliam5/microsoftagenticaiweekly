@@ -3,104 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Microsoft Agentic AI Weekly — The useful signal, without the noise</title>
-  <meta name="description" content="A practical weekly brief for teams shipping Microsoft agentic AI: what changed, why it matters, and what to do next." />
+  <title>Microsoft Agentic AI Weekly</title>
+  <meta name="description" content="Weekly signal for teams building with Microsoft Agentic AI." />
   <link rel="alternate" type="application/rss+xml" title="Microsoft Agentic AI Weekly RSS" href="feed.xml" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="index.html">Microsoft Agentic AI Weekly</a>
-      <nav class="nav">
-        <a href="posts/issue-2026-10.html">Latest</a>
-        <a href="archive.html">Archive</a>
-        <a href="sources.html">Sources</a>
-        <a href="corrections.html">Corrections</a>
-        <a href="about.html">About</a>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <a class="text-base font-semibold tracking-tight" href="index.html">Microsoft Agentic AI Weekly</a>
+      <nav class="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+        <a class="hover:text-slate-900" href="posts/issue-2026-10.html">Latest issue</a>
+        <a class="hover:text-slate-900" href="archive.html">Archive</a>
+        <a class="hover:text-slate-900" href="sources.html">Sources</a>
+        <a class="hover:text-slate-900" href="corrections.html">Corrections</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <div class="container home-shell">
-      <section class="home-hero panel">
-        <p class="kicker">Weekly briefing · Microsoft Agentic AI</p>
-        <h1>Too many AI updates. Not enough useful ones.</h1>
-        <p class="lead">
-          This is the weekly shortcut for teams actually building on Microsoft: Copilot Studio, Power Platform, Azure AI Foundry, and M365.
-          We cut the launch-theater, keep the practical changes, and call the next move in plain English.
-        </p>
-        <div class="cta-row">
-          <a class="btn primary" href="posts/issue-2026-10.html">Read latest issue</a>
-          <a class="btn ghost" href="archive.html">Browse archive</a>
-          <a class="btn ghost" href="mailto:ogradyliam5@gmail.com?subject=Subscribe">Subscribe</a>
-        </div>
-      </section>
+  <main class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+    <section class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Weekly briefing</p>
+      <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Useful Microsoft Agentic AI updates. No filler.</h1>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600">A clean weekly scan for teams shipping with Copilot Studio, Power Platform, Azure AI Foundry, and Microsoft 365.</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700" href="posts/issue-2026-10.html">Read latest issue</a>
+        <a class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100" href="archive.html">Browse archive</a>
+        <a class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100" href="mailto:ogradyliam5@gmail.com?subject=Subscribe">Subscribe</a>
+      </div>
+    </section>
 
-      <section class="trust-strip grid three">
-        <article class="signal-card">
-          <h3>Robot-assisted, human-approved</h3>
-          <p class="meta">Automation drafts. Nothing gets published or emailed without explicit human approval.</p>
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold tracking-tight">Weekly sections</h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2">
+        <article class="rounded-xl border border-slate-200 bg-white p-5">
+          <h3 class="font-semibold">Latest issue</h3>
+          <p class="mt-2 text-sm text-slate-600">Practical weekly summary with delivery-relevant updates and direct source links.</p>
         </article>
-        <article class="signal-card">
-          <h3>Receipts on every take</h3>
-          <p class="meta">Each item links to the original source so you can sanity-check fast.</p>
+        <article class="rounded-xl border border-slate-200 bg-white p-5">
+          <h3 class="font-semibold">Archive</h3>
+          <p class="mt-2 text-sm text-slate-600">Full issue timeline to track patterns and revisit prior decisions.</p>
         </article>
-        <article class="signal-card">
-          <h3>Made for Monday decisions</h3>
-          <p class="meta">Every signal is written for quick decision-making and immediate evaluation.</p>
+        <article class="rounded-xl border border-slate-200 bg-white p-5">
+          <h3 class="font-semibold">Sources & method</h3>
+          <p class="mt-2 text-sm text-slate-600">Transparent provenance and confidence framing for each signal.</p>
         </article>
-      </section>
+        <article class="rounded-xl border border-slate-200 bg-white p-5">
+          <h3 class="font-semibold">Corrections</h3>
+          <p class="mt-2 text-sm text-slate-600">Public correction log for substantive updates after publication.</p>
+        </article>
+      </div>
+    </section>
 
-      <section>
-        <h2>What you get each week</h2>
-        <p class="lead">Quick to read. Easy to forward. Useful in a real delivery meeting.</p>
-        <div class="grid three">
-          <article class="signal-card">
-            <h3>The short list</h3>
-            <p class="meta">Usually five updates with real delivery impact — not a giant changelog dump.</p>
-          </article>
-          <article class="signal-card">
-            <h3>Who should care first</h3>
-            <p class="meta">We tag likely owners (Builder, Platform Owner, Leader) so decisions route faster.</p>
-          </article>
-          <article class="signal-card">
-            <h3>How to evaluate fast</h3>
-            <p class="meta">Each signal includes concise context so you can decide whether it matters before clicking.</p>
-          </article>
-        </div>
-      </section>
-
-      <section>
-        <h2>What we watch so you don’t have to</h2>
-        <p class="lead">Across the Microsoft stack, biased toward things that unblock builds (or break them).</p>
-        <div class="grid two">
-          <article class="signal-card">
-            <h3>Copilot Studio + Power Platform</h3>
-            <p class="meta">New capabilities, ALM/governance changes, and rollout gotchas.</p>
-          </article>
-          <article class="signal-card">
-            <h3>Azure AI Foundry</h3>
-            <p class="meta">Model/runtime shifts with real architecture and reliability impact.</p>
-          </article>
-          <article class="signal-card">
-            <h3>Microsoft 365 + Teams + Graph</h3>
-            <p class="meta">Platform changes that ripple into agent delivery and controls.</p>
-          </article>
-          <article class="signal-card">
-            <h3>Production agent ops</h3>
-            <p class="meta">Observability, eval discipline, safety controls, and incident learnings.</p>
-          </article>
-        </div>
-      </section>
-
-      <p class="small">Want method detail? See <a href="sources.html">Sources & Method</a> and <a href="corrections.html">Corrections Policy</a>.</p>
-    </div>
+    <section class="mt-10 rounded-2xl border border-slate-200 bg-white p-6">
+      <h2 class="text-xl font-semibold tracking-tight">Subscribe</h2>
+      <p class="mt-2 text-sm text-slate-600">Get the weekly issue in your inbox.</p>
+      <a class="mt-4 inline-flex rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700" href="mailto:ogradyliam5@gmail.com?subject=Subscribe">Subscribe by email</a>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">© 2026 Microsoft Agentic AI Weekly · <a href="feed.xml">RSS</a></div>
+  <footer class="border-t border-slate-200 py-8">
+    <div class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-4 text-sm text-slate-500 sm:px-6 lg:px-8">
+      <span>© 2026 Microsoft Agentic AI Weekly</span>
+      <a class="hover:text-slate-900" href="feed.xml">RSS</a>
+    </div>
   </footer>
 </body>
 </html>

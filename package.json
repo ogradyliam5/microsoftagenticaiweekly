@@ -1,0 +1,12 @@
+{
+  "name": "microsoftagenticaiweekly",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/tailwind.css -o ./assets/styles.css --minify",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

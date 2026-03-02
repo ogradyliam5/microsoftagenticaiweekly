@@ -99,7 +99,7 @@ def main():
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Issue {args.issue_id} — Microsoft Agentic AI Weekly</title>
-  <link rel="stylesheet" href="../assets/styles.css" />
+  <link rel="stylesheet" href="../assets/legacy.css" />
 </head>
 <body>
   <header class="site-header">
