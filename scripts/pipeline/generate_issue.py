@@ -105,8 +105,6 @@ def main():
         "",
         f"_Published: {publication_date} · Coverage window (UTC): {window_start} to {window_end} (end exclusive). Requires human editorial approval before publishing._",
         "",
-        "## What changed this week",
-        "",
         "Single weekly digest focused on high-signal agentic AI updates for Microsoft builders.",
         "",
     ]
@@ -115,11 +113,8 @@ def main():
         post += section(section_name, sections[section_name])
 
     post += [
-        "## Builder takeaway",
         "",
         "Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.",
-        "",
-        "## Corrections",
         "",
         "If you spot an error or context miss, email [ogradyliam5@gmail.com](mailto:ogradyliam5@gmail.com?subject=Correction%20request).",
         "",

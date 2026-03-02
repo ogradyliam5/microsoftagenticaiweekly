@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 QUEUE_LIMIT = 24
 DEFAULT_MIX_TARGET = {"independent": 0.60, "official": 0.40}
-RELEVANCE_MIN_SCORE = 0.45
+RELEVANCE_MIN_SCORE = 0.60
 
 
 CONTENT_TYPE_WEIGHTS = {
@@ -159,29 +159,39 @@ def relevance_score(title, source_area, content_type):
     t = (title or "").lower()
     area = (source_area or "").lower()
 
-    high_signal = [
+    ai_core = [
         "agent", "agentic", "copilot", "copilot studio", "foundry", "azure ai",
-        "semantic kernel", "mcp", "automation", "power automate", "dataverse",
-        "governance", "guardrail", "policy", "eval", "evaluation", "prompt", "orchestration"
+        "semantic kernel", "autogen", "mcp", "llm", "prompt", "rag", "grounding"
     ]
-    medium_signal = [
-        "power platform", "power apps", "m365", "microsoft 365", "teams", "graph",
-        "security", "compliance", "rbac", "plugin", "connector", "workflow"
+    ai_ops = [
+        "governance", "guardrail", "policy", "eval", "evaluation", "orchestration",
+        "automation", "ai", "genai"
+    ]
+    platform_context = [
+        "power platform", "power apps", "power automate", "dataverse", "m365", "microsoft 365", "teams", "graph"
     ]
     off_topic = [
         "windows", "xbox", "surface", "gaming", "holiday", "conference recap",
-        "career", "job", "culture", "merch", "investor"
+        "career", "job", "culture", "merch", "investor", "ceo", "leadership change"
     ]
 
+    has_ai_core = any(k in t for k in ai_core)
+    has_ai_ops = any(k in t for k in ai_ops)
+    has_platform_context = any(k in t for k in platform_context) or any(k in area for k in ["power platform", "m365", "foundry"])
+
+    # Hard gate: keep Microsoft ecosystem context, but require explicit AI/agent signal.
+    if not (has_ai_core or has_ai_ops):
+        return 0.0
+
     score = 0.0
-    score += 0.55 if any(k in t for k in high_signal) else 0.0
-    score += 0.20 if any(k in t for k in medium_signal) else 0.0
-    score += 0.15 if any(k in area for k in ["power platform", "m365", "foundry"]) else 0.0
+    score += 0.60 if has_ai_core else 0.0
+    score += 0.20 if has_ai_ops else 0.0
+    score += 0.15 if has_platform_context else 0.0
 
     if content_type in {"marketing", "news"}:
-        score -= 0.15
+        score -= 0.20
     if any(k in t for k in off_topic):
-        score -= 0.45
+        score -= 0.55
 
     return max(0.0, min(1.0, round(score, 4)))
 

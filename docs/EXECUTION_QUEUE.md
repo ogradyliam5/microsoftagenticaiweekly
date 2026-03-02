@@ -139,4 +139,4 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Tighten relevance filter to reduce non-AI content in latest issue.
 
 ## Stage completion log (next cycle)
-- [ ] Stage 18 pending
+- [x] Stage 18 complete — see `docs/STAGE18_WEEKLY_DIGEST_STRUCTURE_RELEVANCE_CORRECTION.md` (latest develop commit)

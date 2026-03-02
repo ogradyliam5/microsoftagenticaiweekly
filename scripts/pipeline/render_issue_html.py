@@ -122,7 +122,6 @@ def main():
 
         {section_html}
 
-        <h2>Builder takeaway</h2>
         <p>Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.</p>
       </article>
     </div>
