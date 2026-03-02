@@ -27,7 +27,12 @@
      - `posts/issue-<issue_id>.md`
      - `drafts/email-<issue_id>.md`
 
-4. `scripts/pipeline/buttondown_draft.py`
+4. `scripts/pipeline/run_report.py`
+   - Generates a concise run analytics snapshot for the issue
+   - Outputs:
+     - `artifacts/run_report-<issue_id>.md`
+
+5. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)
    - Records idempotency metadata:
      - `artifacts/buttondown_drafts.json`

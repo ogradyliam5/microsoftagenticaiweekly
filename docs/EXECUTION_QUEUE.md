@@ -117,7 +117,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Allow local artifact generation without requiring Buttondown API calls.
 - Record Buttondown execution status in run summary output.
 
+### Stage 17 — Weekly Run Analytics Report
+- Generate a reusable run report markdown artifact per issue.
+- Include output mix breakdown (product area/source bucket/content type) + top scored items.
+- Wire report generation into weekly pipeline so every run emits the analytics snapshot.
+
 ## Stage completion log (current cycle)
 - [x] Stage 14 complete — see `docs/STAGE14_AUTOMATED_RELEASE_AUDIT_SCRIPT.md` (latest develop commit)
 - [x] Stage 15 complete — see `docs/STAGE15_CI_RELEASE_AUDIT_GUARDRAIL.md` (latest develop commit)
 - [x] Stage 16 complete — see `docs/STAGE16_PIPELINE_EXECUTION_MODES.md` (latest develop commit)
+- [x] Stage 17 complete — see `docs/STAGE17_WEEKLY_RUN_ANALYTICS_REPORT.md` (latest develop commit)

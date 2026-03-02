@@ -22,6 +22,7 @@ def run(issue_id=None, skip_buttondown=False):
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/validate_queue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/generate_issue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/render_issue_html.py"), "--issue-id", issue_id])
+    subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/run_report.py"), "--issue-id", issue_id])
 
     draft_path = ROOT / "drafts" / f"email-{issue_id}.md"
     buttondown_status = "skipped"
@@ -41,6 +42,7 @@ def run(issue_id=None, skip_buttondown=False):
         "artifacts": [
             f"artifacts/editorial_queue-{issue_id}.json",
             f"artifacts/editorial_queue-{issue_id}.md",
+            f"artifacts/run_report-{issue_id}.md",
             f"posts/issue-{issue_id}.md",
             f"posts/issue-{issue_id}.html",
             f"drafts/email-{issue_id}.md"
