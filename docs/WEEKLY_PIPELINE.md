@@ -102,6 +102,6 @@ Workflow: `.github/workflows/weekly-editorial.yml`
   - `skip_buttondown` -> `--skip-buttondown`
   - `skip_source_audit` -> `--skip-source-audit`
   - `no_enforce_artifacts` -> `--no-enforce-artifacts`
-- Manual dispatch validates `issue_id` as a real ISO week for the given year (not just `YYYY-WW` shape) before pipeline execution.
+- Manual dispatch validates `issue_id` via shared `scripts/pipeline/issue_id_guard.py` logic, enforcing real ISO-week bounds for the target year before pipeline execution.
 - Uses repo secret: `BUTTONDOWN_API_KEY`.
 - Opens PR for approval before any publish/send steps.

@@ -3,8 +3,9 @@ import argparse
 import datetime as dt
 import json
 import pathlib
-import re
 import subprocess
+
+from issue_id_guard import validate_issue_id
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ART = ROOT / "artifacts"
@@ -23,21 +24,10 @@ def _artifact_exists(path_str):
 
 
 def _validate_issue_id(issue_id):
-    if not issue_id:
-        return
-
-    m = re.fullmatch(r"(\d{4})-(\d{2})", issue_id)
-    if not m:
-        raise SystemExit(f"Invalid --issue-id '{issue_id}'. Expected format YYYY-WW.")
-
-    year = int(m.group(1))
-    week = int(m.group(2))
-
-    max_week = dt.date(year, 12, 28).isocalendar().week
-    if week < 1 or week > max_week:
-        raise SystemExit(
-            f"Invalid --issue-id '{issue_id}'. Week must be between 01 and {max_week:02d} for {year}."
-        )
+    try:
+        validate_issue_id(issue_id)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
 
 
 def run(issue_id=None, skip_buttondown=False, skip_source_audit=False, enforce_artifacts=True):

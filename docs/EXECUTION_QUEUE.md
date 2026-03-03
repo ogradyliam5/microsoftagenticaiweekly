@@ -268,6 +268,12 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Fail fast in workflow argument build step with explicit operator-facing errors for out-of-range weeks.
 - Document parity behavior in `docs/WEEKLY_PIPELINE.md`.
 
+### Stage 35 — Shared Issue-ID Validation Parity
+- Remove duplicate issue-id guard logic across local and workflow paths.
+- Use a single validation module for CLI + manual dispatch parity.
+- Document shared-validator behavior and verification evidence.
+
 ## Stage completion log (current cycle)
 - [x] Stage 33 complete — ISO week issue-id validation guardrail added for CLI + workflow dispatch; see `docs/STAGE33_ISSUE_ID_INPUT_VALIDATION_GUARDRAIL.md` (latest develop commit)
 - [x] Stage 34 complete — workflow dispatch now validates real ISO-week bounds; see `docs/STAGE34_WORKFLOW_ISO_WEEK_VALIDATION_PARITY.md` (latest develop commit)
+- [x] Stage 35 complete — shared issue-id validator used by CLI + workflow dispatch; see `docs/STAGE35_SHARED_ISSUE_ID_VALIDATION_PARITY.md` (latest develop commit)
