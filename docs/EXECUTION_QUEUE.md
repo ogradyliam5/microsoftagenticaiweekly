@@ -130,6 +130,21 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage Plan (next cycle)
 
+### Stage 24 — Homepage Visual Polish + Issue Card UX
+- Improve homepage card hierarchy, typography rhythm, and spacing for faster scan.
+- Add consistent metadata on issue cards (full date + 1-line teaser) and tighten CTA clarity.
+- Ensure cover images render crisply across breakpoints and dark/light contexts.
+
+### Stage 25 — Edition Data Consistency Pass
+- Verify all edition cards map to valid issue pages and matching feed/archive entries.
+- Regenerate any missing issue cover or teaser data from latest artifacts.
+
+## Stage completion log (next cycle)
+- [ ] Stage 24 pending
+- [ ] Stage 25 pending
+
+## Stage Plan (next cycle)
+
 ### Stage 18 — Weekly Digest Structure + Relevance Correction
 - Enforce one-pass digest structure with only 4 sections: Power Platform, M365, Microsoft Foundry, Everything else.
 - Ensure each item appears once only (global dedupe across sections).
