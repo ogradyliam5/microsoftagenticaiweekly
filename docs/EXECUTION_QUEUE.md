@@ -185,3 +185,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 21 complete — stale archive/feed reference checks added to release audit (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 26 — Practitioner Source Candidate Hygiene Refresh
+- Refresh discovery candidates with active, parseable practitioner RSS feeds aligned to Copilot Studio/Power Platform operations.
+- Deduplicate source candidates against existing core sources and normalize reject reasons for blocked/noisy feeds.
+- Update shortlist documentation with approval-ready rationale while keeping core `sources[]` unchanged.
+
+## Stage completion log (next cycle)
+- [x] Stage 26 complete — practitioner candidate refresh documented; `data/sources.json` + `docs/SOURCE_SHORTLIST.md` updated (latest develop commit)

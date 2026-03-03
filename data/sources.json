@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-03-01T17:20:00Z",
+  "updated_at": "2026-03-03T06:30:00Z",
   "policy": {
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
@@ -256,10 +256,62 @@
     }
   ],
   "candidates": {
-    "updated_at": "2026-03-01T17:20:00Z",
+    "updated_at": "2026-03-03T06:30:00Z",
     "policy": "Discovery only. Do not merge into sources[] without Liam approval.",
-    "add": [],
+    "add": [
+      {
+        "id": "benedikt-bergmann",
+        "name": "Benedikt Bergmann",
+        "type": "rss",
+        "url": "https://benediktbergmann.eu/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "ALM-focused practitioner content; lower AI density but strong operational relevance for weekly curation.",
+        "last_checked": "2026-03-03"
+      },
+      {
+        "id": "joegill",
+        "name": "Joe Gill",
+        "type": "rss",
+        "url": "https://joegill.com/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Consistent Dataverse/ALM implementation posts with practical depth; useful for governance and build workflows.",
+        "last_checked": "2026-03-03"
+      },
+      {
+        "id": "lowcodelewis",
+        "name": "Low Code Lewis",
+        "type": "rss",
+        "url": "https://lowcodelewis.com/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Strong Copilot Studio + Dataverse practitioner content with recent agent-focused posts; feed parseable and active.",
+        "last_checked": "2026-03-03"
+      },
+      {
+        "id": "platformsofpower",
+        "name": "Platforms of Power (Craig White)",
+        "type": "rss",
+        "url": "https://platformsofpower.net/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Hands-on governance/ops material (DLP, connector policy, Entra identities for Copilot Studio); good newsletter fit.",
+        "last_checked": "2026-03-03"
+      }
+    ],
     "reject": [
+      {
+        "id": "d365goddess",
+        "url": "https://d365goddess.com/feed/",
+        "status": "rejected",
+        "reason": "Feed endpoint returns 406 Not Acceptable, unsuitable for automated ingestion.",
+        "last_checked": "2026-03-03"
+      },
       {
         "id": "holgerimbery",
         "url": "https://holgerimbery.blog/feed/",
@@ -268,17 +320,10 @@
         "last_checked": "2026-02-28"
       },
       {
-        "id": "powertricks",
-        "url": "https://powertricks.io/feed/",
+        "id": "medium-tag-microsoft365",
+        "url": "https://medium.com/feed/tag/microsoft-365",
         "status": "rejected",
-        "reason": "Feed endpoint returned 406 (blocked/nonstandard); unsuitable for automated ingestion.",
-        "last_checked": "2026-02-28"
-      },
-      {
-        "id": "mmsharepoint",
-        "url": "https://mmsharepoint.wordpress.com/feed/",
-        "status": "rejected",
-        "reason": "Content quality is strong but recent activity is stale for this newsletter cadence.",
+        "reason": "High-noise aggregator tag feed; weak fit for individual-practitioner-first sourcing policy.",
         "last_checked": "2026-02-28"
       },
       {
@@ -289,11 +334,25 @@
         "last_checked": "2026-02-28"
       },
       {
-        "id": "medium-tag-microsoft365",
-        "url": "https://medium.com/feed/tag/microsoft-365",
+        "id": "mmsharepoint",
+        "url": "https://mmsharepoint.wordpress.com/feed/",
         "status": "rejected",
-        "reason": "High-noise aggregator tag feed; weak fit for individual-practitioner-first sourcing policy.",
+        "reason": "Content quality is strong but recent activity is stale for this newsletter cadence.",
         "last_checked": "2026-02-28"
+      },
+      {
+        "id": "powertricks",
+        "url": "https://powertricks.io/feed/",
+        "status": "rejected",
+        "reason": "Feed endpoint returned 406 (blocked/nonstandard); unsuitable for automated ingestion.",
+        "last_checked": "2026-02-28"
+      },
+      {
+        "id": "tom-riha",
+        "url": "https://tomriha.com/feed/",
+        "status": "rejected",
+        "reason": "Feed endpoint returns 403 (blocked to automated retrieval) despite valid practitioner content; keep manual-watch.",
+        "last_checked": "2026-03-03"
       }
     ]
   }
