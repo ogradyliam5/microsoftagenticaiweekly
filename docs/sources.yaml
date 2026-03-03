@@ -61,6 +61,6 @@ scoring:
   credibility: 0.10
 
 cadence:
-  collect: Monday-Tuesday
-  draft: Wednesday
-  publish: Thursday 09:00 UTC
+  collect: Monday (early run) through Tuesday
+  draft: Monday morning editorial pass
+  publish: Monday 08:00 Europe/London (UTC shifts with DST)

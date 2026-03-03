@@ -1,6 +1,6 @@
 # Source Shortlist (Stage 1 Stabilization)
 
-_Last updated: 2026-03-03 08:48 UTC_
+_Last updated: 2026-03-03 09:20 UTC_
 
 Promotions remain unchanged in this run. This pass focused on fresh practitioner discovery and candidate hygiene (dedupe + feed validation).
 
@@ -30,6 +30,8 @@ Promotions remain unchanged in this run. This pass focused on fresh practitioner
   - Why: practical Dataverse/ALM implementation notes; consistent technical signal over marketing.
 - `benedikt-bergmann` — Benedikt Bergmann (`https://benediktbergmann.eu/feed/`)
   - Why: strong ALM/operations content; lower AI density but still relevant to governance/ops lane.
+- `the-custom-engine-github` — The Custom Engine (GitHub watch) (`https://github.com/search?q=%22The+Custom+Engine%22&type=repositories`)
+  - Why: requested by editorial direction as an additional discovery lane; currently tracked as manual-watch because no stable RSS/Atom endpoint has been verified for automated ingestion yet.
 
 ## Rejected / excluded (keep out of automated ingestion)
 

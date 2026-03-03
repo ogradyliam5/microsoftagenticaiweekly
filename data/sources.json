@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-03-03T06:30:00Z",
+  "updated_at": "2026-03-03T09:20:00Z",
   "policy": {
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
@@ -256,7 +256,7 @@
     }
   ],
   "candidates": {
-    "updated_at": "2026-03-03T06:30:00Z",
+    "updated_at": "2026-03-03T09:20:00Z",
     "policy": "Discovery only. Do not merge into sources[] without Liam approval.",
     "add": [
       {
@@ -301,6 +301,17 @@
         "trust": "community",
         "status": "candidate",
         "reason": "Hands-on governance/ops material (DLP, connector policy, Entra identities for Copilot Studio); good newsletter fit.",
+        "last_checked": "2026-03-03"
+      },
+      {
+        "id": "the-custom-engine-github",
+        "name": "The Custom Engine (GitHub)",
+        "type": "manual",
+        "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
+        "product_area": "Mixed",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Requested discovery candidate. Added as manual-watch pending a stable RSS/Atom endpoint for automated ingestion; promotion to core is blocked until feed URL is verified.",
         "last_checked": "2026-03-03"
       }
     ],

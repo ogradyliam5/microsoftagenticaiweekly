@@ -1,6 +1,6 @@
 {
   "issue_id": "2026-10",
-  "generated_at": "2026-03-02T17:50:55.184410+00:00",
+  "generated_at": "2026-03-03T09:00:47.621571+00:00",
   "window_start_utc": "2026-02-23T00:00:00+00:00",
   "window_end_utc": "2026-03-02T00:00:00+00:00",
   "items": [
@@ -12,7 +12,7 @@
       "author": "",
       "publisher": "Karl-Johan Spiik (Karlex)",
       "published_at": "Wed, 25 Feb 2026 16:33:48 +0000",
-      "fetched_at": "2026-03-02T17:50:55.184410+00:00",
+      "fetched_at": "2026-03-03T09:00:47.621571+00:00",
       "product_area": "Power Platform",
       "source_type": "rss",
       "summary_bullets": [
@@ -46,7 +46,7 @@
       "author": "",
       "publisher": "Rob Quickenden",
       "published_at": "Mon, 23 Feb 2026 11:20:23 +0000",
-      "fetched_at": "2026-03-02T17:50:55.184410+00:00",
+      "fetched_at": "2026-03-03T09:00:47.621571+00:00",
       "product_area": "Mixed",
       "source_type": "rss",
       "summary_bullets": [
@@ -79,7 +79,7 @@
       "author": "",
       "publisher": "Rob Quickenden",
       "published_at": "Fri, 27 Feb 2026 17:08:36 +0000",
-      "fetched_at": "2026-03-02T17:50:55.184410+00:00",
+      "fetched_at": "2026-03-03T09:00:47.621571+00:00",
       "product_area": "Mixed",
       "source_type": "rss",
       "summary_bullets": [
@@ -567,6 +567,11 @@
       "published_at": "2025-05-14T10:21:41+00:00"
     },
     {
+      "url": "https://www.karlex.fi/blueprint-for-a-modern-defense-stack/#utm_source=rss&utm_medium=rss",
+      "reason": "outside_previous_week_window",
+      "published_at": "2026-03-03T02:25:00+00:00"
+    },
+    {
       "url": "https://www.karlex.fi/forged-but-valid-how-to-test-api-authentication-and-rbac-safely/#utm_source=rss&utm_medium=rss",
       "reason": "low_relevance",
       "relevance": 0.0
@@ -605,11 +610,6 @@
       "url": "https://www.karlex.fi/you-are-ready-for-ai-but-are-your-users/#utm_source=rss&utm_medium=rss",
       "reason": "outside_previous_week_window",
       "published_at": "2026-01-26T08:00:47+00:00"
-    },
-    {
-      "url": "https://www.karlex.fi/fixing-prompt-injection-vulnerability/#utm_source=rss&utm_medium=rss",
-      "reason": "outside_previous_week_window",
-      "published_at": "2026-01-18T15:55:37+00:00"
     },
     {
       "url": "https://www.matthewdevaney.com/copilot-studio-generate-powerpoint-file-from-a-template/",
@@ -660,6 +660,11 @@
       "url": "https://www.matthewdevaney.com/top-10-copilot-studio-articles-of-2025/",
       "reason": "outside_previous_week_window",
       "published_at": "2025-12-28T23:50:48+00:00"
+    },
+    {
+      "url": "https://nishantrana.me/2026/03/03/plugin-registration-tool-login-with-multi-factor-authentication-mfa-uncheck-show-advanced/",
+      "reason": "outside_previous_week_window",
+      "published_at": "2026-03-02T18:35:00+00:00"
     },
     {
       "url": "https://nishantrana.me/2026/02/25/no-dependencies-shown-but-still-cant-delete-the-component-check-your-cloud-flows-dataverse-dynamics-365/",
@@ -715,11 +720,6 @@
       "url": "https://nishantrana.me/2026/01/01/solving-cs0006-metadata-file-not-found-error-in-visual-studio/",
       "reason": "outside_previous_week_window",
       "published_at": "2025-12-31T18:35:00+00:00"
-    },
-    {
-      "url": "https://nishantrana.me/2025/12/30/tool-showcase-powermakerai-talk-to-your-crm-like-a-teammate-meet-powermakerais-context-aware-chatbot/",
-      "reason": "outside_previous_week_window",
-      "published_at": "2025-12-30T04:40:00+00:00"
     },
     {
       "url": "https://readyxrm.blog/2026/02/26/the-end-of-power-pages-as-we-know-it/",

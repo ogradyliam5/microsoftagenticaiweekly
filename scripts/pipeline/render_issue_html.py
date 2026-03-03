@@ -106,6 +106,7 @@ def main():
     <div class="container">
       <a class="brand" href="../index.html">Microsoft Agentic AI Weekly</a>
       <nav class="nav">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color mode">🌙 Dark</button>
         <a href="../index.html">Home</a>
         <a href="../archive.html">Archive</a>
         <a href="../sources.html">Sources</a>
@@ -126,6 +127,7 @@ def main():
       </article>
     </div>
   </main>
+  <script src="../assets/theme.js"></script>
 </body>
 </html>
 '''

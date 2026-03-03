@@ -1,10 +1,10 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-03T08:47:44Z
+Generated: 2026-03-03T09:01:28Z
 
 ## Summary
 - Candidate add feeds healthy: 4
-- Candidate add feeds failing: 0
+- Candidate add feeds failing: 1
 - Rejected feeds still blocked: 2
 - Rejected feeds now healthy (review needed): 5
 
@@ -13,6 +13,7 @@ Generated: 2026-03-03T08:47:44Z
 - `joegill` — OK — HTTP 200 — items: 10
 - `lowcodelewis` — OK — HTTP 200 — items: 15
 - `platformsofpower` — OK — HTTP 200 — items: 10
+- `the-custom-engine-github` — FAIL — not well-formed (invalid token): line 21, column 75 — items: 0
 
 ## Rejected Feed Re-check
 - `d365goddess` — NOW_OK — HTTP 200

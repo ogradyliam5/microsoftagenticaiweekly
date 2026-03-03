@@ -3,12 +3,12 @@ name: weekly-editorial
 on:
   workflow_dispatch:
   schedule:
-    # GitHub Actions cron is UTC-only. Europe/London Sunday 21:00 maps to:
-    # - 21:00 UTC during GMT (winter)
-    # - 20:00 UTC during BST (summer)
+    # GitHub Actions cron is UTC-only. Europe/London Monday 08:00 maps to:
+    # - 08:00 UTC during GMT (winter)
+    # - 07:00 UTC during BST (summer)
     # We trigger both and gate execution below using TZ-aware checks.
-    - cron: "0 20 * * 0"
-    - cron: "0 21 * * 0"
+    - cron: "0 7 * * 1"
+    - cron: "0 8 * * 1"
 
 permissions:
   contents: write
@@ -18,18 +18,18 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Guard Sunday 21:00 Europe/London
+      - name: Guard Monday 08:00 Europe/London
         id: london_gate
         shell: bash
         run: |
           LONDON_HOUR="$(TZ=Europe/London date +%H)"
           LONDON_DOW="$(TZ=Europe/London date +%u)"
-          if [ "$LONDON_DOW" = "7" ] && [ "$LONDON_HOUR" = "21" ]; then
+          if [ "$LONDON_DOW" = "1" ] && [ "$LONDON_HOUR" = "08" ]; then
             echo "run_pipeline=true" >> "$GITHUB_OUTPUT"
-            echo "Proceeding at Sunday 21:00 Europe/London"
+            echo "Proceeding at Monday 08:00 Europe/London"
           else
             echo "run_pipeline=false" >> "$GITHUB_OUTPUT"
-            echo "Skipping: current Europe/London time is not Sunday 21:00"
+            echo "Skipping: current Europe/London time is not Monday 08:00"
           fi
 
       - uses: actions/checkout@v4

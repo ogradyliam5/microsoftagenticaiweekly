@@ -230,3 +230,37 @@ ul, ol { margin: 8px 0 14px 20px; }
   .nav { gap: 10px; }
   .sidebar { position: static; }
 }
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--muted);
+  background: transparent;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+}
+
+:root[data-theme="light"] {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --panel-2: #f1f5f9;
+  --line: #cbd5e1;
+  --text: #0f172a;
+  --muted: #334155;
+  --accent: #0ea5e9;
+  --accent-2: #0f766e;
+}
+
+:root[data-theme="light"] body {
+  background: radial-gradient(circle at 20% -10%, #dbeafe 0%, #f8fafc 55%);
+}
+
+:root[data-theme="light"] a { color: #0369a1; }
+:root[data-theme="light"] a:hover { color: #0c4a6e; }
+:root[data-theme="light"] .metric { background: rgba(148, 163, 184, 0.08); }
+:root[data-theme="light"] .badge { color: #1e293b; }
