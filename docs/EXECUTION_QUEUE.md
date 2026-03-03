@@ -263,5 +263,11 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Add manual dispatch input format guard in `.github/workflows/weekly-editorial.yml` for early operator feedback.
 - Document issue-id validation expectations in `docs/WEEKLY_PIPELINE.md`.
 
+### Stage 34 — Workflow ISO Week Validation Parity
+- Upgrade `workflow_dispatch` `issue_id` validation from shape-only (`YYYY-WW`) to real ISO-week bounds by year.
+- Fail fast in workflow argument build step with explicit operator-facing errors for out-of-range weeks.
+- Document parity behavior in `docs/WEEKLY_PIPELINE.md`.
+
 ## Stage completion log (current cycle)
 - [x] Stage 33 complete — ISO week issue-id validation guardrail added for CLI + workflow dispatch; see `docs/STAGE33_ISSUE_ID_INPUT_VALIDATION_GUARDRAIL.md` (latest develop commit)
+- [x] Stage 34 complete — workflow dispatch now validates real ISO-week bounds; see `docs/STAGE34_WORKFLOW_ISO_WEEK_VALIDATION_PARITY.md` (latest develop commit)
