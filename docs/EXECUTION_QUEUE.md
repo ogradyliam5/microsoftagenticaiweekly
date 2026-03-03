@@ -195,3 +195,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 26 complete — practitioner candidate refresh documented; `data/sources.json` + `docs/SOURCE_SHORTLIST.md` updated (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 27 — Candidate Feed Health Audit Automation
+- Add a reusable script to re-check discovery candidate and rejected feed endpoint health in one run.
+- Emit JSON + markdown evidence artifacts for approval discussions.
+- Document local parity command and findings so promotions/rejections are backed by fresh feed-health data.
+
+## Stage completion log (current cycle)
+- [x] Stage 27 complete — candidate/reject feed audit script + artifacts added; see `docs/STAGE27_CANDIDATE_FEED_HEALTH_AUDIT_AUTOMATION.md` (latest develop commit)

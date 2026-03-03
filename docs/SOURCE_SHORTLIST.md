@@ -1,6 +1,6 @@
 # Source Shortlist (Stage 1 Stabilization)
 
-_Last updated: 2026-03-03 06:30 UTC_
+_Last updated: 2026-03-03 08:48 UTC_
 
 Promotions remain unchanged in this run. This pass focused on fresh practitioner discovery and candidate hygiene (dedupe + feed validation).
 
@@ -34,16 +34,17 @@ Promotions remain unchanged in this run. This pass focused on fresh practitioner
 ## Rejected / excluded (keep out of automated ingestion)
 
 - `holgerimbery` — 404 feed endpoint
-- `powertricks` — 406 feed endpoint
+- `tom-riha` — 403 feed endpoint (blocked for automated retrieval)
 - `mmsharepoint` — stale cadence for current weekly format
 - `medium-tag-powerplatform` — high-noise tag aggregator
 - `medium-tag-microsoft365` — high-noise tag aggregator
-- `tom-riha` — 403 feed endpoint (blocked for automated retrieval)
-- `d365goddess` — 406 feed endpoint
+- `powertricks` — feed now reachable, but remains excluded pending manual quality/topicality review
+- `d365goddess` — feed now reachable, but remains excluded pending manual quality/topicality review
 
 ## Validation notes
 
 - Dedupe check completed against existing `sources[]` ids + URLs before updating candidates.
 - No core `sources[]` changes made (approval-first policy preserved).
 - Candidate additions are discovery-only and await Liam approval before promotion.
+- Candidate/reject feed health is now captured via `python3 scripts/pipeline/source_candidate_audit.py` (see `artifacts/source_candidate_audit.md`).
 - `azure-updates` remains in core official list with known XML parsing fragility; continue monitoring.

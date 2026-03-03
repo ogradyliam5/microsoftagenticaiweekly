@@ -1,0 +1,135 @@
+{
+  "generated_at": "2026-03-03T08:47:44Z",
+  "sources_path": "data/sources.json",
+  "candidate_add": [
+    {
+      "id": "benedikt-bergmann",
+      "name": "Benedikt Bergmann",
+      "url": "https://benediktbergmann.eu/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://benediktbergmann.eu/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "joegill",
+      "name": "Joe Gill",
+      "url": "https://joegill.com/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://joegill.com/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "lowcodelewis",
+      "name": "Low Code Lewis",
+      "url": "https://lowcodelewis.com/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=utf-8",
+      "final_url": "https://www.lewisdoes.dev/rss/",
+      "item_count": 15,
+      "error": null
+    },
+    {
+      "id": "platformsofpower",
+      "name": "Platforms of Power (Craig White)",
+      "url": "https://platformsofpower.net/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://platformsofpower.net/feed/",
+      "item_count": 10,
+      "error": null
+    }
+  ],
+  "candidate_reject": [
+    {
+      "id": "d365goddess",
+      "url": "https://d365goddess.com/feed/",
+      "expected_reject_reason": "Feed endpoint returns 406 Not Acceptable, unsuitable for automated ingestion.",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://d365goddess.com/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "holgerimbery",
+      "url": "https://holgerimbery.blog/feed/",
+      "expected_reject_reason": "Feed endpoint returned 404 during validation; keep on manual-watch until stable RSS is found.",
+      "ok": false,
+      "status_code": 404,
+      "content_type": null,
+      "final_url": "https://holgerimbery.blog/feed/",
+      "item_count": 0,
+      "error": "HTTP 404: Not Found"
+    },
+    {
+      "id": "medium-tag-microsoft365",
+      "url": "https://medium.com/feed/tag/microsoft-365",
+      "expected_reject_reason": "High-noise aggregator tag feed; weak fit for individual-practitioner-first sourcing policy.",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "text/xml; charset=UTF-8",
+      "final_url": "https://medium.com/feed/tag/microsoft-365",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "medium-tag-powerplatform",
+      "url": "https://medium.com/feed/tag/power-platform",
+      "expected_reject_reason": "High-noise aggregator tag feed; weak fit for individual-practitioner-first sourcing policy.",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "text/xml; charset=UTF-8",
+      "final_url": "https://medium.com/feed/tag/power-platform",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "mmsharepoint",
+      "url": "https://mmsharepoint.wordpress.com/feed/",
+      "expected_reject_reason": "Content quality is strong but recent activity is stale for this newsletter cadence.",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://mmsharepoint.wordpress.com/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "powertricks",
+      "url": "https://powertricks.io/feed/",
+      "expected_reject_reason": "Feed endpoint returned 406 (blocked/nonstandard); unsuitable for automated ingestion.",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://powertricks.io/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "tom-riha",
+      "url": "https://tomriha.com/feed/",
+      "expected_reject_reason": "Feed endpoint returns 403 (blocked to automated retrieval) despite valid practitioner content; keep manual-watch.",
+      "ok": false,
+      "status_code": 403,
+      "content_type": null,
+      "final_url": "https://tomriha.com/feed/",
+      "item_count": 0,
+      "error": "HTTP 403: Forbidden"
+    }
+  ],
+  "summary": {
+    "candidate_add_ok": 4,
+    "candidate_add_failed": 0,
+    "candidate_reject_still_blocked": 2,
+    "candidate_reject_now_ok": 5
+  }
+}
