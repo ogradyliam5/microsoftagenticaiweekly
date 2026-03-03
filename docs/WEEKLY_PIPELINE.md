@@ -41,10 +41,12 @@
 
 6. `scripts/pipeline/run_weekly.py` summary integrity checks
    - Verifies expected weekly output artifacts exist before writing `artifacts/last_run.json`
+   - Fails the run when required artifacts are missing (fail-fast by default)
    - Records:
      - `artifact_check` (`ok` or `missing_artifacts`)
      - `missing_artifacts` array
      - `artifact_checks` map (path -> true/false)
+     - `enforce_artifacts` (whether fail-fast mode was enabled)
 
 7. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)
@@ -74,6 +76,9 @@ python3 scripts/pipeline/run_weekly.py --skip-buttondown
 
 # Skip candidate feed-health audit (if running fully offline)
 python3 scripts/pipeline/run_weekly.py --skip-source-audit
+
+# Optional: keep writing summary but do not fail the command on missing artifacts
+python3 scripts/pipeline/run_weekly.py --no-enforce-artifacts
 ```
 
 ## Sample dry run (Issue 000)

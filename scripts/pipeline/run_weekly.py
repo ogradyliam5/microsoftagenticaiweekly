@@ -21,7 +21,7 @@ def _artifact_exists(path_str):
     return path.exists()
 
 
-def run(issue_id=None, skip_buttondown=False, skip_source_audit=False):
+def run(issue_id=None, skip_buttondown=False, skip_source_audit=False, enforce_artifacts=True):
     issue_id = issue_id or issue_id_today()
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/build_queue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/validate_queue.py"), "--issue-id", issue_id])
@@ -72,9 +72,15 @@ def run(issue_id=None, skip_buttondown=False, skip_source_audit=False):
         "missing_artifacts": missing_artifacts,
         "artifacts": artifacts,
         "artifact_checks": artifact_checks,
+        "enforce_artifacts": enforce_artifacts,
     }
     (ART / "last_run.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
+
+    if enforce_artifacts and missing_artifacts:
+        raise SystemExit(
+            "Missing required weekly artifacts: " + ", ".join(missing_artifacts)
+        )
 
 
 if __name__ == "__main__":
@@ -82,5 +88,11 @@ if __name__ == "__main__":
     ap.add_argument("--issue-id", help="Override ISO week issue id (YYYY-WW).")
     ap.add_argument("--skip-buttondown", action="store_true", help="Generate site/email artifacts without Buttondown draft API call.")
     ap.add_argument("--skip-source-audit", action="store_true", help="Skip source candidate feed health audit artifact generation.")
+    ap.add_argument("--no-enforce-artifacts", action="store_true", help="Do not fail the run when required output artifacts are missing.")
     args = ap.parse_args()
-    run(issue_id=args.issue_id, skip_buttondown=args.skip_buttondown, skip_source_audit=args.skip_source_audit)
+    run(
+        issue_id=args.issue_id,
+        skip_buttondown=args.skip_buttondown,
+        skip_source_audit=args.skip_source_audit,
+        enforce_artifacts=not args.no_enforce_artifacts,
+    )

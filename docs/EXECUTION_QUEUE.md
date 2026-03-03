@@ -225,3 +225,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 29 complete — run summary now includes artifact integrity checks; see `docs/STAGE29_WEEKLY_OUTPUT_ARTIFACT_INTEGRITY_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 30 — Weekly Artifact Enforcement Fail-Fast
+- Enforce non-zero exit in `run_weekly.py` when required weekly artifacts are missing.
+- Keep explicit opt-out flag for local diagnostics (`--no-enforce-artifacts`).
+- Document parity command and evidence so CI/local behavior stays aligned.
+
+## Stage completion log (next cycle)
+- [x] Stage 30 complete — fail-fast artifact enforcement added to weekly pipeline; see `docs/STAGE30_WEEKLY_ARTIFACT_ENFORCEMENT_FAIL_FAST.md` (latest develop commit)
