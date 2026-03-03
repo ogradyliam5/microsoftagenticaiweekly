@@ -140,7 +140,7 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Regenerate any missing issue cover or teaser data from latest artifacts.
 
 ## Stage completion log (next cycle)
-- [ ] Stage 24 pending
+- [x] Stage 24 complete — see `docs/STAGE24_HOMEPAGE_VISUAL_POLISH_ISSUE_CARD_UX.md` (latest develop commit)
 - [ ] Stage 25 pending
 
 ## Stage Plan (next cycle)
