@@ -39,7 +39,14 @@
      - `artifacts/source_candidate_audit.md`
    - Non-blocking in `run_weekly.py` (status is recorded in `artifacts/last_run.json`)
 
-6. `scripts/pipeline/buttondown_draft.py`
+6. `scripts/pipeline/run_weekly.py` summary integrity checks
+   - Verifies expected weekly output artifacts exist before writing `artifacts/last_run.json`
+   - Records:
+     - `artifact_check` (`ok` or `missing_artifacts`)
+     - `missing_artifacts` array
+     - `artifact_checks` map (path -> true/false)
+
+7. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)
    - Records idempotency metadata:
      - `artifacts/buttondown_drafts.json`

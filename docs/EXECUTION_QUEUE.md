@@ -215,3 +215,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 28 complete — weekly pipeline now executes candidate feed audit with status reporting; see `docs/STAGE28_WEEKLY_PIPELINE_GOVERNANCE_PARITY_HOOK.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 29 — Weekly Output Artifact Integrity Guardrail
+- Add an artifact existence verification step in `run_weekly.py` before final run summary write.
+- Record missing artifact paths in `artifacts/last_run.json` for fail-fast operator visibility.
+- Document local parity and evidence in a dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 29 complete — run summary now includes artifact integrity checks; see `docs/STAGE29_WEEKLY_OUTPUT_ARTIFACT_INTEGRITY_GUARDRAIL.md` (latest develop commit)

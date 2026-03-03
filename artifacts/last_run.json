@@ -1,8 +1,10 @@
 {
   "issue_id": "2026-10",
-  "generated_at": "2026-03-03T10:18:56.857126Z",
+  "generated_at": "2026-03-03T11:48:47.695940Z",
   "buttondown": "skipped",
   "source_candidate_audit": "ok",
+  "artifact_check": "ok",
+  "missing_artifacts": [],
   "artifacts": [
     "artifacts/editorial_queue-2026-10.json",
     "artifacts/editorial_queue-2026-10.md",
@@ -12,5 +14,15 @@
     "drafts/email-2026-10.md",
     "artifacts/source_candidate_audit.json",
     "artifacts/source_candidate_audit.md"
-  ]
+  ],
+  "artifact_checks": {
+    "artifacts/editorial_queue-2026-10.json": true,
+    "artifacts/editorial_queue-2026-10.md": true,
+    "artifacts/run_report-2026-10.md": true,
+    "posts/issue-2026-10.md": true,
+    "posts/issue-2026-10.html": true,
+    "drafts/email-2026-10.md": true,
+    "artifacts/source_candidate_audit.json": true,
+    "artifacts/source_candidate_audit.md": true
+  }
 }

@@ -16,6 +16,11 @@ def issue_id_today():
     return f"{y}-{w:02d}"
 
 
+def _artifact_exists(path_str):
+    path = ROOT / path_str
+    return path.exists()
+
+
 def run(issue_id=None, skip_buttondown=False, skip_source_audit=False):
     issue_id = issue_id or issue_id_today()
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/build_queue.py"), "--issue-id", issue_id])
@@ -40,21 +45,33 @@ def run(issue_id=None, skip_buttondown=False, skip_source_audit=False):
         ])
         buttondown_status = "ok" if rc == 0 else f"failed_exit_{rc}"
 
+    artifacts = [
+        f"artifacts/editorial_queue-{issue_id}.json",
+        f"artifacts/editorial_queue-{issue_id}.md",
+        f"artifacts/run_report-{issue_id}.md",
+        f"posts/issue-{issue_id}.md",
+        f"posts/issue-{issue_id}.html",
+        f"drafts/email-{issue_id}.md",
+    ]
+
+    if not skip_source_audit:
+        artifacts.extend([
+            "artifacts/source_candidate_audit.json",
+            "artifacts/source_candidate_audit.md",
+        ])
+
+    artifact_checks = {path: _artifact_exists(path) for path in artifacts}
+    missing_artifacts = [path for path, exists in artifact_checks.items() if not exists]
+
     summary = {
         "issue_id": issue_id,
         "generated_at": dt.datetime.utcnow().isoformat() + "Z",
         "buttondown": buttondown_status,
         "source_candidate_audit": source_audit_status,
-        "artifacts": [
-            f"artifacts/editorial_queue-{issue_id}.json",
-            f"artifacts/editorial_queue-{issue_id}.md",
-            f"artifacts/run_report-{issue_id}.md",
-            f"posts/issue-{issue_id}.md",
-            f"posts/issue-{issue_id}.html",
-            f"drafts/email-{issue_id}.md",
-            "artifacts/source_candidate_audit.json",
-            "artifacts/source_candidate_audit.md"
-        ]
+        "artifact_check": "ok" if not missing_artifacts else "missing_artifacts",
+        "missing_artifacts": missing_artifacts,
+        "artifacts": artifacts,
+        "artifact_checks": artifact_checks,
     }
     (ART / "last_run.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
