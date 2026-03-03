@@ -255,3 +255,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 32 complete — workflow_dispatch inputs now map to weekly pipeline args; see `docs/STAGE32_WORKFLOW_DISPATCH_INPUT_PARITY.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 33 — Issue ID Input Validation Guardrail
+- Add strict ISO week issue-id validation in `scripts/pipeline/run_weekly.py` so invalid backfill IDs fail fast.
+- Add manual dispatch input format guard in `.github/workflows/weekly-editorial.yml` for early operator feedback.
+- Document issue-id validation expectations in `docs/WEEKLY_PIPELINE.md`.
+
+## Stage completion log (current cycle)
+- [x] Stage 33 complete — ISO week issue-id validation guardrail added for CLI + workflow dispatch; see `docs/STAGE33_ISSUE_ID_INPUT_VALIDATION_GUARDRAIL.md` (latest develop commit)

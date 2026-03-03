@@ -65,6 +65,10 @@
 python3 scripts/pipeline/run_weekly.py
 ```
 
+`--issue-id` format guardrail:
+- Must be `YYYY-WW` (ISO week), e.g. `2026-10`
+- Week must exist for the target year (`01..52` or `01..53` depending on ISO calendar)
+
 Optional flags:
 
 ```bash
