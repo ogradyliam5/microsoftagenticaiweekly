@@ -16,13 +16,18 @@ def issue_id_today():
     return f"{y}-{w:02d}"
 
 
-def run(issue_id=None, skip_buttondown=False):
+def run(issue_id=None, skip_buttondown=False, skip_source_audit=False):
     issue_id = issue_id or issue_id_today()
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/build_queue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/validate_queue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/generate_issue.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/render_issue_html.py"), "--issue-id", issue_id])
     subprocess.check_call(["python3", str(ROOT / "scripts/pipeline/run_report.py"), "--issue-id", issue_id])
+
+    source_audit_status = "skipped"
+    if not skip_source_audit:
+        rc = subprocess.call(["python3", str(ROOT / "scripts/pipeline/source_candidate_audit.py")])
+        source_audit_status = "ok" if rc == 0 else f"failed_exit_{rc}"
 
     draft_path = ROOT / "drafts" / f"email-{issue_id}.md"
     buttondown_status = "skipped"
@@ -39,13 +44,16 @@ def run(issue_id=None, skip_buttondown=False):
         "issue_id": issue_id,
         "generated_at": dt.datetime.utcnow().isoformat() + "Z",
         "buttondown": buttondown_status,
+        "source_candidate_audit": source_audit_status,
         "artifacts": [
             f"artifacts/editorial_queue-{issue_id}.json",
             f"artifacts/editorial_queue-{issue_id}.md",
             f"artifacts/run_report-{issue_id}.md",
             f"posts/issue-{issue_id}.md",
             f"posts/issue-{issue_id}.html",
-            f"drafts/email-{issue_id}.md"
+            f"drafts/email-{issue_id}.md",
+            "artifacts/source_candidate_audit.json",
+            "artifacts/source_candidate_audit.md"
         ]
     }
     (ART / "last_run.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
@@ -56,5 +64,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--issue-id", help="Override ISO week issue id (YYYY-WW).")
     ap.add_argument("--skip-buttondown", action="store_true", help="Generate site/email artifacts without Buttondown draft API call.")
+    ap.add_argument("--skip-source-audit", action="store_true", help="Skip source candidate feed health audit artifact generation.")
     args = ap.parse_args()
-    run(issue_id=args.issue_id, skip_buttondown=args.skip_buttondown)
+    run(issue_id=args.issue_id, skip_buttondown=args.skip_buttondown, skip_source_audit=args.skip_source_audit)

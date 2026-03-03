@@ -205,3 +205,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 27 complete — candidate/reject feed audit script + artifacts added; see `docs/STAGE27_CANDIDATE_FEED_HEALTH_AUDIT_AUTOMATION.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 28 — Weekly Pipeline Governance Parity Hook
+- Run candidate/rejected feed audit automatically during weekly pipeline runs (non-blocking).
+- Record source-audit execution status in `artifacts/last_run.json` for traceable run summaries.
+- Document local parity and offline skip flag so deterministic backfills remain practical.
+
+## Stage completion log (next cycle)
+- [x] Stage 28 complete — weekly pipeline now executes candidate feed audit with status reporting; see `docs/STAGE28_WEEKLY_PIPELINE_GOVERNANCE_PARITY_HOOK.md` (latest develop commit)

@@ -1,13 +1,16 @@
 {
   "issue_id": "2026-10",
-  "generated_at": "2026-03-03T09:01:28.478667Z",
+  "generated_at": "2026-03-03T10:18:56.857126Z",
   "buttondown": "skipped",
+  "source_candidate_audit": "ok",
   "artifacts": [
     "artifacts/editorial_queue-2026-10.json",
     "artifacts/editorial_queue-2026-10.md",
     "artifacts/run_report-2026-10.md",
     "posts/issue-2026-10.md",
     "posts/issue-2026-10.html",
-    "drafts/email-2026-10.md"
+    "drafts/email-2026-10.md",
+    "artifacts/source_candidate_audit.json",
+    "artifacts/source_candidate_audit.md"
   ]
 }

@@ -32,7 +32,14 @@
    - Outputs:
      - `artifacts/run_report-<issue_id>.md`
 
-5. `scripts/pipeline/buttondown_draft.py`
+5. `scripts/pipeline/source_candidate_audit.py`
+   - Re-checks candidate + rejected feed health for source governance parity
+   - Outputs:
+     - `artifacts/source_candidate_audit.json`
+     - `artifacts/source_candidate_audit.md`
+   - Non-blocking in `run_weekly.py` (status is recorded in `artifacts/last_run.json`)
+
+6. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)
    - Records idempotency metadata:
      - `artifacts/buttondown_drafts.json`
@@ -57,6 +64,9 @@ python3 scripts/pipeline/run_weekly.py --issue-id 2026-10
 
 # Generate queue/site/email artifacts without calling Buttondown API
 python3 scripts/pipeline/run_weekly.py --skip-buttondown
+
+# Skip candidate feed-health audit (if running fully offline)
+python3 scripts/pipeline/run_weekly.py --skip-source-audit
 ```
 
 ## Sample dry run (Issue 000)
