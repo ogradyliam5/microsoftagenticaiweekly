@@ -245,3 +245,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 31 complete — manual dispatch now bypasses schedule gate while cron remains Monday-08:00 guarded (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 32 — Workflow Dispatch Input Parity
+- Add explicit `workflow_dispatch` inputs for issue override and safe-run flags.
+- Map dispatch inputs directly to `scripts/pipeline/run_weekly.py` arguments.
+- Document parity behavior in `docs/WEEKLY_PIPELINE.md` for operator clarity.
+
+## Stage completion log (next cycle)
+- [x] Stage 32 complete — workflow_dispatch inputs now map to weekly pipeline args; see `docs/STAGE32_WORKFLOW_DISPATCH_INPUT_PARITY.md` (latest develop commit)

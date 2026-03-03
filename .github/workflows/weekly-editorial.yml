@@ -2,6 +2,26 @@ name: weekly-editorial
 
 on:
   workflow_dispatch:
+    inputs:
+      issue_id:
+        description: "Optional issue id override (YYYY-WW)"
+        required: false
+        type: string
+      skip_buttondown:
+        description: "Skip Buttondown draft API call"
+        required: false
+        default: false
+        type: boolean
+      skip_source_audit:
+        description: "Skip candidate/rejected feed audit"
+        required: false
+        default: false
+        type: boolean
+      no_enforce_artifacts:
+        description: "Do not fail run when required artifacts are missing"
+        required: false
+        default: false
+        type: boolean
   schedule:
     # GitHub Actions cron is UTC-only. Europe/London Monday 08:00 maps to:
     # - 08:00 UTC during GMT (winter)
@@ -46,12 +66,40 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Build pipeline args (manual dispatch inputs)
+        if: steps.london_gate.outputs.run_pipeline == 'true'
+        id: pipeline_args
+        shell: bash
+        run: |
+          args=()
+
+          issue_id="${{ github.event.inputs.issue_id || '' }}"
+          if [ -n "$issue_id" ]; then
+            args+=("--issue-id" "$issue_id")
+          fi
+
+          if [ "${{ github.event.inputs.skip_buttondown || 'false' }}" = "true" ]; then
+            args+=("--skip-buttondown")
+          fi
+
+          if [ "${{ github.event.inputs.skip_source_audit || 'false' }}" = "true" ]; then
+            args+=("--skip-source-audit")
+          fi
+
+          if [ "${{ github.event.inputs.no_enforce_artifacts || 'false' }}" = "true" ]; then
+            args+=("--no-enforce-artifacts")
+          fi
+
+          printf 'pipeline_args=%q ' "${args[@]}" >> "$GITHUB_OUTPUT"
+          echo >> "$GITHUB_OUTPUT"
+          echo "Pipeline args: ${args[*]:-(none)}"
+
       - name: Run editorial pipeline
         if: steps.london_gate.outputs.run_pipeline == 'true'
         env:
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
         run: |
-          python3 scripts/pipeline/run_weekly.py
+          python3 scripts/pipeline/run_weekly.py ${{ steps.pipeline_args.outputs.pipeline_args }}
 
       - name: Upload artifacts
         if: steps.london_gate.outputs.run_pipeline == 'true'

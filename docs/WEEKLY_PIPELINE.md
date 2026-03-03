@@ -93,5 +93,10 @@ Workflow: `.github/workflows/weekly-editorial.yml`
 
 - Scheduled weekly every Monday morning (08:00 Europe/London) + manual dispatch.
 - Schedule runs are gated to Monday 08:00 Europe/London; manual `workflow_dispatch` bypasses the time gate.
+- Manual dispatch supports optional parity inputs that map directly to `run_weekly.py` flags:
+  - `issue_id` -> `--issue-id`
+  - `skip_buttondown` -> `--skip-buttondown`
+  - `skip_source_audit` -> `--skip-source-audit`
+  - `no_enforce_artifacts` -> `--no-enforce-artifacts`
 - Uses repo secret: `BUTTONDOWN_API_KEY`.
 - Opens PR for approval before any publish/send steps.
