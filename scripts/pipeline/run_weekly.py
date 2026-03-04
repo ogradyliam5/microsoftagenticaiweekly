@@ -66,6 +66,27 @@ def _run_step(label, command):
     }
 
 
+def _history_stem(path):
+    if path.suffix in {".json", ".md"}:
+        return path.name[: -len(path.suffix)]
+    return path.stem
+
+
+def _collect_history_runs():
+    files = sorted(RUN_HISTORY_DIR.glob("last_run-*"), key=lambda p: p.stat().st_mtime, reverse=True)
+    runs = {}
+    for path in files:
+        stem = _history_stem(path)
+        entry = runs.setdefault(stem, {"json": None, "md": None, "mtime": 0.0})
+        if path.suffix == ".json":
+            entry["json"] = path
+        elif path.suffix == ".md":
+            entry["md"] = path
+        entry["mtime"] = max(entry["mtime"], path.stat().st_mtime)
+
+    return sorted(runs.values(), key=lambda item: item["mtime"], reverse=True)
+
+
 def _write_run_history_snapshot(issue_id, run_finished_at):
     stamp = run_finished_at.strftime("%Y%m%dT%H%M%SZ")
 
@@ -83,18 +104,26 @@ def _write_run_history_snapshot(issue_id, run_finished_at):
     shutil.copy2(ART / "last_run.json", history_json)
     shutil.copy2(ART / "last_run.md", history_md)
 
-    history_files = sorted(RUN_HISTORY_DIR.glob("last_run-*"), key=lambda p: p.stat().st_mtime, reverse=True)
-    for stale in history_files[RUN_HISTORY_LIMIT:]:
-        stale.unlink()
+    history_runs = _collect_history_runs()
+    for stale_run in history_runs[RUN_HISTORY_LIMIT:]:
+        if stale_run["json"]:
+            stale_run["json"].unlink()
+        if stale_run["md"]:
+            stale_run["md"].unlink()
 
-    history_json_files = sorted(RUN_HISTORY_DIR.glob("last_run-*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
-    history_md_files = sorted(RUN_HISTORY_DIR.glob("last_run-*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    retained_runs = _collect_history_runs()[:RUN_HISTORY_LIMIT]
+    retained_json_count = sum(1 for run in retained_runs if run["json"])
+    retained_markdown_count = sum(1 for run in retained_runs if run["md"])
+
     return {
         "json": str(history_json.relative_to(ROOT)),
         "markdown": str(history_md.relative_to(ROOT)),
         "retention_limit": RUN_HISTORY_LIMIT,
-        "retained_json_count": len(history_json_files[:RUN_HISTORY_LIMIT]),
-        "retained_markdown_count": len(history_md_files[:RUN_HISTORY_LIMIT]),
+        "retained_run_count": len(retained_runs),
+        "retained_json_count": retained_json_count,
+        "retained_markdown_count": retained_markdown_count,
+        "orphan_json_count": max(0, retained_json_count - retained_markdown_count),
+        "orphan_markdown_count": max(0, retained_markdown_count - retained_json_count),
     }
 
 

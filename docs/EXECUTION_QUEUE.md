@@ -365,3 +365,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 46 complete — collision-safe run-history snapshot naming + run-history metadata parity shipped; see `docs/STAGE46_RUN_HISTORY_COLLISION_PROOF_SNAPSHOTS.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 47 — Run-History Pair Retention Parity
+- Retain bounded run-history snapshots by run pair (JSON + markdown) instead of per-file count.
+- Prevent retention trimming from halving effective run history capacity.
+- Extend summary contract/markdown/docs with retained run count and orphan snapshot diagnostics.
+
+## Stage completion log (next cycle)
+- [x] Stage 47 complete — run-history retention now trims by run snapshot pair with parity diagnostics; see `docs/STAGE47_RUN_HISTORY_PAIR_RETENTION_PARITY.md` (latest develop commit)

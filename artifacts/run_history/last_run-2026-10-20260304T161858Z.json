@@ -167,15 +167,5 @@
       "exists": true
     }
   },
-  "enforce_artifacts": true,
-  "run_history": {
-    "json": "artifacts/run_history/last_run-2026-10-20260304T161858Z.json",
-    "markdown": "artifacts/run_history/last_run-2026-10-20260304T161858Z.md",
-    "retention_limit": 30,
-    "retained_run_count": 3,
-    "retained_json_count": 3,
-    "retained_markdown_count": 3,
-    "orphan_json_count": 0,
-    "orphan_markdown_count": 0
-  }
+  "enforce_artifacts": true
 }
