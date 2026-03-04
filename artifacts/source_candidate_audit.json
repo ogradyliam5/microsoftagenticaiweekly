@@ -1,7 +1,18 @@
 {
-  "generated_at": "2026-03-03T11:48:33Z",
+  "generated_at": "2026-03-04T07:17:47Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
+    {
+      "id": "allandecastro",
+      "name": "Allan De Castro",
+      "url": "https://www.blog.allandecastro.com/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://www.blog.allandecastro.com/feed/",
+      "item_count": 10,
+      "error": null
+    },
     {
       "id": "benedikt-bergmann",
       "name": "Benedikt Bergmann",
@@ -47,6 +58,17 @@
       "error": null
     },
     {
+      "id": "pwmather",
+      "name": "Paul Mather",
+      "url": "https://pwmather.wordpress.com/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://pwmather.wordpress.com/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
       "id": "the-custom-engine-github",
       "name": "The Custom Engine (GitHub)",
       "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
@@ -62,7 +84,7 @@
     {
       "id": "d365goddess",
       "url": "https://d365goddess.com/feed/",
-      "expected_reject_reason": "Feed endpoint returns 406 Not Acceptable, unsuitable for automated ingestion.",
+      "expected_reject_reason": "Feed is now reachable but remains excluded pending manual quality/topicality review for this newsletter focus.",
       "ok": true,
       "status_code": 200,
       "content_type": "application/rss+xml; charset=UTF-8",
@@ -117,7 +139,7 @@
     {
       "id": "powertricks",
       "url": "https://powertricks.io/feed/",
-      "expected_reject_reason": "Feed endpoint returned 406 (blocked/nonstandard); unsuitable for automated ingestion.",
+      "expected_reject_reason": "Feed is now reachable but remains excluded: quality/topical fit to Microsoft Agentic AI Weekly not yet validated.",
       "ok": true,
       "status_code": 200,
       "content_type": "application/rss+xml; charset=UTF-8",
@@ -138,7 +160,7 @@
     }
   ],
   "summary": {
-    "candidate_add_ok": 4,
+    "candidate_add_ok": 6,
     "candidate_add_failed": 1,
     "candidate_reject_still_blocked": 2,
     "candidate_reject_now_ok": 5

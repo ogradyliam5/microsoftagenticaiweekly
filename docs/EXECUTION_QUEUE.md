@@ -323,3 +323,14 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 ## Stage completion log (current cycle)
 - [x] Stage 39 complete — runtime telemetry added to weekly run summary; see `docs/STAGE39_WEEKLY_PIPELINE_RUNTIME_TELEMETRY_PARITY.md` (latest develop commit)
 - [x] Stage 40 complete — markdown run summary artifact + Actions job summary publishing added; see `docs/STAGE40_RUN_SUMMARY_READABILITY_CI_SURFACE_PARITY.md` (latest develop commit)
+- [x] Stage 41 complete — theme bootstrap hardening + asset cache versioning shipped (commit `b50025b`)
+
+## Stage Plan (next cycle)
+
+### Stage 42 — Practitioner Candidate Freshness + Reject Reason Normalization
+- Refresh practitioner discovery candidate set with current high-signal Copilot Studio/Power Platform voices.
+- Normalize rejected-feed reasons when endpoint health changes (blocked -> reachable) while preserving approval-first policy.
+- Re-run candidate feed audit artifacts so shortlist decisions have current evidence.
+
+## Stage completion log (next cycle)
+- [x] Stage 42 complete — candidate freshness refresh + reject reason normalization with refreshed audit artifacts (latest develop commit)

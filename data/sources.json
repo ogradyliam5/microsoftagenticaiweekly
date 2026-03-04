@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-03-03T09:20:00Z",
+  "updated_at": "2026-03-04T06:30:00Z",
   "policy": {
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
@@ -256,9 +256,20 @@
     }
   ],
   "candidates": {
-    "updated_at": "2026-03-03T09:20:00Z",
+    "updated_at": "2026-03-04T06:30:00Z",
     "policy": "Discovery only. Do not merge into sources[] without Liam approval.",
     "add": [
+      {
+        "id": "allandecastro",
+        "name": "Allan De Castro",
+        "type": "rss",
+        "url": "https://www.blog.allandecastro.com/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Hands-on Copilot Studio extension posts for Dynamics 365 plus Dataverse implementation content; practitioner-led and implementation-first.",
+        "last_checked": "2026-03-04"
+      },
       {
         "id": "benedikt-bergmann",
         "name": "Benedikt Bergmann",
@@ -304,6 +315,17 @@
         "last_checked": "2026-03-03"
       },
       {
+        "id": "pwmather",
+        "name": "Paul Mather",
+        "type": "rss",
+        "url": "https://pwmather.wordpress.com/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Active Copilot Studio practitioner series (2026) with end-user and builder walkthroughs; high practical signal for weekly curation.",
+        "last_checked": "2026-03-04"
+      },
+      {
         "id": "the-custom-engine-github",
         "name": "The Custom Engine (GitHub)",
         "type": "manual",
@@ -320,8 +342,8 @@
         "id": "d365goddess",
         "url": "https://d365goddess.com/feed/",
         "status": "rejected",
-        "reason": "Feed endpoint returns 406 Not Acceptable, unsuitable for automated ingestion.",
-        "last_checked": "2026-03-03"
+        "reason": "Feed is now reachable but remains excluded pending manual quality/topicality review for this newsletter focus.",
+        "last_checked": "2026-03-04"
       },
       {
         "id": "holgerimbery",
@@ -355,8 +377,8 @@
         "id": "powertricks",
         "url": "https://powertricks.io/feed/",
         "status": "rejected",
-        "reason": "Feed endpoint returned 406 (blocked/nonstandard); unsuitable for automated ingestion.",
-        "last_checked": "2026-02-28"
+        "reason": "Feed is now reachable but remains excluded: quality/topical fit to Microsoft Agentic AI Weekly not yet validated.",
+        "last_checked": "2026-03-04"
       },
       {
         "id": "tom-riha",
