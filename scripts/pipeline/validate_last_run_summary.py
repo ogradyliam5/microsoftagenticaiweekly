@@ -37,6 +37,64 @@ def _assert(condition, message):
         raise ValidationError(message)
 
 
+def _load_json(path: pathlib.Path):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValidationError(f"Failed to parse JSON at {path}: {exc}") from exc
+
+
+def _validate_run_history_index(summary, run_history):
+    index_json_rel = run_history.get("index_json")
+    index_markdown_rel = run_history.get("index_markdown")
+    snapshot_json_rel = run_history.get("json")
+    snapshot_markdown_rel = run_history.get("markdown")
+
+    _assert(isinstance(index_json_rel, str) and index_json_rel, "run_history.index_json must be a non-empty string")
+    _assert(isinstance(index_markdown_rel, str) and index_markdown_rel, "run_history.index_markdown must be a non-empty string")
+
+    output_artifacts = summary.get("output_artifacts") or {}
+    _assert(output_artifacts.get("run_history_index_json") == index_json_rel, "run_history.index_json must match output_artifacts.run_history_index_json")
+    _assert(output_artifacts.get("run_history_index_markdown") == index_markdown_rel, "run_history.index_markdown must match output_artifacts.run_history_index_markdown")
+
+    index_json_path = ROOT / index_json_rel
+    index_markdown_path = ROOT / index_markdown_rel
+    _assert(index_json_path.exists(), f"Run-history index JSON missing: {index_json_rel}")
+    _assert(index_markdown_path.exists(), f"Run-history index markdown missing: {index_markdown_rel}")
+
+    index_payload = _load_json(index_json_path)
+    for key in ("generated_at", "retention_limit", "retained_run_count", "runs"):
+        _assert(key in index_payload, f"run-history index missing key: {key}")
+
+    runs = index_payload["runs"]
+    _assert(isinstance(runs, list), "run-history index runs must be an array")
+    _assert(index_payload["retained_run_count"] == len(runs), "run-history index retained_run_count must equal len(runs)")
+
+    retained_limit = run_history.get("retention_limit")
+    retained_run_count = run_history.get("retained_run_count")
+    retained_json_count = run_history.get("retained_json_count")
+    retained_markdown_count = run_history.get("retained_markdown_count")
+    orphan_json_count = run_history.get("orphan_json_count")
+    orphan_markdown_count = run_history.get("orphan_markdown_count")
+
+    _assert(index_payload["retention_limit"] == retained_limit, "run_history retention_limit mismatch with index")
+    _assert(retained_run_count == len(runs), "run_history.retained_run_count mismatch with index runs length")
+
+    json_paths = {run.get("json") for run in runs if run.get("json")}
+    markdown_paths = {run.get("markdown") for run in runs if run.get("markdown")}
+
+    _assert(snapshot_json_rel in json_paths, "run_history.json snapshot not found in run-history index")
+    _assert(snapshot_markdown_rel in markdown_paths, "run_history.markdown snapshot not found in run-history index")
+
+    _assert(retained_json_count == len(json_paths), "run_history.retained_json_count mismatch with run-history index")
+    _assert(retained_markdown_count == len(markdown_paths), "run_history.retained_markdown_count mismatch with run-history index")
+
+    computed_orphan_json = max(0, len(json_paths) - len(markdown_paths))
+    computed_orphan_markdown = max(0, len(markdown_paths) - len(json_paths))
+    _assert(orphan_json_count == computed_orphan_json, "run_history.orphan_json_count mismatch")
+    _assert(orphan_markdown_count == computed_orphan_markdown, "run_history.orphan_markdown_count mismatch")
+
+
 def validate(summary):
     for key in REQUIRED_TOP_LEVEL_KEYS:
         _assert(key in summary, f"Missing top-level key: {key}")
@@ -92,6 +150,7 @@ def validate(summary):
             "orphan_markdown_count",
         ):
             _assert(key in run_history, f"run_history missing key: {key}")
+        _validate_run_history_index(summary, run_history)
 
 
 def main():

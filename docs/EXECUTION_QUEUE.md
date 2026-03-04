@@ -385,3 +385,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 48 complete — run-history index artifacts + summary/validator parity shipped; see `docs/STAGE48_RUN_HISTORY_INDEX_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 49 — Run-History Index Contract Guardrail
+- Validate run-history index artifact presence + metadata consistency from `validate_last_run_summary.py`.
+- Ensure latest run snapshot paths recorded in `run_history` are represented in the retained run-history index.
+- Document parity command and expected failure evidence.
+
+## Stage completion log (next cycle)
+- [x] Stage 49 complete — run-history index contract guardrail added to summary validator; see `docs/STAGE49_RUN_HISTORY_INDEX_CONTRACT_GUARDRAIL.md` (latest develop commit)
