@@ -355,3 +355,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 45 complete — run-summary history snapshots + bounded retention shipped; see `docs/STAGE45_RUN_SUMMARY_HISTORY_RETENTION.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 46 — Run History Collision-Proof Snapshots
+- Prevent same-second run-history snapshot name collisions from overwriting prior evidence.
+- Keep deterministic suffixing when duplicate timestamped names are detected.
+- Extend summary contract/docs with retained markdown snapshot count for parity.
+
+## Stage completion log (current cycle)
+- [x] Stage 46 complete — collision-safe run-history snapshot naming + run-history metadata parity shipped; see `docs/STAGE46_RUN_HISTORY_COLLISION_PROOF_SNAPSHOTS.md` (latest develop commit)

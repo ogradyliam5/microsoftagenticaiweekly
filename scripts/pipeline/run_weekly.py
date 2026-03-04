@@ -68,11 +68,17 @@ def _run_step(label, command):
 
 def _write_run_history_snapshot(issue_id, run_finished_at):
     stamp = run_finished_at.strftime("%Y%m%dT%H%M%SZ")
-    json_name = f"last_run-{issue_id}-{stamp}.json"
-    md_name = f"last_run-{issue_id}-{stamp}.md"
 
-    history_json = RUN_HISTORY_DIR / json_name
-    history_md = RUN_HISTORY_DIR / md_name
+    attempt = 0
+    while True:
+        suffix = "" if attempt == 0 else f"-{attempt:02d}"
+        json_name = f"last_run-{issue_id}-{stamp}{suffix}.json"
+        md_name = f"last_run-{issue_id}-{stamp}{suffix}.md"
+        history_json = RUN_HISTORY_DIR / json_name
+        history_md = RUN_HISTORY_DIR / md_name
+        if not history_json.exists() and not history_md.exists():
+            break
+        attempt += 1
 
     shutil.copy2(ART / "last_run.json", history_json)
     shutil.copy2(ART / "last_run.md", history_md)
@@ -82,11 +88,13 @@ def _write_run_history_snapshot(issue_id, run_finished_at):
         stale.unlink()
 
     history_json_files = sorted(RUN_HISTORY_DIR.glob("last_run-*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    history_md_files = sorted(RUN_HISTORY_DIR.glob("last_run-*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
     return {
         "json": str(history_json.relative_to(ROOT)),
         "markdown": str(history_md.relative_to(ROOT)),
         "retention_limit": RUN_HISTORY_LIMIT,
         "retained_json_count": len(history_json_files[:RUN_HISTORY_LIMIT]),
+        "retained_markdown_count": len(history_md_files[:RUN_HISTORY_LIMIT]),
     }
 
 

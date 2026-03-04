@@ -78,7 +78,8 @@ def render(summary: dict) -> str:
         lines.append(f"- JSON snapshot: {_as_code(run_history.get('json'))}")
         lines.append(f"- Markdown snapshot: {_as_code(run_history.get('markdown'))}")
         lines.append(f"- Retention limit: {_as_code(run_history.get('retention_limit'))}")
-        lines.append(f"- Retained snapshot count: {_as_code(run_history.get('retained_json_count'))}")
+        lines.append(f"- Retained JSON snapshot count: {_as_code(run_history.get('retained_json_count'))}")
+        lines.append(f"- Retained markdown snapshot count: {_as_code(run_history.get('retained_markdown_count'))}")
     else:
         lines.append("- Not recorded")
 

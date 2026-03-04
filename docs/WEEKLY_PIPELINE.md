@@ -43,6 +43,7 @@
    - Verifies expected weekly output artifacts exist before writing `artifacts/last_run.json`
    - Renders a human-readable run summary to `artifacts/last_run.md`
    - Persists timestamped run-history snapshots to `artifacts/run_history/` with bounded retention (latest 30 runs)
+   - Uses collision-safe snapshot naming (`-01`, `-02`, … suffix) when multiple runs finish in the same second
    - Keeps `artifacts/last_run.json` and `artifacts/last_run.md` as canonical latest pointers
    - Fails the run when required artifacts are missing (fail-fast by default)
    - Captures step-level execution diagnostics when core pipeline steps fail
@@ -58,7 +59,7 @@
      - `output_artifacts` map (named output label -> canonical path)
      - `output_artifact_checks` map (named output label -> `{path, exists}`)
      - `enforce_artifacts` (whether fail-fast mode was enabled)
-     - `run_history` object (snapshot paths + retention metadata for timestamped history copies)
+     - `run_history` object (snapshot paths + retention metadata for timestamped history copies, including JSON/markdown retained counts)
 
 7. `scripts/pipeline/buttondown_draft.py`
    - Creates a Buttondown **draft** (never sends)

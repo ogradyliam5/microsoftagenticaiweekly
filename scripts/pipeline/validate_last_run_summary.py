@@ -79,7 +79,7 @@ def validate(summary):
     run_history = summary["run_history"]
     _assert(run_history is None or isinstance(run_history, dict), "run_history must be null or an object")
     if isinstance(run_history, dict):
-        for key in ("json", "markdown", "retention_limit", "retained_json_count"):
+        for key in ("json", "markdown", "retention_limit", "retained_json_count", "retained_markdown_count"):
             _assert(key in run_history, f"run_history missing key: {key}")
 
 
