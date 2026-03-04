@@ -124,6 +124,11 @@ PY
         run: |
           python3 scripts/pipeline/run_weekly.py ${{ steps.pipeline_args.outputs.pipeline_args }}
 
+      - name: Validate run summary contract
+        if: always() && steps.london_gate.outputs.run_pipeline == 'true'
+        run: |
+          python3 scripts/pipeline/validate_last_run_summary.py
+
       - name: Publish run summary to Actions job output
         if: always() && steps.london_gate.outputs.run_pipeline == 'true'
         shell: bash

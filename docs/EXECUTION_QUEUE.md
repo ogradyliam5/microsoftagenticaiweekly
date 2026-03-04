@@ -344,3 +344,11 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 43 complete — output artifact traceability added to run summaries; see `docs/STAGE43_RUN_OUTPUT_ARTIFACT_TRACEABILITY_PARITY.md` (latest develop commit)
+- [x] Stage 44 complete — run summary contract validator + CI guardrail added; see `docs/STAGE44_RUN_SUMMARY_CONTRACT_VALIDATION_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 45 — Run Summary History Retention
+- Persist per-run timestamped summary snapshots alongside `artifacts/last_run.json` for longitudinal debugging.
+- Keep `last_run.*` as canonical latest pointers while adding bounded retention policy.
+- Document local parity command and retention behavior in runbook.
