@@ -352,3 +352,6 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Persist per-run timestamped summary snapshots alongside `artifacts/last_run.json` for longitudinal debugging.
 - Keep `last_run.*` as canonical latest pointers while adding bounded retention policy.
 - Document local parity command and retention behavior in runbook.
+
+## Stage completion log (next cycle)
+- [x] Stage 45 complete — run-summary history snapshots + bounded retention shipped; see `docs/STAGE45_RUN_SUMMARY_HISTORY_RETENTION.md` (latest develop commit)

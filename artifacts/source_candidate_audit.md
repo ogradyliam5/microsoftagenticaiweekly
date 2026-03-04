@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-04T10:19:43Z
+Generated: 2026-03-04T13:19:28Z
 
 ## Summary
 - Candidate add feeds healthy: 6

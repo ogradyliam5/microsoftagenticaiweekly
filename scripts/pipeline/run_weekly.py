@@ -3,6 +3,7 @@ import argparse
 import datetime as dt
 import json
 import pathlib
+import shutil
 import subprocess
 import time
 
@@ -11,6 +12,9 @@ from issue_id_guard import validate_issue_id
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ART = ROOT / "artifacts"
 ART.mkdir(exist_ok=True)
+RUN_HISTORY_DIR = ART / "run_history"
+RUN_HISTORY_DIR.mkdir(exist_ok=True)
+RUN_HISTORY_LIMIT = 30
 
 
 def issue_id_today():
@@ -59,6 +63,30 @@ def _run_step(label, command):
         "started_at": started_at.isoformat() + "Z",
         "finished_at": finished_at.isoformat() + "Z",
         "duration_seconds": round(time.monotonic() - started_monotonic, 3),
+    }
+
+
+def _write_run_history_snapshot(issue_id, run_finished_at):
+    stamp = run_finished_at.strftime("%Y%m%dT%H%M%SZ")
+    json_name = f"last_run-{issue_id}-{stamp}.json"
+    md_name = f"last_run-{issue_id}-{stamp}.md"
+
+    history_json = RUN_HISTORY_DIR / json_name
+    history_md = RUN_HISTORY_DIR / md_name
+
+    shutil.copy2(ART / "last_run.json", history_json)
+    shutil.copy2(ART / "last_run.md", history_md)
+
+    history_files = sorted(RUN_HISTORY_DIR.glob("last_run-*"), key=lambda p: p.stat().st_mtime, reverse=True)
+    for stale in history_files[RUN_HISTORY_LIMIT:]:
+        stale.unlink()
+
+    history_json_files = sorted(RUN_HISTORY_DIR.glob("last_run-*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    return {
+        "json": str(history_json.relative_to(ROOT)),
+        "markdown": str(history_md.relative_to(ROOT)),
+        "retention_limit": RUN_HISTORY_LIMIT,
+        "retained_json_count": len(history_json_files[:RUN_HISTORY_LIMIT]),
     }
 
 
@@ -196,17 +224,29 @@ def run(issue_id=None, skip_buttondown=False, skip_source_audit=False, enforce_a
         "output_artifact_checks": output_artifact_checks,
         "enforce_artifacts": enforce_artifacts,
     }
-    (ART / "last_run.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    markdown_rc = subprocess.call([
-        "python3",
-        str(ROOT / "scripts/pipeline/run_summary_markdown.py"),
-        "--input",
-        str(ART / "last_run.json"),
-        "--output",
-        str(ART / "last_run.md"),
-    ])
-    if markdown_rc != 0:
-        print("warning: failed to render artifacts/last_run.md from last_run.json")
+
+    def write_latest_summary_files(summary_payload):
+        (ART / "last_run.json").write_text(json.dumps(summary_payload, indent=2), encoding="utf-8")
+        markdown_rc_local = subprocess.call([
+            "python3",
+            str(ROOT / "scripts/pipeline/run_summary_markdown.py"),
+            "--input",
+            str(ART / "last_run.json"),
+            "--output",
+            str(ART / "last_run.md"),
+        ])
+        if markdown_rc_local != 0:
+            print("warning: failed to render artifacts/last_run.md from last_run.json")
+            return False
+        return True
+
+    rendered_markdown = write_latest_summary_files(summary)
+    run_history = None
+    if rendered_markdown:
+        run_history = _write_run_history_snapshot(issue_id, run_finished_at)
+
+    summary["run_history"] = run_history
+    write_latest_summary_files(summary)
 
     print(json.dumps(summary, indent=2))
 

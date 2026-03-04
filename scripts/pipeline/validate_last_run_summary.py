@@ -24,6 +24,7 @@ REQUIRED_TOP_LEVEL_KEYS = [
     "output_artifacts",
     "output_artifact_checks",
     "enforce_artifacts",
+    "run_history",
 ]
 
 
@@ -74,6 +75,12 @@ def validate(summary):
         _assert(isinstance(detail, dict), f"output_artifact_checks[{label}] must be an object")
         _assert(detail.get("path") == path, f"output_artifact_checks[{label}].path mismatch")
         _assert(isinstance(detail.get("exists"), bool), f"output_artifact_checks[{label}].exists must be boolean")
+
+    run_history = summary["run_history"]
+    _assert(run_history is None or isinstance(run_history, dict), "run_history must be null or an object")
+    if isinstance(run_history, dict):
+        for key in ("json", "markdown", "retention_limit", "retained_json_count"):
+            _assert(key in run_history, f"run_history missing key: {key}")
 
 
 def main():
