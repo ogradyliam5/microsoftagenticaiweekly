@@ -125,10 +125,11 @@ PY
           python3 scripts/pipeline/run_weekly.py ${{ steps.pipeline_args.outputs.pipeline_args }}
 
       - name: Upload artifacts
-        if: steps.london_gate.outputs.run_pipeline == 'true'
+        if: always() && steps.london_gate.outputs.run_pipeline == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: editorial-artifacts
+          if-no-files-found: warn
           path: |
             artifacts/
             drafts/

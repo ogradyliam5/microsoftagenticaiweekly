@@ -287,3 +287,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 36 complete — issue-id guard regression checks added to CI + local parity docs; see `docs/STAGE36_ISSUE_ID_VALIDATION_REGRESSION_COVERAGE.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 37 — Workflow Failure Artifact Retention Parity
+- Ensure weekly workflow uploads generated artifacts even when pipeline execution fails.
+- Keep artifact upload non-blocking (`warn`) when files are absent so diagnostics remain visible.
+- Document CI behavior in the weekly runbook for operator parity.
+
+## Stage completion log (current cycle)
+- [x] Stage 37 complete — weekly workflow now uploads artifacts on failure paths; see `docs/STAGE37_WORKFLOW_FAILURE_ARTIFACT_RETENTION_PARITY.md` (latest develop commit)
