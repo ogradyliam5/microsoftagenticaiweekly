@@ -34,6 +34,7 @@
 
 5. `scripts/pipeline/source_candidate_audit.py`
    - Re-checks candidate + rejected feed health for source governance parity
+   - Classifies feed machine-ingestability (`root_tag` + entry count), so candidate/reject triage highlights parseable-but-non-ingestable endpoints.
    - Outputs:
      - `artifacts/source_candidate_audit.json`
      - `artifacts/source_candidate_audit.md`

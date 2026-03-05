@@ -475,3 +475,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 57 complete — candidate intake feed eligibility hardened with refreshed shortlist + audit artifacts; see `docs/STAGE57_CANDIDATE_INTAKE_FEED_ELIGIBILITY_HARDENING.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 58 — Candidate Audit Machine-Ingestability Classification
+- Extend candidate/rejected source audit output with feed ingestability classification (`root_tag`, parsed item count, machine-ingestable boolean).
+- Add summary counters for non-ingestable candidate-add feeds and now-ingestable rejected feeds to speed approval triage.
+- Document parity behavior and verification evidence in runbook + dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 58 complete — candidate audit ingestability classification + summary counters shipped; see `docs/STAGE58_CANDIDATE_AUDIT_MACHINE_INGESTABILITY_CLASSIFICATION.md` (latest develop commit)
