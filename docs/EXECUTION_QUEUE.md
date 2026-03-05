@@ -435,3 +435,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 53 complete — latest snapshot filename parity + timestamp bounds guardrail added; see `docs/STAGE53_LATEST_SNAPSHOT_FILENAME_PARITY_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 54 — Step-Result Timing Contract Guardrail
+- Extend `validate_last_run_summary.py` to enforce step-result timestamp and duration validity.
+- Require UTC timestamp shape + monotonic step timing for non-failed steps.
+- Document parity expectations so CI catches malformed diagnostic payloads early.
+
+## Stage completion log (current cycle)
+- [x] Stage 54 complete — step-result timing contract validation added; see `docs/STAGE54_STEP_RESULT_TIMING_CONTRACT_GUARDRAIL.md` (latest develop commit)

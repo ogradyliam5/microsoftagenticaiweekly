@@ -75,6 +75,36 @@ def _parse_run_history_snapshot_path(path_value, field_name):
     }
 
 
+def _validate_step_results(step_results):
+    _assert(isinstance(step_results, list), "step_results must be an array")
+    for idx, step in enumerate(step_results):
+        _assert(isinstance(step, dict), f"step_results[{idx}] must be an object")
+        for key in ("name", "status", "command", "started_at", "finished_at", "duration_seconds"):
+            _assert(key in step, f"step_results[{idx}] missing key: {key}")
+
+        status = step["status"]
+        started_at_raw = step["started_at"]
+        finished_at_raw = step["finished_at"]
+        duration = step["duration_seconds"]
+
+        is_failed = isinstance(status, str) and status.startswith("failed_exit_")
+        if is_failed:
+            _assert(started_at_raw is None or isinstance(started_at_raw, str), f"step_results[{idx}].started_at must be null/string for failed steps")
+            if isinstance(started_at_raw, str):
+                _parse_utc_timestamp(started_at_raw, f"step_results[{idx}].started_at")
+            _parse_utc_timestamp(finished_at_raw, f"step_results[{idx}].finished_at")
+            _assert(duration is None or isinstance(duration, (int, float)), f"step_results[{idx}].duration_seconds must be null/numeric for failed steps")
+            if isinstance(duration, (int, float)):
+                _assert(duration >= 0, f"step_results[{idx}].duration_seconds must be >= 0")
+            continue
+
+        started_at = _parse_utc_timestamp(started_at_raw, f"step_results[{idx}].started_at")
+        finished_at = _parse_utc_timestamp(finished_at_raw, f"step_results[{idx}].finished_at")
+        _assert(finished_at >= started_at, f"step_results[{idx}] finished_at must be >= started_at")
+        _assert(isinstance(duration, (int, float)), f"step_results[{idx}].duration_seconds must be numeric")
+        _assert(duration >= 0, f"step_results[{idx}].duration_seconds must be >= 0")
+
+
 def _validate_run_history_index(summary, run_history):
     index_json_rel = run_history.get("index_json")
     index_markdown_rel = run_history.get("index_markdown")
@@ -209,11 +239,7 @@ def validate(summary):
     _assert(summary["pipeline_status"] in {"ok", "failed"}, "pipeline_status must be 'ok' or 'failed'")
 
     step_results = summary["step_results"]
-    _assert(isinstance(step_results, list), "step_results must be an array")
-    for idx, step in enumerate(step_results):
-        _assert(isinstance(step, dict), f"step_results[{idx}] must be an object")
-        for key in ("name", "status", "command", "started_at", "finished_at", "duration_seconds"):
-            _assert(key in step, f"step_results[{idx}] missing key: {key}")
+    _validate_step_results(step_results)
 
     artifacts = summary["artifacts"]
     artifact_checks = summary["artifact_checks"]
