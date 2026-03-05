@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T08:48:06Z",
+  "generated_at": "2026-03-05T10:18:02Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -13,6 +13,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -26,6 +27,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -39,6 +41,7 @@
       "root_tag": "rss",
       "item_count": 25,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -52,6 +55,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -65,6 +69,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -78,6 +83,7 @@
       "root_tag": "rss",
       "item_count": 15,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -91,6 +97,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -104,6 +111,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     }
   ],
@@ -119,6 +127,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -132,6 +141,7 @@
       "root_tag": null,
       "item_count": 0,
       "machine_ingestable": false,
+      "ingestability_reason": "fetch_failed",
       "error": "HTTP 404: Not Found"
     },
     {
@@ -145,6 +155,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -158,6 +169,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -171,6 +183,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -184,6 +197,7 @@
       "root_tag": "rss",
       "item_count": 10,
       "machine_ingestable": true,
+      "ingestability_reason": "machine_ingestable",
       "error": null
     },
     {
@@ -197,6 +211,7 @@
       "root_tag": null,
       "item_count": 0,
       "machine_ingestable": false,
+      "ingestability_reason": "fetch_failed",
       "error": "not well-formed (invalid token): line 21, column 75"
     },
     {
@@ -210,6 +225,7 @@
       "root_tag": null,
       "item_count": 0,
       "machine_ingestable": false,
+      "ingestability_reason": "fetch_failed",
       "error": "HTTP 403: Forbidden"
     }
   ],
@@ -217,8 +233,11 @@
     "candidate_add_ok": 8,
     "candidate_add_failed": 0,
     "candidate_add_non_ingestable": 0,
+    "candidate_add_non_ingestable_no_items": 0,
+    "candidate_add_non_ingestable_unsupported_root": 0,
     "candidate_reject_still_blocked": 3,
     "candidate_reject_now_ok": 5,
-    "candidate_reject_now_ingestable": 5
+    "candidate_reject_now_ingestable": 5,
+    "candidate_reject_now_non_ingestable": 0
   }
 }

@@ -32,6 +32,18 @@ def _looks_machine_ingestable(root_tag: str | None, item_count: int) -> bool:
     return _local_name(root_tag) in {"rss", "RDF", "feed"}
 
 
+def _ingestability_reason(ok: bool, root_tag: str | None, item_count: int, machine_ingestable: bool) -> str:
+    if not ok:
+        return "fetch_failed"
+    if machine_ingestable:
+        return "machine_ingestable"
+    if item_count <= 0:
+        return "no_items"
+    if _local_name(root_tag) not in {"rss", "RDF", "feed"}:
+        return "unsupported_root_tag"
+    return "unknown"
+
+
 def fetch_feed_status(url: str) -> dict:
     req = urllib.request.Request(
         url,
@@ -64,6 +76,7 @@ def fetch_feed_status(url: str) -> dict:
             "root_tag": root_tag,
             "item_count": item_count,
             "machine_ingestable": machine_ingestable,
+            "ingestability_reason": _ingestability_reason(True, root_tag, item_count, machine_ingestable),
             "error": None,
         }
     except urllib.error.HTTPError as e:
@@ -75,6 +88,7 @@ def fetch_feed_status(url: str) -> dict:
             "root_tag": None,
             "item_count": 0,
             "machine_ingestable": False,
+            "ingestability_reason": _ingestability_reason(False, None, 0, False),
             "error": f"HTTP {e.code}: {e.reason}",
         }
     except (urllib.error.URLError, TimeoutError, ET.ParseError, ssl.SSLError, ValueError) as e:
@@ -86,6 +100,7 @@ def fetch_feed_status(url: str) -> dict:
             "root_tag": None,
             "item_count": 0,
             "machine_ingestable": False,
+            "ingestability_reason": _ingestability_reason(False, None, 0, False),
             "error": str(e),
         }
 
@@ -103,9 +118,12 @@ def audit_sources(sources_path: Path) -> dict:
             "candidate_add_ok": 0,
             "candidate_add_failed": 0,
             "candidate_add_non_ingestable": 0,
+            "candidate_add_non_ingestable_no_items": 0,
+            "candidate_add_non_ingestable_unsupported_root": 0,
             "candidate_reject_still_blocked": 0,
             "candidate_reject_now_ok": 0,
             "candidate_reject_now_ingestable": 0,
+            "candidate_reject_now_non_ingestable": 0,
         },
     }
 
@@ -117,6 +135,11 @@ def audit_sources(sources_path: Path) -> dict:
             results["summary"]["candidate_add_ok"] += 1
             if not status["machine_ingestable"]:
                 results["summary"]["candidate_add_non_ingestable"] += 1
+                reason = status.get("ingestability_reason")
+                if reason == "no_items":
+                    results["summary"]["candidate_add_non_ingestable_no_items"] += 1
+                elif reason == "unsupported_root_tag":
+                    results["summary"]["candidate_add_non_ingestable_unsupported_root"] += 1
         else:
             results["summary"]["candidate_add_failed"] += 1
 
@@ -128,6 +151,8 @@ def audit_sources(sources_path: Path) -> dict:
             results["summary"]["candidate_reject_now_ok"] += 1
             if status["machine_ingestable"]:
                 results["summary"]["candidate_reject_now_ingestable"] += 1
+            else:
+                results["summary"]["candidate_reject_now_non_ingestable"] += 1
         else:
             results["summary"]["candidate_reject_still_blocked"] += 1
 
@@ -146,9 +171,12 @@ def write_markdown_report(report: dict, path: Path) -> None:
     lines.append(f"- Candidate add feeds healthy: {s['candidate_add_ok']}")
     lines.append(f"- Candidate add feeds failing: {s['candidate_add_failed']}")
     lines.append(f"- Candidate add feeds non-ingestable: {s['candidate_add_non_ingestable']}")
+    lines.append(f"  - due to no items: {s['candidate_add_non_ingestable_no_items']}")
+    lines.append(f"  - due to unsupported root tag: {s['candidate_add_non_ingestable_unsupported_root']}")
     lines.append(f"- Rejected feeds still blocked: {s['candidate_reject_still_blocked']}")
     lines.append(f"- Rejected feeds now healthy (review needed): {s['candidate_reject_now_ok']}")
     lines.append(f"- Rejected feeds now machine-ingestable (promotion candidates): {s['candidate_reject_now_ingestable']}")
+    lines.append(f"- Rejected feeds now healthy but non-ingestable: {s['candidate_reject_now_non_ingestable']}")
     lines.append("")
 
     lines.append("## Candidate Add Feed Checks")
@@ -157,7 +185,7 @@ def write_markdown_report(report: dict, path: Path) -> None:
         details = f"HTTP {row['status_code']}" if row["status_code"] else row["error"]
         ingestable = "ingestable" if row["machine_ingestable"] else "non-ingestable"
         lines.append(
-            f"- `{row['id']}` — {status} — {details} — root: {row.get('root_tag') or 'n/a'} — items: {row['item_count']} — {ingestable}"
+            f"- `{row['id']}` — {status} — {details} — root: {row.get('root_tag') or 'n/a'} — items: {row['item_count']} — {ingestable} — reason: {row.get('ingestability_reason', 'n/a')}"
         )
     lines.append("")
 
@@ -167,7 +195,7 @@ def write_markdown_report(report: dict, path: Path) -> None:
         details = f"HTTP {row['status_code']}" if row["status_code"] else row["error"]
         ingestable = "ingestable" if row["machine_ingestable"] else "non-ingestable"
         lines.append(
-            f"- `{row['id']}` — {status} — {details} — root: {row.get('root_tag') or 'n/a'} — items: {row['item_count']} — {ingestable}"
+            f"- `{row['id']}` — {status} — {details} — root: {row.get('root_tag') or 'n/a'} — items: {row['item_count']} — {ingestable} — reason: {row.get('ingestability_reason', 'n/a')}"
         )
     lines.append("")
 

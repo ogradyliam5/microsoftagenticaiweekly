@@ -485,3 +485,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 58 complete — candidate audit ingestability classification + summary counters shipped; see `docs/STAGE58_CANDIDATE_AUDIT_MACHINE_INGESTABILITY_CLASSIFICATION.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 59 — Candidate Audit Ingestability Reason Breakdown
+- Add per-feed ingestability reason classification to candidate/reject audit output (`machine_ingestable`, `no_items`, `unsupported_root_tag`, `fetch_failed`).
+- Add summary counters for non-ingestable reason breakdown to speed source triage decisions.
+- Regenerate audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 59 complete — ingestability reason breakdown + triage counters added to source candidate audit outputs; see `docs/STAGE59_CANDIDATE_AUDIT_INGESTABILITY_REASON_BREAKDOWN.md` (latest develop commit)
