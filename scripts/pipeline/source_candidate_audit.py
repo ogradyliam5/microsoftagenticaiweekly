@@ -73,9 +73,22 @@ def _empty_reason_counter() -> dict[str, int]:
     return {reason: 0 for reason in INGESTABILITY_REASONS}
 
 
-def _bump_reason(counter: dict[str, int], reason: str | None) -> None:
-    normalized = reason if reason in counter else "unknown"
+def _empty_reason_id_map() -> dict[str, list[str]]:
+    return {reason: [] for reason in INGESTABILITY_REASONS}
+
+
+def _normalized_reason(reason: str | None) -> str:
+    return reason if reason in INGESTABILITY_REASONS else "unknown"
+
+
+def _bump_reason(counter: dict[str, int], reason: str | None) -> str:
+    normalized = _normalized_reason(reason)
     counter[normalized] += 1
+    return normalized
+
+
+def _sorted_unique(values: list[str]) -> list[str]:
+    return sorted(set(values))
 
 
 def fetch_feed_status(url: str) -> dict:
@@ -160,6 +173,8 @@ def audit_sources(sources_path: Path) -> dict:
             "candidate_reject_now_non_ingestable": 0,
             "candidate_add_reason_counts": _empty_reason_counter(),
             "candidate_reject_reason_counts": _empty_reason_counter(),
+            "candidate_add_non_ingestable_ids_by_reason": _empty_reason_id_map(),
+            "candidate_reject_non_ingestable_ids_by_reason": _empty_reason_id_map(),
             "candidate_add_promotion_candidate_ids": [],
             "candidate_add_non_ingestable_ids": [],
             "candidate_add_failed_ids": [],
@@ -173,7 +188,9 @@ def audit_sources(sources_path: Path) -> dict:
         status = fetch_feed_status(item["url"])
         row = {"id": item["id"], "name": item.get("name", item["id"]), "url": item["url"], **status}
         results["candidate_add"].append(row)
-        _bump_reason(results["summary"]["candidate_add_reason_counts"], status.get("ingestability_reason"))
+        normalized_reason = _bump_reason(
+            results["summary"]["candidate_add_reason_counts"], status.get("ingestability_reason")
+        )
         if status["ok"]:
             results["summary"]["candidate_add_ok"] += 1
             if status["machine_ingestable"]:
@@ -181,10 +198,10 @@ def audit_sources(sources_path: Path) -> dict:
             else:
                 results["summary"]["candidate_add_non_ingestable"] += 1
                 results["summary"]["candidate_add_non_ingestable_ids"].append(item["id"])
-                reason = status.get("ingestability_reason")
-                if reason == "no_items":
+                results["summary"]["candidate_add_non_ingestable_ids_by_reason"][normalized_reason].append(item["id"])
+                if normalized_reason == "no_items":
                     results["summary"]["candidate_add_non_ingestable_no_items"] += 1
-                elif reason == "unsupported_root_tag":
+                elif normalized_reason == "unsupported_root_tag":
                     results["summary"]["candidate_add_non_ingestable_unsupported_root"] += 1
         else:
             results["summary"]["candidate_add_failed"] += 1
@@ -194,7 +211,9 @@ def audit_sources(sources_path: Path) -> dict:
         status = fetch_feed_status(item["url"])
         row = {"id": item["id"], "url": item["url"], "expected_reject_reason": item.get("reason", ""), **status}
         results["candidate_reject"].append(row)
-        _bump_reason(results["summary"]["candidate_reject_reason_counts"], status.get("ingestability_reason"))
+        normalized_reason = _bump_reason(
+            results["summary"]["candidate_reject_reason_counts"], status.get("ingestability_reason")
+        )
         if status["ok"]:
             results["summary"]["candidate_reject_now_ok"] += 1
             if status["machine_ingestable"]:
@@ -203,6 +222,7 @@ def audit_sources(sources_path: Path) -> dict:
             else:
                 results["summary"]["candidate_reject_now_non_ingestable"] += 1
                 results["summary"]["candidate_reject_non_ingestable_ids"].append(item["id"])
+                results["summary"]["candidate_reject_non_ingestable_ids_by_reason"][normalized_reason].append(item["id"])
         else:
             results["summary"]["candidate_reject_still_blocked"] += 1
             results["summary"]["candidate_reject_still_blocked_ids"].append(item["id"])
@@ -227,6 +247,22 @@ def audit_sources(sources_path: Path) -> dict:
         results["summary"]["candidate_add_reason_percentages"],
         results["summary"]["candidate_reject_reason_percentages"],
     )
+
+    id_list_keys = [
+        "candidate_add_promotion_candidate_ids",
+        "candidate_add_non_ingestable_ids",
+        "candidate_add_failed_ids",
+        "candidate_reject_revival_candidate_ids",
+        "candidate_reject_non_ingestable_ids",
+        "candidate_reject_still_blocked_ids",
+    ]
+    for key in id_list_keys:
+        results["summary"][key] = _sorted_unique(results["summary"].get(key, []))
+
+    for key in ["candidate_add_non_ingestable_ids_by_reason", "candidate_reject_non_ingestable_ids_by_reason"]:
+        reason_map = results["summary"].get(key, {})
+        for reason in INGESTABILITY_REASONS:
+            reason_map[reason] = _sorted_unique(reason_map.get(reason, []))
 
     return results
 
@@ -280,6 +316,8 @@ def write_markdown_report(report: dict, path: Path) -> None:
         f"- Candidate add non-ingestable ids ({len(s.get('candidate_add_non_ingestable_ids', []))}): "
         + (", ".join(s.get("candidate_add_non_ingestable_ids", [])) or "none")
     )
+    for reason, ids in s.get("candidate_add_non_ingestable_ids_by_reason", {}).items():
+        lines.append(f"  - {reason}: " + (", ".join(ids) if ids else "none"))
     lines.append(
         f"- Candidate reject revival-candidate ids ({len(s.get('candidate_reject_revival_candidate_ids', []))}): "
         + (", ".join(s.get("candidate_reject_revival_candidate_ids", [])) or "none")
@@ -292,6 +330,8 @@ def write_markdown_report(report: dict, path: Path) -> None:
         f"- Candidate reject healthy-but-non-ingestable ids ({len(s.get('candidate_reject_non_ingestable_ids', []))}): "
         + (", ".join(s.get("candidate_reject_non_ingestable_ids", [])) or "none")
     )
+    for reason, ids in s.get("candidate_reject_non_ingestable_ids_by_reason", {}).items():
+        lines.append(f"  - {reason}: " + (", ".join(ids) if ids else "none"))
     lines.append("")
 
     lines.append("## Candidate Add Feed Checks")

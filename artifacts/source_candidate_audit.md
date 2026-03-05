@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-05T16:18:08Z
+Generated: 2026-03-05T17:48:02Z
 
 ## Summary
 - Candidate add feeds healthy: 11
@@ -36,12 +36,22 @@ Generated: 2026-03-05T16:18:08Z
   - unknown: +0.0 pp
 
 ## Actionable triage queues
-- Candidate add promotion-ready ids (11): allandecastro, benedikt-bergmann, benitezhere, itaintboring, joegill, lowcodelewis, platformsofpower, pwmather, towards-data-science-llm, itnext-medium, azure-sdk-blog
-- Candidate add failed ids (4): microsoft-ai-medium, nick-doelman-medium, james-yao-medium, m365-platform-community
+- Candidate add promotion-ready ids (11): allandecastro, azure-sdk-blog, benedikt-bergmann, benitezhere, itaintboring, itnext-medium, joegill, lowcodelewis, platformsofpower, pwmather, towards-data-science-llm
+- Candidate add failed ids (4): james-yao-medium, m365-platform-community, microsoft-ai-medium, nick-doelman-medium
 - Candidate add non-ingestable ids (0): none
+  - machine_ingestable: none
+  - no_items: none
+  - unsupported_root_tag: none
+  - fetch_failed: none
+  - unknown: none
 - Candidate reject revival-candidate ids (5): d365goddess, medium-tag-microsoft365, medium-tag-powerplatform, mmsharepoint, powertricks
 - Candidate reject still-blocked ids (3): holgerimbery, the-custom-engine-github, tom-riha
 - Candidate reject healthy-but-non-ingestable ids (0): none
+  - machine_ingestable: none
+  - no_items: none
+  - unsupported_root_tag: none
+  - fetch_failed: none
+  - unknown: none
 
 ## Candidate Add Feed Checks
 - `allandecastro` — OK — HTTP 200 — root: rss — items: 10 — ingestable — reason: machine_ingestable

@@ -40,6 +40,7 @@
   - Adds reason-percentage maps (`candidate_add_reason_percentages`, `candidate_reject_reason_percentages`) for at-a-glance cohort weighting during approval review.
   - Adds dominant ingestability reason fields and candidate-vs-reject percentage deltas (`candidate_add_top_ingestability_reason`, `candidate_reject_top_ingestability_reason`, `candidate_add_vs_reject_reason_percentage_delta`) for faster triage direction.
   - Emits actionable candidate ID queues (`candidate_add_promotion_candidate_ids`, `candidate_add_failed_ids`, `candidate_add_non_ingestable_ids`, `candidate_reject_revival_candidate_ids`, `candidate_reject_still_blocked_ids`, `candidate_reject_non_ingestable_ids`) for approval/rejection follow-through.
+  - Adds reason-bucketed non-ingestable queues (`candidate_add_non_ingestable_ids_by_reason`, `candidate_reject_non_ingestable_ids_by_reason`) and sorts all queue IDs deterministically for stable operator diffs.
    - Outputs:
      - `artifacts/source_candidate_audit.json`
      - `artifacts/source_candidate_audit.md`

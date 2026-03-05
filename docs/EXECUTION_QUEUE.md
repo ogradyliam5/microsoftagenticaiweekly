@@ -535,3 +535,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 63 complete — actionable candidate/reject ID triage queues added to source-audit outputs; see `docs/STAGE63_CANDIDATE_AUDIT_ACTION_QUEUE_PARITY.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 64 — Candidate Audit Reason-Bucket Queue Parity
+- Add reason-bucketed non-ingestable action queues for both candidate-add and candidate-reject cohorts in source-audit summary artifacts.
+- Deterministically sort actionable queue IDs to keep audit diffs stable run-to-run.
+- Regenerate source-audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 64 complete — reason-bucketed non-ingestable queues + deterministic action-queue ordering added; see `docs/STAGE64_CANDIDATE_AUDIT_REASON_BUCKET_QUEUE_PARITY.md` (latest develop commit)
