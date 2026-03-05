@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T22:17:34Z",
+  "generated_at": "2026-03-05T23:49:58Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -425,99 +425,194 @@
     "promotion_opportunity_rows": [
       {
         "id": "azure-sdk-blog",
+        "name": "Azure SDK Blog",
+        "url": "https://devblogs.microsoft.com/azure-sdk/feed/",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 1
       },
       {
         "id": "benitezhere",
+        "name": "Benitez Here (Gonzalo Ruiz)",
+        "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 2
       },
       {
         "id": "lowcodelewis",
+        "name": "Low Code Lewis",
+        "url": "https://lowcodelewis.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 15,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 3
       },
       {
         "id": "allandecastro",
+        "name": "Allan De Castro",
+        "url": "https://www.blog.allandecastro.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 4
       },
       {
         "id": "benedikt-bergmann",
+        "name": "Benedikt Bergmann",
+        "url": "https://benediktbergmann.eu/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 5
       },
       {
         "id": "itaintboring",
+        "name": "It Ain't Boring (Alex Shlega)",
+        "url": "https://www.itaintboring.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 6
       },
       {
         "id": "itnext-medium",
+        "name": "ITNEXT on Medium",
+        "url": "https://medium.com/feed/itnext",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 7
       },
       {
         "id": "joegill",
+        "name": "Joe Gill",
+        "url": "https://joegill.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 8
       },
       {
         "id": "platformsofpower",
+        "name": "Platforms of Power (Craig White)",
+        "url": "https://platformsofpower.net/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 9
       },
       {
         "id": "pwmather",
+        "name": "Paul Mather",
+        "url": "https://pwmather.wordpress.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 10
       },
       {
         "id": "towards-data-science-llm",
+        "name": "Towards Data Science (LLM/agents scan)",
+        "url": "https://medium.com/feed/towards-data-science",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 11
       },
       {
         "id": "d365goddess",
+        "name": "d365goddess",
+        "url": "https://d365goddess.com/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 12
       },
       {
         "id": "medium-tag-microsoft365",
+        "name": "medium-tag-microsoft365",
+        "url": "https://medium.com/feed/tag/microsoft-365",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 13
       },
       {
         "id": "medium-tag-powerplatform",
+        "name": "medium-tag-powerplatform",
+        "url": "https://medium.com/feed/tag/power-platform",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 14
       },
       {
         "id": "mmsharepoint",
+        "name": "mmsharepoint",
+        "url": "https://mmsharepoint.wordpress.com/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 15
       },
       {
         "id": "powertricks",
+        "name": "powertricks",
+        "url": "https://powertricks.io/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
         "priority_rank": 16
+      }
+    ],
+    "promotion_opportunity_top_rows": [
+      {
+        "id": "azure-sdk-blog",
+        "name": "Azure SDK Blog",
+        "url": "https://devblogs.microsoft.com/azure-sdk/feed/",
+        "source_cohort": "candidate_add",
+        "item_count": 25,
+        "ingestability_reason": "machine_ingestable",
+        "priority_rank": 1
+      },
+      {
+        "id": "benitezhere",
+        "name": "Benitez Here (Gonzalo Ruiz)",
+        "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
+        "source_cohort": "candidate_add",
+        "item_count": 25,
+        "ingestability_reason": "machine_ingestable",
+        "priority_rank": 2
+      },
+      {
+        "id": "lowcodelewis",
+        "name": "Low Code Lewis",
+        "url": "https://lowcodelewis.com/feed/",
+        "source_cohort": "candidate_add",
+        "item_count": 15,
+        "ingestability_reason": "machine_ingestable",
+        "priority_rank": 3
+      },
+      {
+        "id": "allandecastro",
+        "name": "Allan De Castro",
+        "url": "https://www.blog.allandecastro.com/feed/",
+        "source_cohort": "candidate_add",
+        "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
+        "priority_rank": 4
+      },
+      {
+        "id": "benedikt-bergmann",
+        "name": "Benedikt Bergmann",
+        "url": "https://benediktbergmann.eu/feed/",
+        "source_cohort": "candidate_add",
+        "item_count": 10,
+        "ingestability_reason": "machine_ingestable",
+        "priority_rank": 5
       }
     ],
     "promotion_opportunity_top_ids": [

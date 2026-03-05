@@ -210,6 +210,7 @@ def audit_sources(sources_path: Path) -> dict:
                 "candidate_reject": 0,
             },
             "promotion_opportunity_rows": [],
+            "promotion_opportunity_top_rows": [],
             "promotion_opportunity_top_ids": [],
             "promotion_opportunity_cohort_percentages": {
                 "candidate_add": 0.0,
@@ -233,8 +234,11 @@ def audit_sources(sources_path: Path) -> dict:
                 promotion_candidates.append(
                     {
                         "id": item["id"],
+                        "name": item.get("name", item["id"]),
+                        "url": item["url"],
                         "source_cohort": "candidate_add",
                         "item_count": status.get("item_count", 0),
+                        "ingestability_reason": status.get("ingestability_reason", "machine_ingestable"),
                     }
                 )
             else:
@@ -264,8 +268,11 @@ def audit_sources(sources_path: Path) -> dict:
                 promotion_candidates.append(
                     {
                         "id": item["id"],
+                        "name": item.get("name", item["id"]),
+                        "url": item["url"],
                         "source_cohort": "candidate_reject",
                         "item_count": status.get("item_count", 0),
+                        "ingestability_reason": status.get("ingestability_reason", "machine_ingestable"),
                     }
                 )
             else:
@@ -344,13 +351,17 @@ def audit_sources(sources_path: Path) -> dict:
     results["summary"]["promotion_opportunity_rows"] = [
         {
             "id": row["id"],
+            "name": row.get("name", row["id"]),
+            "url": row.get("url", ""),
             "source_cohort": row["source_cohort"],
             "item_count": row.get("item_count", 0),
+            "ingestability_reason": row.get("ingestability_reason", "machine_ingestable"),
             "priority_rank": index + 1,
         }
         for index, row in enumerate(ranked_promotion_candidates)
     ]
     results["summary"]["promotion_opportunity_top_ids"] = [row["id"] for row in ranked_promotion_candidates[:5]]
+    results["summary"]["promotion_opportunity_top_rows"] = results["summary"]["promotion_opportunity_rows"][:5]
 
     return results
 
@@ -413,8 +424,10 @@ def write_markdown_report(report: dict, path: Path) -> None:
         lines.append("  - Promotion queue detail (rank/cohort/items):")
         for row in s.get("promotion_opportunity_rows", []):
             lines.append(
-                f"    - #{row.get('priority_rank', '?')}: {row.get('id')} ({row.get('source_cohort')}, items={row.get('item_count', 0)})"
+                f"    - #{row.get('priority_rank', '?')}: {row.get('id')} ({row.get('name', row.get('id'))}) [{row.get('source_cohort')}, items={row.get('item_count', 0)}, reason={row.get('ingestability_reason', 'n/a')}]"
             )
+            if row.get("url"):
+                lines.append(f"      - {row.get('url')}")
     lines.append(
         f"- Candidate add failed ids ({len(s.get('candidate_add_failed_ids', []))}): "
         + (", ".join(s.get("candidate_add_failed_ids", [])) or "none")

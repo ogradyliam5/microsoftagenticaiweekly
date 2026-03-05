@@ -572,7 +572,17 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 ### Stage 67 — Candidate Promotion Queue Metadata Parity
 - Extend source candidate audit summary with ranked promotion queue row metadata (rank/cohort/item_count).
 - Add cohort percentage breakdown and top-ID shortcut list for fast approval triage.
-- Regenerate source-audit artifacts and document parity behavior in runbook + dedicated stage note.
+- Regenerate audit artifacts and document parity behavior in runbook + dedicated stage note.
 
 ## Stage completion log (next cycle)
 - [x] Stage 67 complete — promotion queue metadata/percentages/top-id parity added to source-audit outputs; see `docs/STAGE67_CANDIDATE_PROMOTION_QUEUE_METADATA_PARITY.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 68 — Candidate Promotion Top-Row Metadata Parity
+- Extend promotion queue row metadata with source `name`, canonical `url`, and ingestability reason for one-glance approval triage.
+- Add `promotion_opportunity_top_rows` shortcut payload for compact machine-readable dashboards.
+- Regenerate source-audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 68 complete — promotion top-row metadata + top-row shortcut parity added to source-audit outputs; see `docs/STAGE68_CANDIDATE_PROMOTION_TOP_ROW_METADATA_PARITY.md` (latest develop commit)
