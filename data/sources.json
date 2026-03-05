@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-03-04T06:30:00Z",
+  "updated_at": "2026-03-05T06:30:00Z",
   "policy": {
     "approval_required_for_source_changes": true,
     "notes": "Only add/remove tracked sources with Liam approval. Prefer RSS/official feeds and creator-friendly attribution."
@@ -256,7 +256,7 @@
     }
   ],
   "candidates": {
-    "updated_at": "2026-03-04T06:30:00Z",
+    "updated_at": "2026-03-05T06:30:00Z",
     "policy": "Discovery only. Do not merge into sources[] without Liam approval.",
     "add": [
       {
@@ -280,6 +280,28 @@
         "status": "candidate",
         "reason": "ALM-focused practitioner content; lower AI density but strong operational relevance for weekly curation.",
         "last_checked": "2026-03-03"
+      },
+      {
+        "id": "benitezhere",
+        "name": "Benitez Here (Gonzalo Ruiz)",
+        "type": "rss",
+        "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Long-running individual practitioner source covering Dataverse + Power Automate implementation patterns that frequently intersect with M365 extensibility and operational governance.",
+        "last_checked": "2026-03-05"
+      },
+      {
+        "id": "itaintboring",
+        "name": "It Ain't Boring (Alex Shlega)",
+        "type": "rss",
+        "url": "https://www.itaintboring.com/feed/",
+        "product_area": "Power Platform",
+        "trust": "community",
+        "status": "candidate",
+        "reason": "Independent practitioner blog with recent Copilot Studio agent behavior/debugging posts plus Dataverse implementation depth; high signal-to-noise and strong governance/ops relevance.",
+        "last_checked": "2026-03-05"
       },
       {
         "id": "joegill",
@@ -324,17 +346,6 @@
         "status": "candidate",
         "reason": "Active Copilot Studio practitioner series (2026) with end-user and builder walkthroughs; high practical signal for weekly curation.",
         "last_checked": "2026-03-04"
-      },
-      {
-        "id": "the-custom-engine-github",
-        "name": "The Custom Engine (GitHub)",
-        "type": "manual",
-        "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
-        "product_area": "Mixed",
-        "trust": "community",
-        "status": "candidate",
-        "reason": "Requested discovery candidate. Added as manual-watch pending a stable RSS/Atom endpoint for automated ingestion; promotion to core is blocked until feed URL is verified.",
-        "last_checked": "2026-03-03"
       }
     ],
     "reject": [
@@ -379,6 +390,13 @@
         "status": "rejected",
         "reason": "Feed is now reachable but remains excluded: quality/topical fit to Microsoft Agentic AI Weekly not yet validated.",
         "last_checked": "2026-03-04"
+      },
+      {
+        "id": "the-custom-engine-github",
+        "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
+        "status": "rejected",
+        "reason": "Removed from discovery candidates: not an individual blog/feed and not machine-ingestable RSS/Atom; keep as external manual watch outside sources.json automation list.",
+        "last_checked": "2026-03-05"
       },
       {
         "id": "tom-riha",

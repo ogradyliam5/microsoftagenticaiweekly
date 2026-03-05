@@ -465,3 +465,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 56 complete — run-level step timeline envelope + sequencing guardrail added; see `docs/STAGE56_STEP_TIMELINE_ENVELOPE_SEQUENCING_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 57 — Candidate Intake Feed Eligibility Hardening
+- Keep `candidates.add` limited to machine-ingestable RSS/Atom endpoints.
+- Move manual-watch/non-feed discovery entries out of candidate automation intake.
+- Refresh shortlist and candidate audit artifacts so approval discussions are based on current feed-health evidence.
+
+## Stage completion log (next cycle)
+- [x] Stage 57 complete — candidate intake feed eligibility hardened with refreshed shortlist + audit artifacts; see `docs/STAGE57_CANDIDATE_INTAKE_FEED_ELIGIBILITY_HARDENING.md` (latest develop commit)

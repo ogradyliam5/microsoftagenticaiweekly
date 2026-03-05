@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T23:48:28Z",
+  "generated_at": "2026-03-05T07:17:01Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -21,6 +21,28 @@
       "status_code": 200,
       "content_type": "application/rss+xml; charset=UTF-8",
       "final_url": "https://benediktbergmann.eu/feed/",
+      "item_count": 10,
+      "error": null
+    },
+    {
+      "id": "benitezhere",
+      "name": "Benitez Here (Gonzalo Ruiz)",
+      "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
+      "item_count": 25,
+      "error": null
+    },
+    {
+      "id": "itaintboring",
+      "name": "It Ain't Boring (Alex Shlega)",
+      "url": "https://www.itaintboring.com/feed/",
+      "ok": true,
+      "status_code": 200,
+      "content_type": "application/rss+xml; charset=UTF-8",
+      "final_url": "https://www.itaintboring.com/feed/",
       "item_count": 10,
       "error": null
     },
@@ -67,17 +89,6 @@
       "final_url": "https://pwmather.wordpress.com/feed/",
       "item_count": 10,
       "error": null
-    },
-    {
-      "id": "the-custom-engine-github",
-      "name": "The Custom Engine (GitHub)",
-      "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
-      "ok": false,
-      "status_code": null,
-      "content_type": null,
-      "final_url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
-      "item_count": 0,
-      "error": "not well-formed (invalid token): line 21, column 75"
     }
   ],
   "candidate_reject": [
@@ -148,6 +159,17 @@
       "error": null
     },
     {
+      "id": "the-custom-engine-github",
+      "url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
+      "expected_reject_reason": "Removed from discovery candidates: not an individual blog/feed and not machine-ingestable RSS/Atom; keep as external manual watch outside sources.json automation list.",
+      "ok": false,
+      "status_code": null,
+      "content_type": null,
+      "final_url": "https://github.com/search?q=%22The+Custom+Engine%22&type=repositories",
+      "item_count": 0,
+      "error": "not well-formed (invalid token): line 21, column 75"
+    },
+    {
       "id": "tom-riha",
       "url": "https://tomriha.com/feed/",
       "expected_reject_reason": "Feed endpoint returns 403 (blocked to automated retrieval) despite valid practitioner content; keep manual-watch.",
@@ -160,9 +182,9 @@
     }
   ],
   "summary": {
-    "candidate_add_ok": 6,
-    "candidate_add_failed": 1,
-    "candidate_reject_still_blocked": 2,
+    "candidate_add_ok": 8,
+    "candidate_add_failed": 0,
+    "candidate_reject_still_blocked": 3,
     "candidate_reject_now_ok": 5
   }
 }
