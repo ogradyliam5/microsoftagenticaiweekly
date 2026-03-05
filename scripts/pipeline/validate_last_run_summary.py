@@ -77,8 +77,9 @@ def _parse_run_history_snapshot_path(path_value, field_name):
     }
 
 
-def _validate_step_results(step_results):
+def _validate_step_results(step_results, run_started_at, run_finished_at):
     _assert(isinstance(step_results, list), "step_results must be an array")
+    previous_finished_at = None
     for idx, step in enumerate(step_results):
         _assert(isinstance(step, dict), f"step_results[{idx}] must be an object")
         for key in ("name", "status", "command", "started_at", "finished_at", "duration_seconds"):
@@ -96,7 +97,13 @@ def _validate_step_results(step_results):
             if isinstance(started_at_raw, str):
                 started_at = _parse_utc_timestamp(started_at_raw, f"step_results[{idx}].started_at")
             finished_at = _parse_utc_timestamp(finished_at_raw, f"step_results[{idx}].finished_at")
+            _assert(finished_at >= run_started_at, f"step_results[{idx}].finished_at must be >= run_started_at")
+            _assert(finished_at <= run_finished_at, f"step_results[{idx}].finished_at must be <= run_finished_at")
+            if previous_finished_at is not None:
+                _assert(finished_at >= previous_finished_at, f"step_results[{idx}].finished_at must be >= previous step finished_at")
             if started_at is not None:
+                _assert(started_at >= run_started_at, f"step_results[{idx}].started_at must be >= run_started_at")
+                _assert(started_at <= run_finished_at, f"step_results[{idx}].started_at must be <= run_finished_at")
                 _assert(finished_at >= started_at, f"step_results[{idx}] finished_at must be >= started_at")
             _assert(duration is None or isinstance(duration, (int, float)), f"step_results[{idx}].duration_seconds must be null/numeric for failed steps")
             if isinstance(duration, (int, float)):
@@ -107,10 +114,18 @@ def _validate_step_results(step_results):
                         abs(duration - expected_duration) <= DURATION_TOLERANCE_SECONDS,
                         f"step_results[{idx}].duration_seconds must be within {DURATION_TOLERANCE_SECONDS}s of finished_at-started_at",
                     )
+            previous_finished_at = finished_at
             continue
 
         started_at = _parse_utc_timestamp(started_at_raw, f"step_results[{idx}].started_at")
         finished_at = _parse_utc_timestamp(finished_at_raw, f"step_results[{idx}].finished_at")
+        _assert(started_at >= run_started_at, f"step_results[{idx}].started_at must be >= run_started_at")
+        _assert(started_at <= run_finished_at, f"step_results[{idx}].started_at must be <= run_finished_at")
+        _assert(finished_at >= run_started_at, f"step_results[{idx}].finished_at must be >= run_started_at")
+        _assert(finished_at <= run_finished_at, f"step_results[{idx}].finished_at must be <= run_finished_at")
+        if previous_finished_at is not None:
+            _assert(started_at >= previous_finished_at, f"step_results[{idx}].started_at must be >= previous step finished_at")
+            _assert(finished_at >= previous_finished_at, f"step_results[{idx}].finished_at must be >= previous step finished_at")
         _assert(finished_at >= started_at, f"step_results[{idx}] finished_at must be >= started_at")
         _assert(isinstance(duration, (int, float)), f"step_results[{idx}].duration_seconds must be numeric")
         _assert(duration >= 0, f"step_results[{idx}].duration_seconds must be >= 0")
@@ -119,6 +134,7 @@ def _validate_step_results(step_results):
             abs(duration - expected_duration) <= DURATION_TOLERANCE_SECONDS,
             f"step_results[{idx}].duration_seconds must be within {DURATION_TOLERANCE_SECONDS}s of finished_at-started_at",
         )
+        previous_finished_at = finished_at
 
 
 def _validate_run_history_index(summary, run_history):
@@ -260,7 +276,7 @@ def validate(summary):
     _assert(summary["pipeline_status"] in {"ok", "failed"}, "pipeline_status must be 'ok' or 'failed'")
 
     step_results = summary["step_results"]
-    _validate_step_results(step_results)
+    _validate_step_results(step_results, run_started_at, run_finished_at)
 
     artifacts = summary["artifacts"]
     artifact_checks = summary["artifact_checks"]

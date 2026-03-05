@@ -455,3 +455,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 55 complete — duration numerical parity guardrail added to summary validator; see `docs/STAGE55_DURATION_NUMERICAL_PARITY_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 56 — Step Timeline Envelope + Sequencing Guardrail
+- Extend `validate_last_run_summary.py` to enforce that step timestamps stay within run-level start/finish bounds.
+- Enforce non-decreasing step execution order in `step_results` so timeline regressions fail fast.
+- Document parity behavior + verification evidence in weekly runbook and dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 56 complete — run-level step timeline envelope + sequencing guardrail added; see `docs/STAGE56_STEP_TIMELINE_ENVELOPE_SEQUENCING_GUARDRAIL.md` (latest develop commit)
