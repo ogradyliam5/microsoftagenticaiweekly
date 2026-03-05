@@ -545,3 +545,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 64 complete — reason-bucketed non-ingestable queues + deterministic action-queue ordering added; see `docs/STAGE64_CANDIDATE_AUDIT_REASON_BUCKET_QUEUE_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 65 — Candidate Audit Non-Ingestable Priority Queue Parity
+- Add deterministic non-ingestable priority queues for candidate-add and candidate-reject cohorts, ranked by operator urgency (`fetch_failed`, `no_items`, `unsupported_root_tag`, `unknown`).
+- Surface priority queue IDs in markdown output to speed triage ordering without manual reason-bucket scanning.
+- Regenerate source-audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 65 complete — non-ingestable priority queues added to source-audit JSON/markdown outputs; see `docs/STAGE65_CANDIDATE_AUDIT_NON_INGESTABLE_PRIORITY_QUEUE_PARITY.md` (latest develop commit)

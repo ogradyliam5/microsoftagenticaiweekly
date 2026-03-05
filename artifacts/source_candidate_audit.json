@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T17:48:02Z",
+  "generated_at": "2026-03-05T19:18:02Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -379,6 +379,7 @@
       "towards-data-science-llm"
     ],
     "candidate_add_non_ingestable_ids": [],
+    "candidate_add_non_ingestable_priority_ids": [],
     "candidate_add_failed_ids": [
       "james-yao-medium",
       "m365-platform-community",
@@ -393,6 +394,7 @@
       "powertricks"
     ],
     "candidate_reject_non_ingestable_ids": [],
+    "candidate_reject_non_ingestable_priority_ids": [],
     "candidate_reject_still_blocked_ids": [
       "holgerimbery",
       "the-custom-engine-github",

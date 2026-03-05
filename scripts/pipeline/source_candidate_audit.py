@@ -15,6 +15,7 @@ from pathlib import Path
 USER_AGENT = "microsoftagenticaiweekly-source-audit/1.0"
 TIMEOUT_SECONDS = 15
 INGESTABILITY_REASONS = ["machine_ingestable", "no_items", "unsupported_root_tag", "fetch_failed", "unknown"]
+NON_INGESTABLE_REASON_PRIORITY = ["fetch_failed", "no_items", "unsupported_root_tag", "unknown"]
 
 
 def _reason_percentages(counter: dict[str, int], total: int) -> dict[str, float]:
@@ -89,6 +90,13 @@ def _bump_reason(counter: dict[str, int], reason: str | None) -> str:
 
 def _sorted_unique(values: list[str]) -> list[str]:
     return sorted(set(values))
+
+
+def _priority_ids_by_reason(reason_map: dict[str, list[str]]) -> list[str]:
+    priority_ids: list[str] = []
+    for reason in NON_INGESTABLE_REASON_PRIORITY:
+        priority_ids.extend(_sorted_unique(reason_map.get(reason, [])))
+    return priority_ids
 
 
 def fetch_feed_status(url: str) -> dict:
@@ -177,9 +185,11 @@ def audit_sources(sources_path: Path) -> dict:
             "candidate_reject_non_ingestable_ids_by_reason": _empty_reason_id_map(),
             "candidate_add_promotion_candidate_ids": [],
             "candidate_add_non_ingestable_ids": [],
+            "candidate_add_non_ingestable_priority_ids": [],
             "candidate_add_failed_ids": [],
             "candidate_reject_revival_candidate_ids": [],
             "candidate_reject_non_ingestable_ids": [],
+            "candidate_reject_non_ingestable_priority_ids": [],
             "candidate_reject_still_blocked_ids": [],
         },
     }
@@ -264,6 +274,13 @@ def audit_sources(sources_path: Path) -> dict:
         for reason in INGESTABILITY_REASONS:
             reason_map[reason] = _sorted_unique(reason_map.get(reason, []))
 
+    results["summary"]["candidate_add_non_ingestable_priority_ids"] = _priority_ids_by_reason(
+        results["summary"].get("candidate_add_non_ingestable_ids_by_reason", {})
+    )
+    results["summary"]["candidate_reject_non_ingestable_priority_ids"] = _priority_ids_by_reason(
+        results["summary"].get("candidate_reject_non_ingestable_ids_by_reason", {})
+    )
+
     return results
 
 
@@ -316,6 +333,10 @@ def write_markdown_report(report: dict, path: Path) -> None:
         f"- Candidate add non-ingestable ids ({len(s.get('candidate_add_non_ingestable_ids', []))}): "
         + (", ".join(s.get("candidate_add_non_ingestable_ids", [])) or "none")
     )
+    lines.append(
+        f"- Candidate add non-ingestable priority ids ({len(s.get('candidate_add_non_ingestable_priority_ids', []))}): "
+        + (", ".join(s.get("candidate_add_non_ingestable_priority_ids", [])) or "none")
+    )
     for reason, ids in s.get("candidate_add_non_ingestable_ids_by_reason", {}).items():
         lines.append(f"  - {reason}: " + (", ".join(ids) if ids else "none"))
     lines.append(
@@ -329,6 +350,10 @@ def write_markdown_report(report: dict, path: Path) -> None:
     lines.append(
         f"- Candidate reject healthy-but-non-ingestable ids ({len(s.get('candidate_reject_non_ingestable_ids', []))}): "
         + (", ".join(s.get("candidate_reject_non_ingestable_ids", [])) or "none")
+    )
+    lines.append(
+        f"- Candidate reject non-ingestable priority ids ({len(s.get('candidate_reject_non_ingestable_priority_ids', []))}): "
+        + (", ".join(s.get("candidate_reject_non_ingestable_priority_ids", [])) or "none")
     )
     for reason, ids in s.get("candidate_reject_non_ingestable_ids_by_reason", {}).items():
         lines.append(f"  - {reason}: " + (", ".join(ids) if ids else "none"))
