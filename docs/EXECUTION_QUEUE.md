@@ -495,3 +495,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 59 complete — ingestability reason breakdown + triage counters added to source candidate audit outputs; see `docs/STAGE59_CANDIDATE_AUDIT_INGESTABILITY_REASON_BREAKDOWN.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 60 — Candidate Audit Reason-Count Parity
+- Add cohort-level ingestability reason-count maps for both candidate-add and candidate-reject feeds.
+- Surface the new reason-count breakdown in markdown audit output for faster triage.
+- Regenerate audit artifacts and document parity evidence in a dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 60 complete — candidate-add/reject reason-count parity added to source candidate audit outputs; see `docs/STAGE60_CANDIDATE_AUDIT_REASON_COUNT_PARITY.md` (latest develop commit)

@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-05T11:33:50Z
+Generated: 2026-03-05T11:47:37Z
 
 ## Summary
 - Candidate add feeds healthy: 11
@@ -12,6 +12,20 @@ Generated: 2026-03-05T11:33:50Z
 - Rejected feeds now healthy (review needed): 5
 - Rejected feeds now machine-ingestable (promotion candidates): 5
 - Rejected feeds now healthy but non-ingestable: 0
+
+## Ingestability reason breakdown
+- Candidate add
+  - machine_ingestable: 11
+  - no_items: 0
+  - unsupported_root_tag: 0
+  - fetch_failed: 4
+  - unknown: 0
+- Candidate reject
+  - machine_ingestable: 5
+  - no_items: 0
+  - unsupported_root_tag: 0
+  - fetch_failed: 3
+  - unknown: 0
 
 ## Candidate Add Feed Checks
 - `allandecastro` — OK — HTTP 200 — root: rss — items: 10 — ingestable — reason: machine_ingestable

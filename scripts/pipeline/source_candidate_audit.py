@@ -14,6 +14,7 @@ from pathlib import Path
 
 USER_AGENT = "microsoftagenticaiweekly-source-audit/1.0"
 TIMEOUT_SECONDS = 15
+INGESTABILITY_REASONS = ["machine_ingestable", "no_items", "unsupported_root_tag", "fetch_failed", "unknown"]
 
 
 def now_iso() -> str:
@@ -42,6 +43,15 @@ def _ingestability_reason(ok: bool, root_tag: str | None, item_count: int, machi
     if _local_name(root_tag) not in {"rss", "RDF", "feed"}:
         return "unsupported_root_tag"
     return "unknown"
+
+
+def _empty_reason_counter() -> dict[str, int]:
+    return {reason: 0 for reason in INGESTABILITY_REASONS}
+
+
+def _bump_reason(counter: dict[str, int], reason: str | None) -> None:
+    normalized = reason if reason in counter else "unknown"
+    counter[normalized] += 1
 
 
 def fetch_feed_status(url: str) -> dict:
@@ -124,6 +134,8 @@ def audit_sources(sources_path: Path) -> dict:
             "candidate_reject_now_ok": 0,
             "candidate_reject_now_ingestable": 0,
             "candidate_reject_now_non_ingestable": 0,
+            "candidate_add_reason_counts": _empty_reason_counter(),
+            "candidate_reject_reason_counts": _empty_reason_counter(),
         },
     }
 
@@ -131,6 +143,7 @@ def audit_sources(sources_path: Path) -> dict:
         status = fetch_feed_status(item["url"])
         row = {"id": item["id"], "name": item.get("name", item["id"]), "url": item["url"], **status}
         results["candidate_add"].append(row)
+        _bump_reason(results["summary"]["candidate_add_reason_counts"], status.get("ingestability_reason"))
         if status["ok"]:
             results["summary"]["candidate_add_ok"] += 1
             if not status["machine_ingestable"]:
@@ -147,6 +160,7 @@ def audit_sources(sources_path: Path) -> dict:
         status = fetch_feed_status(item["url"])
         row = {"id": item["id"], "url": item["url"], "expected_reject_reason": item.get("reason", ""), **status}
         results["candidate_reject"].append(row)
+        _bump_reason(results["summary"]["candidate_reject_reason_counts"], status.get("ingestability_reason"))
         if status["ok"]:
             results["summary"]["candidate_reject_now_ok"] += 1
             if status["machine_ingestable"]:
@@ -177,6 +191,15 @@ def write_markdown_report(report: dict, path: Path) -> None:
     lines.append(f"- Rejected feeds now healthy (review needed): {s['candidate_reject_now_ok']}")
     lines.append(f"- Rejected feeds now machine-ingestable (promotion candidates): {s['candidate_reject_now_ingestable']}")
     lines.append(f"- Rejected feeds now healthy but non-ingestable: {s['candidate_reject_now_non_ingestable']}")
+    lines.append("")
+
+    lines.append("## Ingestability reason breakdown")
+    lines.append("- Candidate add")
+    for reason, count in s["candidate_add_reason_counts"].items():
+        lines.append(f"  - {reason}: {count}")
+    lines.append("- Candidate reject")
+    for reason, count in s["candidate_reject_reason_counts"].items():
+        lines.append(f"  - {reason}: {count}")
     lines.append("")
 
     lines.append("## Candidate Add Feed Checks")
