@@ -5,6 +5,7 @@ import argparse
 import datetime as dt
 import json
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -52,6 +53,26 @@ def _parse_utc_timestamp(value, field_name):
         return dt.datetime.fromisoformat(value[:-1])
     except ValueError as exc:
         raise ValidationError(f"{field_name} must be valid ISO-8601 UTC timestamp: {value}") from exc
+
+
+def _parse_run_history_snapshot_path(path_value, field_name):
+    _assert(isinstance(path_value, str) and path_value, f"{field_name} must be a non-empty string")
+    name = pathlib.Path(path_value).name
+    match = re.fullmatch(r"last_run-(.+)-(\d{8}T\d{6}Z)(?:-(\d{2}))?\.(json|md)", name)
+    _assert(match is not None, f"{field_name} has unexpected snapshot filename format: {path_value}")
+    issue_id, stamp, suffix, extension = match.groups()
+    try:
+        stamp_dt = dt.datetime.strptime(stamp, "%Y%m%dT%H%M%SZ")
+    except ValueError as exc:
+        raise ValidationError(f"{field_name} has invalid snapshot timestamp: {path_value}") from exc
+    return {
+        "issue_id": issue_id,
+        "stamp": stamp,
+        "stamp_dt": stamp_dt,
+        "suffix": suffix or "",
+        "extension": extension,
+        "name": name,
+    }
 
 
 def _validate_run_history_index(summary, run_history):
@@ -135,6 +156,21 @@ def _validate_run_history_index(summary, run_history):
 
     _assert(snapshot_json_rel in json_paths, "run_history.json snapshot not found in run-history index")
     _assert(snapshot_markdown_rel in markdown_paths, "run_history.markdown snapshot not found in run-history index")
+
+    snapshot_json_meta = _parse_run_history_snapshot_path(snapshot_json_rel, "run_history.json")
+    snapshot_markdown_meta = _parse_run_history_snapshot_path(snapshot_markdown_rel, "run_history.markdown")
+
+    _assert(snapshot_json_meta["extension"] == "json", "run_history.json must point to a .json snapshot")
+    _assert(snapshot_markdown_meta["extension"] == "md", "run_history.markdown must point to a .md snapshot")
+    _assert(snapshot_json_meta["issue_id"] == summary["issue_id"], "run_history.json snapshot issue-id must match summary.issue_id")
+    _assert(snapshot_markdown_meta["issue_id"] == summary["issue_id"], "run_history.markdown snapshot issue-id must match summary.issue_id")
+    _assert(snapshot_json_meta["stamp"] == snapshot_markdown_meta["stamp"], "run_history snapshot JSON/markdown timestamps must match")
+    _assert(snapshot_json_meta["suffix"] == snapshot_markdown_meta["suffix"], "run_history snapshot JSON/markdown suffixes must match")
+
+    generated_at = _parse_utc_timestamp(summary["generated_at"], "generated_at")
+    run_finished_at = _parse_utc_timestamp(summary["run_finished_at"], "run_finished_at")
+    _assert(snapshot_json_meta["stamp_dt"] <= generated_at, "run_history snapshot timestamp must be <= generated_at")
+    _assert(snapshot_json_meta["stamp_dt"] <= run_finished_at, "run_history snapshot timestamp must be <= run_finished_at")
 
     if runs:
         latest_entry = runs[0]

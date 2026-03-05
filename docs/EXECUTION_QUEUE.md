@@ -425,3 +425,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 52 complete — run-history index timestamp/path consistency guardrail shipped; see `docs/STAGE52_RUN_HISTORY_INDEX_TIMESTAMP_PATH_CONSISTENCY_GUARDRAIL.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 53 — Latest Snapshot Filename Parity Guardrail
+- Extend run-summary contract validation to parse latest run-history snapshot filenames for strict `last_run-<issue_id>-<stamp>[-NN]` format.
+- Fail fast when `run_history.json` / `run_history.markdown` diverge on issue-id, timestamp, or collision suffix.
+- Enforce latest snapshot timestamp is not later than summary `run_finished_at` / `generated_at`; document parity evidence.
+
+## Stage completion log (next cycle)
+- [x] Stage 53 complete — latest snapshot filename parity + timestamp bounds guardrail added; see `docs/STAGE53_LATEST_SNAPSHOT_FILENAME_PARITY_GUARDRAIL.md` (latest develop commit)
