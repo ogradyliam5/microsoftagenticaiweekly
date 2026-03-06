@@ -666,3 +666,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 76 complete — homepage hero framing refreshed for visitor clarity; see `docs/STAGE76_HOMEPAGE_HERO_CLARITY_REFRESH.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 77 — Homepage Hero CTA Clarity Pass
+- Add clear primary/secondary hero CTAs for first-visit navigation (`latest edition` + `archive`).
+- Keep existing visual structure and trust copy unchanged to avoid regression risk.
+- Document parity and verification evidence in a dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 77 complete — homepage hero CTA clarity pass shipped; see `docs/STAGE77_HOMEPAGE_HERO_CTA_CLARITY_PASS.md` (latest develop commit)
