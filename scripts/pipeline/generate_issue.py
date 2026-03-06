@@ -16,27 +16,44 @@ def speaker(item):
 
 
 def concise_summary(item):
-    title = (item.get("title") or "").strip()
-    custom = (item.get("why_it_matters") or "").strip()
+    title = re.sub(r"\s+", " ", (item.get("title") or "").strip())
     title_l = title.lower()
+    publisher = item.get("publisher") or "the author"
+    content_type = item.get("content_type", "update")
 
-    heuristics = [
-        (["copilot studio", "mcp"], "Shows a concrete Copilot Studio build pattern you can reuse quickly."),
-        (["dataverse", "search"], "Improves retrieval quality for Dataverse-grounded copilots."),
-        (["agent framework", "semantic kernel", "autogen"], "Useful migration guidance for teams moving to Microsoft Agent Framework."),
-        (["rbac", "authentication"], "Practical security testing guidance for auth and role-boundary validation."),
-        (["governance"], "Useful governance pattern for safer AI workload delivery and scale."),
-    ]
+    what_map = {
+        "update": "This post outlines a concrete platform update and what changed in practice.",
+        "guide": "This post provides a hands-on guide rather than high-level commentary.",
+        "howto": "This post walks through an implementation sequence you can follow.",
+        "demo": "This post demonstrates a working approach with practical build details.",
+        "build_report": "This post reports lessons from real implementation work rather than theory.",
+        "release_notes": "This post captures release-level changes teams need to account for.",
+        "analysis": "This post breaks down trade-offs and architectural implications.",
+        "news": "This post highlights a noteworthy announcement with delivery impact.",
+        "marketing": "This item is announcement-heavy, so focus on the actionable detail.",
+        "other": "This post contributes practical context for current Microsoft AI delivery work.",
+    }
 
-    for keys, text in heuristics:
-        if all(k in title_l for k in keys):
-            return text
+    if any(k in title_l for k in ["copilot studio", "agent"]):
+        why = "It matters because Copilot Studio agent behavior and orchestration choices directly affect reliability, handoff quality, and support load in production."
+    elif any(k in title_l for k in ["dataverse", "power apps", "power automate"]):
+        why = "It matters because data shape, automation boundaries, and connector decisions here usually determine whether solutions remain maintainable at scale."
+    elif any(k in title_l for k in ["foundry", "azure ai", "model", "mcp"]):
+        why = "It matters because these choices influence model governance, integration cost, and how quickly teams can move from prototype to controlled operations."
+    elif any(k in title_l for k in ["governance", "security", "authentication", "rbac", "policy", "eval"]):
+        why = "It matters because governance and control patterns are what prevent high-visibility failures once usage grows beyond pilot scope."
+    else:
+        why = "It matters because it gives delivery teams concrete decisions to apply now, not just trend commentary."
 
+    custom = (item.get("why_it_matters") or "").strip()
     if custom and "potentially relevant update" not in custom.lower():
-        return custom
+        why = custom
 
-    trimmed = re.sub(r"\s+", " ", title).strip(" .")
-    return f"{trimmed} — useful if this area is in your current delivery scope."
+    sentence1 = f"{title}"
+    sentence2 = what_map.get(content_type, what_map["other"])
+    sentence3 = why
+    sentence4 = f"Published by {publisher}, this is worth scanning if you are shaping next-sprint implementation choices."
+    return " ".join([sentence1, sentence2, sentence3, sentence4])
 
 
 def narrative_line(item):
@@ -125,7 +142,7 @@ def main():
 
     post += [
         "",
-        "Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.",
+        "This edition is a curated weekly digest — use what fits your context.",
         "",
         "If you spot an error or context miss, email [ogradyliam5@gmail.com](mailto:ogradyliam5@gmail.com?subject=Correction%20request).",
         "",

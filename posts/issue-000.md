@@ -23,6 +23,6 @@ No qualifying items this run.
 No qualifying items this run.
 
 
-Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.
+This edition is a curated weekly digest — use what fits your context.
 
 If you spot an error or context miss, email [ogradyliam5@gmail.com](mailto:ogradyliam5@gmail.com?subject=Correction%20request).

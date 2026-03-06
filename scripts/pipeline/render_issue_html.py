@@ -16,22 +16,44 @@ def speaker(item):
 
 
 def concise_summary(item):
-    title = (item.get("title") or "").strip()
-    custom = (item.get("why_it_matters") or "").strip()
+    title = " ".join((item.get("title") or "").strip().split())
     title_l = title.lower()
+    publisher = item.get("publisher") or "the author"
+    content_type = item.get("content_type", "update")
 
-    rules = [
-        (["copilot studio", "mcp"], "Concrete Copilot Studio build pattern teams can reuse quickly."),
-        (["dataverse", "search"], "Improves retrieval quality for Dataverse-grounded copilots."),
-        (["rbac", "authentication"], "Practical security testing approach for auth and role boundaries."),
-    ]
-    for keys, text in rules:
-        if all(k in title_l for k in keys):
-            return text
+    what_map = {
+        "update": "This post outlines a concrete platform update and what changed in practice.",
+        "guide": "This post provides a hands-on guide rather than high-level commentary.",
+        "howto": "This post walks through an implementation sequence you can follow.",
+        "demo": "This post demonstrates a working approach with practical build details.",
+        "build_report": "This post reports lessons from real implementation work rather than theory.",
+        "release_notes": "This post captures release-level changes teams need to account for.",
+        "analysis": "This post breaks down trade-offs and architectural implications.",
+        "news": "This post highlights a noteworthy announcement with delivery impact.",
+        "marketing": "This item is announcement-heavy, so focus on the actionable detail.",
+        "other": "This post contributes practical context for current Microsoft AI delivery work.",
+    }
 
+    if any(k in title_l for k in ["copilot studio", "agent"]):
+        why = "It matters because Copilot Studio agent behavior and orchestration choices directly affect reliability, handoff quality, and support load in production."
+    elif any(k in title_l for k in ["dataverse", "power apps", "power automate"]):
+        why = "It matters because data shape, automation boundaries, and connector decisions here usually determine whether solutions remain maintainable at scale."
+    elif any(k in title_l for k in ["foundry", "azure ai", "model", "mcp"]):
+        why = "It matters because these choices influence model governance, integration cost, and how quickly teams can move from prototype to controlled operations."
+    elif any(k in title_l for k in ["governance", "security", "authentication", "rbac", "policy", "eval"]):
+        why = "It matters because governance and control patterns are what prevent high-visibility failures once usage grows beyond pilot scope."
+    else:
+        why = "It matters because it gives delivery teams concrete decisions to apply now, not just trend commentary."
+
+    custom = (item.get("why_it_matters") or "").strip()
     if custom and "potentially relevant update" not in custom.lower():
-        return custom
-    return f"{title} — useful if this is in your active delivery scope."
+        why = custom
+
+    sentence1 = f"{title}."
+    sentence2 = what_map.get(content_type, what_map["other"])
+    sentence3 = why
+    sentence4 = f"Published by {publisher}, this is worth scanning if you are shaping next-sprint implementation choices."
+    return " ".join([sentence1, sentence2, sentence3, sentence4])
 
 
 def assign_section(item):
@@ -50,12 +72,12 @@ def card(item):
     by = html.escape(speaker(item))
     summary = html.escape(concise_summary(item))
     url = html.escape(item.get("canonical_url", item.get("url", "#")))
-    return f'<article class="signal-card"><h3>{title}</h3><p><strong>{by}:</strong> {summary}</p><p class="small"><a href="{url}">Source</a></p></article>'
+    return f'<article class="rounded-xl border border-slate-800 bg-slate-900 p-5"><h3 class="text-base font-semibold text-white">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-300"><strong class="text-slate-200">{by}:</strong> {summary}</p><p class="mt-3 text-xs text-cyan-300"><a class="hover:text-cyan-200" href="{url}">Read source</a></p></article>'
 
 
 def section(title, items):
-    cards = "\n      ".join(card(i) for i in items) if items else '<p class="small">No qualifying items this run.</p>'
-    return f'<h2>{html.escape(title)}</h2>\n      {cards}'
+    cards = "\n          ".join(card(i) for i in items) if items else '<p class="text-sm text-slate-400">No qualifying items this run.</p>'
+    return f'<section class="mt-8"><h2 class="text-xl font-semibold tracking-tight text-white">{html.escape(title)}</h2><div class="mt-4 grid gap-4">{cards}</div></section>'
 
 
 def format_human_date(iso_value):
@@ -156,7 +178,7 @@ def main():
 
         {section_html}
 
-        <p>Pick one item to apply this sprint, and ignore anything not tied to your current roadmap.</p>
+        <p>This edition is a curated weekly digest — use what fits your context.</p>
       </article>
     </div>
   </main>
