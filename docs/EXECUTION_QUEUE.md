@@ -646,3 +646,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 74 complete — policy block-type dominance + percentage parity added to source-audit outputs; see `docs/STAGE74_CANDIDATE_REJECT_POLICY_BLOCK_TYPE_DOMINANCE_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 75 — Top-Domain Policy Block-Type Dominance Parity
+- Add policy block-type counts/percentages for top-domain policy-blocked promotion-opportunity rows.
+- Emit dominant top-domain policy block type + share + ID list in source-audit JSON and markdown output.
+- Regenerate source-audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 75 complete — top-domain policy block-type dominance + percentage parity added to source-audit outputs; see `docs/STAGE75_TOP_DOMAIN_POLICY_BLOCK_TYPE_DOMINANCE_PARITY.md` (latest develop commit)

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T08:48:14Z",
+  "generated_at": "2026-03-06T10:21:52Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -946,6 +946,29 @@
     ],
     "promotion_opportunity_top_domain_policy_blocked_count": 4,
     "promotion_opportunity_top_domain_policy_blocked_share_percent": 100.0,
+    "promotion_opportunity_top_domain_policy_blocked_counts_by_type": {
+      "publication_noise": 1,
+      "topic_noise": 3,
+      "community_forum": 0,
+      "stale_or_low_signal": 0,
+      "manual_review_hold": 0,
+      "other_policy": 0
+    },
+    "promotion_opportunity_top_domain_policy_blocked_percentages_by_type": {
+      "publication_noise": 25.0,
+      "topic_noise": 75.0,
+      "community_forum": 0.0,
+      "stale_or_low_signal": 0.0,
+      "manual_review_hold": 0.0,
+      "other_policy": 0.0
+    },
+    "promotion_opportunity_top_domain_policy_blocked_top_type": "topic_noise",
+    "promotion_opportunity_top_domain_policy_blocked_top_type_share_percent": 75.0,
+    "promotion_opportunity_top_domain_policy_blocked_top_type_ids": [
+      "medium-tag-microsoft365",
+      "medium-tag-powerplatform",
+      "towards-data-science-llm"
+    ],
     "candidate_add_reason_percentages": {
       "machine_ingestable": 84.6,
       "no_items": 0.0,

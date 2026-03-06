@@ -296,6 +296,15 @@ def audit_sources(sources_path: Path) -> dict:
             "promotion_opportunity_top_domain_policy_blocked_ids": [],
             "promotion_opportunity_top_domain_policy_blocked_count": 0,
             "promotion_opportunity_top_domain_policy_blocked_share_percent": 0.0,
+            "promotion_opportunity_top_domain_policy_blocked_counts_by_type": {
+                block_type: 0 for block_type in POLICY_BLOCK_TYPE_PRIORITY
+            },
+            "promotion_opportunity_top_domain_policy_blocked_percentages_by_type": {
+                block_type: 0.0 for block_type in POLICY_BLOCK_TYPE_PRIORITY
+            },
+            "promotion_opportunity_top_domain_policy_blocked_top_type": "none",
+            "promotion_opportunity_top_domain_policy_blocked_top_type_share_percent": 0.0,
+            "promotion_opportunity_top_domain_policy_blocked_top_type_ids": [],
         },
     }
     promotion_candidates: list[dict] = []
@@ -576,6 +585,41 @@ def audit_sources(sources_path: Path) -> dict:
                 * 100,
                 1,
             )
+
+        top_domain_policy_counts_by_type = {block_type: 0 for block_type in POLICY_BLOCK_TYPE_PRIORITY}
+        top_domain_policy_ids_by_type = {block_type: [] for block_type in POLICY_BLOCK_TYPE_PRIORITY}
+        for row in policy_blocked_rows:
+            if row["id"] not in top_domain_ids:
+                continue
+            block_type = row.get("policy_block_type") or "other_policy"
+            if block_type not in top_domain_policy_counts_by_type:
+                top_domain_policy_counts_by_type[block_type] = 0
+                top_domain_policy_ids_by_type[block_type] = []
+            top_domain_policy_counts_by_type[block_type] += 1
+            top_domain_policy_ids_by_type[block_type].append(row["id"])
+
+        for block_type in list(top_domain_policy_ids_by_type.keys()):
+            top_domain_policy_ids_by_type[block_type] = _sorted_unique(top_domain_policy_ids_by_type[block_type])
+
+        top_domain_policy_total = results["summary"]["promotion_opportunity_top_domain_policy_blocked_count"]
+        results["summary"]["promotion_opportunity_top_domain_policy_blocked_counts_by_type"] = top_domain_policy_counts_by_type
+        results["summary"]["promotion_opportunity_top_domain_policy_blocked_percentages_by_type"] = _percentages_from_counts(
+            top_domain_policy_counts_by_type,
+            top_domain_policy_total,
+            POLICY_BLOCK_TYPE_PRIORITY,
+        )
+        if top_domain_policy_total > 0:
+            top_domain_block_type = _dominant_policy_block_type(top_domain_policy_counts_by_type)
+            results["summary"]["promotion_opportunity_top_domain_policy_blocked_top_type"] = top_domain_block_type
+            results["summary"]["promotion_opportunity_top_domain_policy_blocked_top_type_share_percent"] = (
+                results["summary"]["promotion_opportunity_top_domain_policy_blocked_percentages_by_type"].get(
+                    top_domain_block_type, 0.0
+                )
+            )
+            results["summary"]["promotion_opportunity_top_domain_policy_blocked_top_type_ids"] = (
+                top_domain_policy_ids_by_type.get(top_domain_block_type, [])
+            )
+
         if top_share >= 60.0:
             concentration_level = "high"
         elif top_share >= 35.0:
@@ -672,6 +716,15 @@ def write_markdown_report(report: dict, path: Path) -> None:
     lines.append(
         f"  - Top-domain policy-blocked ids ({s.get('promotion_opportunity_top_domain_policy_blocked_count', 0)} / {s.get('promotion_opportunity_top_domain_id_count', 0)} = {s.get('promotion_opportunity_top_domain_policy_blocked_share_percent', 0.0):.1f}%): "
         + (", ".join(s.get("promotion_opportunity_top_domain_policy_blocked_ids", [])) or "none")
+    )
+    lines.append("  - Top-domain policy blocked breakdown:")
+    top_domain_counts_by_type = s.get("promotion_opportunity_top_domain_policy_blocked_counts_by_type", {})
+    top_domain_percentages_by_type = s.get("promotion_opportunity_top_domain_policy_blocked_percentages_by_type", {})
+    for block_type, count in top_domain_counts_by_type.items():
+        percent = top_domain_percentages_by_type.get(block_type, 0.0)
+        lines.append(f"    - {block_type}: {count} ({percent:.1f}%)")
+    lines.append(
+        f"  - Top-domain policy dominant block type: {s.get('promotion_opportunity_top_domain_policy_blocked_top_type', 'none')} ({s.get('promotion_opportunity_top_domain_policy_blocked_top_type_share_percent', 0.0):.1f}% | {', '.join(s.get('promotion_opportunity_top_domain_policy_blocked_top_type_ids', [])) or 'none'})"
     )
     lines.append("  - Candidate-reject policy blocked breakdown:")
     counts_by_type = s.get("promotion_opportunity_candidate_reject_policy_blocked_counts_by_type", {})

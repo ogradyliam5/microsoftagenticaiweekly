@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-06T08:48:14Z
+Generated: 2026-03-06T10:21:52Z
 
 ## Summary
 - Candidate add feeds healthy: 11
@@ -49,6 +49,14 @@ Generated: 2026-03-06T08:48:14Z
     - candidate_reject ids: itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm
   - Candidate-reject policy-blocked promotion ids (7 / 7 = 100.0%): d365goddess, itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, mmsharepoint, powertricks, towards-data-science-llm
   - Top-domain policy-blocked ids (4 / 4 = 100.0%): itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm
+  - Top-domain policy blocked breakdown:
+    - publication_noise: 1 (25.0%)
+    - topic_noise: 3 (75.0%)
+    - community_forum: 0 (0.0%)
+    - stale_or_low_signal: 0 (0.0%)
+    - manual_review_hold: 0 (0.0%)
+    - other_policy: 0 (0.0%)
+  - Top-domain policy dominant block type: topic_noise (75.0% | medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm)
   - Candidate-reject policy blocked breakdown:
     - publication_noise: 1 (14.3% | itnext-medium)
     - topic_noise: 5 (71.4% | d365goddess, medium-tag-microsoft365, medium-tag-powerplatform, powertricks, towards-data-science-llm)
