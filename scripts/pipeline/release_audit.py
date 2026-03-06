@@ -22,6 +22,10 @@ INDEX_LATEST_LINK_RE = re.compile(
     r'<a\b[^>]*href="(posts/issue-[0-9]+(?:-[0-9]+)?\.html)"[^>]*>([^<]*latest edition[^<]*)</a>',
     re.IGNORECASE,
 )
+HOMEPAGE_LATEST_CARD_RE = re.compile(
+    r'<article\b[^>]*>.*?<p[^>]*>\s*Start here\s*[·\-]\s*Latest edition\s*</p>.*?<a[^>]*href="(posts/issue-[0-9]+(?:-[0-9]+)?\.html)"',
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def html_files(root: Path) -> list[Path]:
@@ -113,6 +117,14 @@ def index_latest_links(root: Path) -> list[tuple[str, str]]:
     return matches
 
 
+def index_latest_card_slugs(root: Path) -> list[str]:
+    index = root / "index.html"
+    if not index.exists():
+        return []
+    text = index.read_text(encoding="utf-8")
+    return [Path(href).stem for href in HOMEPAGE_LATEST_CARD_RE.findall(text)]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run static release audit checks")
     parser.add_argument("--root", default=".", help="Project root path")
@@ -127,6 +139,7 @@ def main() -> int:
     latest_feed_slug = latest_feed_issue_slug(root)
     published_slugs = published_issue_slugs(root)
     latest_links = index_latest_links(root)
+    latest_card_slugs = index_latest_card_slugs(root)
 
     archive_missing = sorted(published_slugs - archive_slugs)
     feed_missing = sorted(published_slugs - feed_slugs)
@@ -134,6 +147,7 @@ def main() -> int:
     feed_stale = sorted(feed_slugs - published_slugs)
 
     latest_link_errors: list[str] = []
+    latest_card_errors: list[str] = []
     if latest_feed_slug:
         if not latest_links:
             latest_link_errors.append("index.html has no 'latest edition' links")
@@ -141,6 +155,16 @@ def main() -> int:
             if slug != latest_feed_slug:
                 latest_link_errors.append(
                     f"index.html latest-edition link '{label}' points to {slug}, expected {latest_feed_slug}"
+                )
+
+        if len(latest_card_slugs) != 1:
+            latest_card_errors.append(
+                "index.html must include exactly one 'Start here · Latest edition' card marker"
+            )
+        for slug in latest_card_slugs:
+            if slug != latest_feed_slug:
+                latest_card_errors.append(
+                    f"index.html latest-edition card points to {slug}, expected {latest_feed_slug}"
                 )
 
     print(f"Audited HTML files: {len(files)}")
@@ -160,8 +184,17 @@ def main() -> int:
     else:
         print("Expected latest issue slug (feed first item): none")
     print(f"Index latest-edition link errors: {latest_link_errors or 'none'}")
+    print(f"Index latest-edition card errors: {latest_card_errors or 'none'}")
 
-    if missing_links or archive_missing or feed_missing or archive_stale or feed_stale or latest_link_errors:
+    if (
+        missing_links
+        or archive_missing
+        or feed_missing
+        or archive_stale
+        or feed_stale
+        or latest_link_errors
+        or latest_card_errors
+    ):
         return 1
 
     print("Release audit OK")

@@ -706,3 +706,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 80 complete — homepage latest-link parity checks added to release audit; see `docs/STAGE80_HOMEPAGE_LATEST_LINK_AUDIT_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 81 — Homepage Latest-Card Audit Parity
+- Extend release audit checks so homepage `Start here · Latest edition` card is present exactly once.
+- Require latest-card issue slug to match the RSS first-item issue slug.
+- Document parity behavior and local verification command in runbook + dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 81 complete — homepage latest-card parity checks added to release audit; see `docs/STAGE81_HOMEPAGE_LATEST_CARD_AUDIT_PARITY.md` (latest develop commit)
