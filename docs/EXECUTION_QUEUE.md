@@ -586,3 +586,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 68 complete — promotion top-row metadata + top-row shortcut parity added to source-audit outputs; see `docs/STAGE68_CANDIDATE_PROMOTION_TOP_ROW_METADATA_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 69 — Candidate Promotion Domain Signal Parity
+- Add domain metadata to ranked promotion opportunity queue rows for one-glance source concentration checks.
+- Add deterministic top-domain summary payloads in source-audit JSON/markdown output.
+- Regenerate audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (next cycle)
+- [x] Stage 69 complete — promotion queue domain concentration signals added to source-audit outputs; see `docs/STAGE69_CANDIDATE_PROMOTION_DOMAIN_SIGNAL_PARITY.md` (latest develop commit)

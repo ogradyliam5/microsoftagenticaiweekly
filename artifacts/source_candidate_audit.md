@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-05T23:49:58Z
+Generated: 2026-03-06T01:18:58Z
 
 ## Summary
 - Candidate add feeds healthy: 11
@@ -40,38 +40,45 @@ Generated: 2026-03-05T23:49:58Z
 - Promotion opportunity queue ids (16): azure-sdk-blog, benitezhere, lowcodelewis, allandecastro, benedikt-bergmann, itaintboring, itnext-medium, joegill, platformsofpower, pwmather, towards-data-science-llm, d365goddess, medium-tag-microsoft365, medium-tag-powerplatform, mmsharepoint, powertricks
   - candidate_add: 11 (68.8%) | candidate_reject: 5 (31.2%)
 - Promotion opportunity top ids (5): azure-sdk-blog, benitezhere, lowcodelewis, allandecastro, benedikt-bergmann
+- Promotion opportunity top domains (5): medium.com, benediktbergmann.eu, benitezhere.blogspot.com, blog.allandecastro.com, d365goddess.com
+  - Promotion top-domain detail (domain/count/ids):
+    - medium.com: 4 (itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm)
+    - benediktbergmann.eu: 1 (benedikt-bergmann)
+    - benitezhere.blogspot.com: 1 (benitezhere)
+    - blog.allandecastro.com: 1 (allandecastro)
+    - d365goddess.com: 1 (d365goddess)
   - Promotion queue detail (rank/cohort/items):
-    - #1: azure-sdk-blog (Azure SDK Blog) [candidate_add, items=25, reason=machine_ingestable]
+    - #1: azure-sdk-blog (Azure SDK Blog) [candidate_add, items=25, domain=devblogs.microsoft.com, reason=machine_ingestable]
       - https://devblogs.microsoft.com/azure-sdk/feed/
-    - #2: benitezhere (Benitez Here (Gonzalo Ruiz)) [candidate_add, items=25, reason=machine_ingestable]
+    - #2: benitezhere (Benitez Here (Gonzalo Ruiz)) [candidate_add, items=25, domain=benitezhere.blogspot.com, reason=machine_ingestable]
       - https://benitezhere.blogspot.com/feeds/posts/default?alt=rss
-    - #3: lowcodelewis (Low Code Lewis) [candidate_add, items=15, reason=machine_ingestable]
+    - #3: lowcodelewis (Low Code Lewis) [candidate_add, items=15, domain=lowcodelewis.com, reason=machine_ingestable]
       - https://lowcodelewis.com/feed/
-    - #4: allandecastro (Allan De Castro) [candidate_add, items=10, reason=machine_ingestable]
+    - #4: allandecastro (Allan De Castro) [candidate_add, items=10, domain=blog.allandecastro.com, reason=machine_ingestable]
       - https://www.blog.allandecastro.com/feed/
-    - #5: benedikt-bergmann (Benedikt Bergmann) [candidate_add, items=10, reason=machine_ingestable]
+    - #5: benedikt-bergmann (Benedikt Bergmann) [candidate_add, items=10, domain=benediktbergmann.eu, reason=machine_ingestable]
       - https://benediktbergmann.eu/feed/
-    - #6: itaintboring (It Ain't Boring (Alex Shlega)) [candidate_add, items=10, reason=machine_ingestable]
+    - #6: itaintboring (It Ain't Boring (Alex Shlega)) [candidate_add, items=10, domain=itaintboring.com, reason=machine_ingestable]
       - https://www.itaintboring.com/feed/
-    - #7: itnext-medium (ITNEXT on Medium) [candidate_add, items=10, reason=machine_ingestable]
+    - #7: itnext-medium (ITNEXT on Medium) [candidate_add, items=10, domain=medium.com, reason=machine_ingestable]
       - https://medium.com/feed/itnext
-    - #8: joegill (Joe Gill) [candidate_add, items=10, reason=machine_ingestable]
+    - #8: joegill (Joe Gill) [candidate_add, items=10, domain=joegill.com, reason=machine_ingestable]
       - https://joegill.com/feed/
-    - #9: platformsofpower (Platforms of Power (Craig White)) [candidate_add, items=10, reason=machine_ingestable]
+    - #9: platformsofpower (Platforms of Power (Craig White)) [candidate_add, items=10, domain=platformsofpower.net, reason=machine_ingestable]
       - https://platformsofpower.net/feed/
-    - #10: pwmather (Paul Mather) [candidate_add, items=10, reason=machine_ingestable]
+    - #10: pwmather (Paul Mather) [candidate_add, items=10, domain=pwmather.wordpress.com, reason=machine_ingestable]
       - https://pwmather.wordpress.com/feed/
-    - #11: towards-data-science-llm (Towards Data Science (LLM/agents scan)) [candidate_add, items=10, reason=machine_ingestable]
+    - #11: towards-data-science-llm (Towards Data Science (LLM/agents scan)) [candidate_add, items=10, domain=medium.com, reason=machine_ingestable]
       - https://medium.com/feed/towards-data-science
-    - #12: d365goddess (d365goddess) [candidate_reject, items=10, reason=machine_ingestable]
+    - #12: d365goddess (d365goddess) [candidate_reject, items=10, domain=d365goddess.com, reason=machine_ingestable]
       - https://d365goddess.com/feed/
-    - #13: medium-tag-microsoft365 (medium-tag-microsoft365) [candidate_reject, items=10, reason=machine_ingestable]
+    - #13: medium-tag-microsoft365 (medium-tag-microsoft365) [candidate_reject, items=10, domain=medium.com, reason=machine_ingestable]
       - https://medium.com/feed/tag/microsoft-365
-    - #14: medium-tag-powerplatform (medium-tag-powerplatform) [candidate_reject, items=10, reason=machine_ingestable]
+    - #14: medium-tag-powerplatform (medium-tag-powerplatform) [candidate_reject, items=10, domain=medium.com, reason=machine_ingestable]
       - https://medium.com/feed/tag/power-platform
-    - #15: mmsharepoint (mmsharepoint) [candidate_reject, items=10, reason=machine_ingestable]
+    - #15: mmsharepoint (mmsharepoint) [candidate_reject, items=10, domain=mmsharepoint.wordpress.com, reason=machine_ingestable]
       - https://mmsharepoint.wordpress.com/feed/
-    - #16: powertricks (powertricks) [candidate_reject, items=10, reason=machine_ingestable]
+    - #16: powertricks (powertricks) [candidate_reject, items=10, domain=powertricks.io, reason=machine_ingestable]
       - https://powertricks.io/feed/
 - Candidate add failed ids (4): james-yao-medium, m365-platform-community, microsoft-ai-medium, nick-doelman-medium
 - Candidate add non-ingestable ids (0): none

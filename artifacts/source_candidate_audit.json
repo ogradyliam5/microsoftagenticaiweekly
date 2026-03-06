@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T23:49:58Z",
+  "generated_at": "2026-03-06T01:18:58Z",
   "sources_path": "data/sources.json",
   "candidate_add": [
     {
@@ -429,6 +429,7 @@
         "url": "https://devblogs.microsoft.com/azure-sdk/feed/",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "domain": "devblogs.microsoft.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 1
       },
@@ -438,6 +439,7 @@
         "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "domain": "benitezhere.blogspot.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 2
       },
@@ -447,6 +449,7 @@
         "url": "https://lowcodelewis.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 15,
+        "domain": "lowcodelewis.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 3
       },
@@ -456,6 +459,7 @@
         "url": "https://www.blog.allandecastro.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "blog.allandecastro.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 4
       },
@@ -465,6 +469,7 @@
         "url": "https://benediktbergmann.eu/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "benediktbergmann.eu",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 5
       },
@@ -474,6 +479,7 @@
         "url": "https://www.itaintboring.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "itaintboring.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 6
       },
@@ -483,6 +489,7 @@
         "url": "https://medium.com/feed/itnext",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "medium.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 7
       },
@@ -492,6 +499,7 @@
         "url": "https://joegill.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "joegill.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 8
       },
@@ -501,6 +509,7 @@
         "url": "https://platformsofpower.net/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "platformsofpower.net",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 9
       },
@@ -510,6 +519,7 @@
         "url": "https://pwmather.wordpress.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "pwmather.wordpress.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 10
       },
@@ -519,6 +529,7 @@
         "url": "https://medium.com/feed/towards-data-science",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "medium.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 11
       },
@@ -528,6 +539,7 @@
         "url": "https://d365goddess.com/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "domain": "d365goddess.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 12
       },
@@ -537,6 +549,7 @@
         "url": "https://medium.com/feed/tag/microsoft-365",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "domain": "medium.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 13
       },
@@ -546,6 +559,7 @@
         "url": "https://medium.com/feed/tag/power-platform",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "domain": "medium.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 14
       },
@@ -555,6 +569,7 @@
         "url": "https://mmsharepoint.wordpress.com/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "domain": "mmsharepoint.wordpress.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 15
       },
@@ -564,6 +579,7 @@
         "url": "https://powertricks.io/feed/",
         "source_cohort": "candidate_reject",
         "item_count": 10,
+        "domain": "powertricks.io",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 16
       }
@@ -575,6 +591,7 @@
         "url": "https://devblogs.microsoft.com/azure-sdk/feed/",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "domain": "devblogs.microsoft.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 1
       },
@@ -584,6 +601,7 @@
         "url": "https://benitezhere.blogspot.com/feeds/posts/default?alt=rss",
         "source_cohort": "candidate_add",
         "item_count": 25,
+        "domain": "benitezhere.blogspot.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 2
       },
@@ -593,6 +611,7 @@
         "url": "https://lowcodelewis.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 15,
+        "domain": "lowcodelewis.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 3
       },
@@ -602,6 +621,7 @@
         "url": "https://www.blog.allandecastro.com/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "blog.allandecastro.com",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 4
       },
@@ -611,6 +631,7 @@
         "url": "https://benediktbergmann.eu/feed/",
         "source_cohort": "candidate_add",
         "item_count": 10,
+        "domain": "benediktbergmann.eu",
         "ingestability_reason": "machine_ingestable",
         "priority_rank": 5
       }
@@ -626,6 +647,68 @@
       "candidate_add": 68.8,
       "candidate_reject": 31.2
     },
+    "promotion_opportunity_domain_counts": {
+      "medium.com": 4,
+      "benediktbergmann.eu": 1,
+      "benitezhere.blogspot.com": 1,
+      "blog.allandecastro.com": 1,
+      "d365goddess.com": 1,
+      "devblogs.microsoft.com": 1,
+      "itaintboring.com": 1,
+      "joegill.com": 1,
+      "lowcodelewis.com": 1,
+      "mmsharepoint.wordpress.com": 1,
+      "platformsofpower.net": 1,
+      "powertricks.io": 1,
+      "pwmather.wordpress.com": 1
+    },
+    "promotion_opportunity_top_domains": [
+      {
+        "domain": "medium.com",
+        "count": 4,
+        "ids": [
+          "itnext-medium",
+          "medium-tag-microsoft365",
+          "medium-tag-powerplatform",
+          "towards-data-science-llm"
+        ]
+      },
+      {
+        "domain": "benediktbergmann.eu",
+        "count": 1,
+        "ids": [
+          "benedikt-bergmann"
+        ]
+      },
+      {
+        "domain": "benitezhere.blogspot.com",
+        "count": 1,
+        "ids": [
+          "benitezhere"
+        ]
+      },
+      {
+        "domain": "blog.allandecastro.com",
+        "count": 1,
+        "ids": [
+          "allandecastro"
+        ]
+      },
+      {
+        "domain": "d365goddess.com",
+        "count": 1,
+        "ids": [
+          "d365goddess"
+        ]
+      }
+    ],
+    "promotion_opportunity_top_domain_ids": [
+      "medium.com",
+      "benediktbergmann.eu",
+      "benitezhere.blogspot.com",
+      "blog.allandecastro.com",
+      "d365goddess.com"
+    ],
     "candidate_add_reason_percentages": {
       "machine_ingestable": 73.3,
       "no_items": 0.0,

@@ -8,6 +8,7 @@ import json
 import ssl
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
@@ -110,6 +111,11 @@ def _promotion_queue(candidates: list[dict]) -> list[str]:
         ),
     )
     return [row["id"] for row in sorted_rows]
+
+
+def _extract_domain(url: str) -> str:
+    host = urlparse(url).netloc.lower()
+    return host[4:] if host.startswith("www.") else host
 
 
 def fetch_feed_status(url: str) -> dict:
@@ -216,6 +222,9 @@ def audit_sources(sources_path: Path) -> dict:
                 "candidate_add": 0.0,
                 "candidate_reject": 0.0,
             },
+            "promotion_opportunity_domain_counts": {},
+            "promotion_opportunity_top_domains": [],
+            "promotion_opportunity_top_domain_ids": [],
         },
     }
     promotion_candidates: list[dict] = []
@@ -239,6 +248,7 @@ def audit_sources(sources_path: Path) -> dict:
                         "source_cohort": "candidate_add",
                         "item_count": status.get("item_count", 0),
                         "ingestability_reason": status.get("ingestability_reason", "machine_ingestable"),
+                        "domain": _extract_domain(item["url"]),
                     }
                 )
             else:
@@ -273,6 +283,7 @@ def audit_sources(sources_path: Path) -> dict:
                         "source_cohort": "candidate_reject",
                         "item_count": status.get("item_count", 0),
                         "ingestability_reason": status.get("ingestability_reason", "machine_ingestable"),
+                        "domain": _extract_domain(item["url"]),
                     }
                 )
             else:
@@ -355,6 +366,7 @@ def audit_sources(sources_path: Path) -> dict:
             "url": row.get("url", ""),
             "source_cohort": row["source_cohort"],
             "item_count": row.get("item_count", 0),
+            "domain": row.get("domain", _extract_domain(row.get("url", "")) or "unknown"),
             "ingestability_reason": row.get("ingestability_reason", "machine_ingestable"),
             "priority_rank": index + 1,
         }
@@ -362,6 +374,22 @@ def audit_sources(sources_path: Path) -> dict:
     ]
     results["summary"]["promotion_opportunity_top_ids"] = [row["id"] for row in ranked_promotion_candidates[:5]]
     results["summary"]["promotion_opportunity_top_rows"] = results["summary"]["promotion_opportunity_rows"][:5]
+
+    domain_counts: dict[str, int] = {}
+    domain_ids: dict[str, list[str]] = {}
+    for row in ranked_promotion_candidates:
+        domain = row.get("domain") or _extract_domain(row.get("url", "")) or "unknown"
+        domain_counts[domain] = domain_counts.get(domain, 0) + 1
+        domain_ids.setdefault(domain, []).append(row["id"])
+    sorted_domains = sorted(domain_counts.items(), key=lambda pair: (-pair[1], pair[0]))
+    results["summary"]["promotion_opportunity_domain_counts"] = {domain: count for domain, count in sorted_domains}
+    results["summary"]["promotion_opportunity_top_domains"] = [
+        {"domain": domain, "count": count, "ids": _sorted_unique(domain_ids.get(domain, []))}
+        for domain, count in sorted_domains[:5]
+    ]
+    results["summary"]["promotion_opportunity_top_domain_ids"] = [
+        row["domain"] for row in results["summary"]["promotion_opportunity_top_domains"]
+    ]
 
     return results
 
@@ -420,11 +448,21 @@ def write_markdown_report(report: dict, path: Path) -> None:
         f"- Promotion opportunity top ids ({len(s.get('promotion_opportunity_top_ids', []))}): "
         + (", ".join(s.get("promotion_opportunity_top_ids", [])) or "none")
     )
+    lines.append(
+        f"- Promotion opportunity top domains ({len(s.get('promotion_opportunity_top_domain_ids', []))}): "
+        + (", ".join(s.get("promotion_opportunity_top_domain_ids", [])) or "none")
+    )
+    if s.get("promotion_opportunity_top_domains"):
+        lines.append("  - Promotion top-domain detail (domain/count/ids):")
+        for domain_row in s.get("promotion_opportunity_top_domains", []):
+            lines.append(
+                f"    - {domain_row.get('domain')}: {domain_row.get('count', 0)} ({', '.join(domain_row.get('ids', [])) or 'none'})"
+            )
     if s.get("promotion_opportunity_rows"):
         lines.append("  - Promotion queue detail (rank/cohort/items):")
         for row in s.get("promotion_opportunity_rows", []):
             lines.append(
-                f"    - #{row.get('priority_rank', '?')}: {row.get('id')} ({row.get('name', row.get('id'))}) [{row.get('source_cohort')}, items={row.get('item_count', 0)}, reason={row.get('ingestability_reason', 'n/a')}]"
+                f"    - #{row.get('priority_rank', '?')}: {row.get('id')} ({row.get('name', row.get('id'))}) [{row.get('source_cohort')}, items={row.get('item_count', 0)}, domain={row.get('domain', 'unknown')}, reason={row.get('ingestability_reason', 'n/a')}]"
             )
             if row.get("url"):
                 lines.append(f"      - {row.get('url')}")
