@@ -748,6 +748,6 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 - Regenerate source shortlist/audit artifacts and document quality controls.
 
 ## Stage completion log (next cycle)
-- [ ] Stage 83 pending
-- [ ] Stage 84 pending
+- [x] Stage 83 complete — latest-issue checkpoint shipped with Sunday-night metadata + deeper per-item narratives (see `docs/STAGE83_LATEST_ISSUE_CONTENT_DEPTH_SUNDAY_CADENCE_CHECKPOINT.md`)
+- [ ] Stage 84 pending (awaiting human checkpoint approval)
 - [ ] Stage 85 pending
