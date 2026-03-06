@@ -120,12 +120,10 @@ def main():
     for item in unique_items:
         sections[assign_section(item)].append(item)
 
-    window_start = html.escape(q.get("window_start_utc", "unknown"))
-    window_end = html.escape(q.get("window_end_utc", "unknown"))
     publication_date = html.escape(format_human_date(q.get("generated_at", "")))
     label = html.escape(issue_label(args.issue_id, q.get("generated_at", "")))
 
-    section_html = "\n\n        ".join(section(name, sections[name]) for name in SECTION_ORDER)
+    section_html = "\n        ".join(section(name, sections[name]) for name in SECTION_ORDER)
 
     body = f'''<!doctype html>
 <html lang="en">
@@ -154,35 +152,23 @@ def main():
     }})();
   </script>
   <title>{label} — Microsoft Agentic AI Weekly</title>
-  <link rel="stylesheet" href="../assets/legacy.css?v=20260305" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260305" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="../index.html">Microsoft Agentic AI Weekly</a>
-      <nav class="nav">
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color mode">🌙 Dark</button>
-        <a href="../index.html">Home</a>
-        <a href="../archive.html">Archive</a>
-        <a href="../about.html">Methodology</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div class="container content-shell">
-      <article class="panel">
-        <p class="kicker">{label}</p>
-        <h1>Microsoft Agentic AI Weekly</h1>
-        <p class="meta">Published: {publication_date}</p>
-        <p class="meta">Coverage window (UTC): {window_start} to {window_end} (end exclusive).</p>
+<body class="min-h-screen bg-slate-950 text-slate-100">
+<header class="sticky top-0 z-20 border-b border-slate-800/90 bg-slate-950/90 backdrop-blur"><div class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"><a class="text-sm font-semibold uppercase tracking-[0.15em] text-slate-200" href="../index.html">Microsoft Agentic AI Weekly</a><nav class="flex items-center gap-4 text-sm text-slate-400"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color mode">🌙 Dark</button><a class="hover:text-white" href="../index.html">Home</a><a class="hover:text-white" href="../archive.html">Archive</a><a class="hover:text-white" href="../about.html">Methodology</a></nav></div></header>
+<main class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+  <section class="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl shadow-slate-950/50 sm:p-8">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300">{label}</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-white">Microsoft Agentic AI Weekly</h1>
+    <p class="mt-3 text-sm uppercase tracking-[0.14em] text-slate-400">Published: {publication_date}</p>
 
         {section_html}
 
-        <p>This edition is a curated weekly digest — use what fits your context.</p>
-      </article>
-    </div>
-  </main>
-  <script src="../assets/theme.js?v=20260304"></script>
+    <p class="mt-8 text-sm text-slate-300">This edition is a curated weekly digest — use what fits your context.</p>
+  </section>
+</main>
+<footer class="border-t border-slate-800 py-5"><div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 text-xs text-slate-500 sm:px-6 lg:px-8"><span>© 2026 Microsoft Agentic AI Weekly</span><a class="hover:text-slate-300" href="../feed.xml">RSS</a></div></footer>
+<script src="../assets/theme.js?v=20260305"></script>
 </body>
 </html>
 '''

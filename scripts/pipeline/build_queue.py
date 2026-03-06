@@ -9,9 +9,12 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-QUEUE_LIMIT = 24
+QUEUE_LIMIT = 15
+MIN_QUEUE_ITEMS = 8
 DEFAULT_MIX_TARGET = {"independent": 0.60, "official": 0.40}
-RELEVANCE_MIN_SCORE = 0.60
+RELEVANCE_MIN_SCORE = 0.55
+MAX_FEED_ITEMS = 40
+FALLBACK_LOOKBACK_DAYS = 21
 
 
 CONTENT_TYPE_WEIGHTS = {
@@ -48,14 +51,14 @@ def parse_feed(raw):
     ns = {"atom": "http://www.w3.org/2005/Atom"}
     if root.tag.endswith("feed"):
         entries = root.findall("atom:entry", ns)
-        for e in entries[:12]:
+        for e in entries[:MAX_FEED_ITEMS]:
             title = text(e.findtext("atom:title", default="", namespaces=ns))
             link_el = e.find("atom:link", ns)
             link = link_el.attrib.get("href", "") if link_el is not None else ""
             pub = text(e.findtext("atom:updated", default="", namespaces=ns))
             out.append((title, link, pub))
     else:
-        for i in root.findall("./channel/item")[:12]:
+        for i in root.findall("./channel/item")[:MAX_FEED_ITEMS]:
             title = text(i.findtext("title", default=""))
             link = text(i.findtext("link", default=""))
             pub = text(i.findtext("pubDate", default=""))
@@ -221,9 +224,11 @@ def main():
     mix_target = source_doc.get("mix_target", DEFAULT_MIX_TARGET)
 
     items, excluded = [], []
+    fallback_items = []
     seen = set()
     now = dt.datetime.now(dt.timezone.utc)
     window_start, window_end = weekly_window(now)
+    fallback_start = window_start - dt.timedelta(days=FALLBACK_LOOKBACK_DAYS)
 
     for s in sources:
         if s["type"] not in {"rss", "github"}:
@@ -247,13 +252,6 @@ def main():
                 if parsed_pub.tzinfo is None:
                     parsed_pub = parsed_pub.replace(tzinfo=dt.timezone.utc)
                 parsed_pub_utc = parsed_pub.astimezone(dt.timezone.utc)
-                if not (window_start <= parsed_pub_utc < window_end):
-                    excluded.append({
-                        "url": link,
-                        "reason": "outside_previous_week_window",
-                        "published_at": parsed_pub_utc.isoformat(),
-                    })
-                    continue
 
                 confidence = "High" if s.get("trust") == "official" else "Medium"
                 tags = classify(title, s.get("product_area", "Mixed"))
@@ -266,7 +264,7 @@ def main():
                 score = total_score(freshness, quality, relevance)
                 source_bucket = "official" if s.get("trust") == "official" else "independent"
 
-                items.append({
+                item = {
                     "id": key,
                     "title": title,
                     "url": link,
@@ -274,6 +272,7 @@ def main():
                     "author": "",
                     "publisher": s["name"],
                     "published_at": pub or now.isoformat(),
+                    "published_at_utc": parsed_pub_utc.isoformat(),
                     "fetched_at": now.isoformat(),
                     "product_area": s.get("product_area", "Mixed"),
                     "source_type": s["type"],
@@ -291,11 +290,31 @@ def main():
                     "score_content_type": content_type_weight,
                     "score_relevance": relevance,
                     "score_total": score,
-                })
+                }
+
+                if window_start <= parsed_pub_utc < window_end:
+                    items.append(item)
+                elif fallback_start <= parsed_pub_utc < window_start:
+                    item["fallback_reason"] = "recent_pre_window_backfill"
+                    fallback_items.append(item)
+                else:
+                    excluded.append({
+                        "url": link,
+                        "reason": "outside_collection_window",
+                        "published_at": parsed_pub_utc.isoformat(),
+                    })
         except Exception as e:
             excluded.append({"source": s["id"], "reason": f"fetch_error: {e}"})
 
     top = select_mix_scored(items, QUEUE_LIMIT, mix_target)
+    fallback_used = 0
+    if len(top) < MIN_QUEUE_ITEMS and fallback_items:
+        needed = MIN_QUEUE_ITEMS - len(top)
+        fallback_ranked = sorted(fallback_items, key=lambda x: x["score_total"], reverse=True)
+        top.extend(fallback_ranked[:needed])
+        fallback_used = min(needed, len(fallback_ranked))
+
+    top = sorted(top, key=lambda x: x["score_total"], reverse=True)[:QUEUE_LIMIT]
     included_official = len([i for i in top if i["source_mix_bucket"] == "official"])
     included_independent = len(top) - included_official
 
@@ -304,6 +323,7 @@ def main():
         "generated_at": now.isoformat(),
         "window_start_utc": window_start.isoformat(),
         "window_end_utc": window_end.isoformat(),
+        "fallback_start_utc": fallback_start.isoformat(),
         "items": top,
         "clusters": [],
         "excluded": excluded,
@@ -313,6 +333,13 @@ def main():
             "independent": round(included_independent / len(top), 3) if top else 0,
             "official_count": included_official,
             "independent_count": included_independent,
+        },
+        "selection_stats": {
+            "in_window_count": len(items),
+            "fallback_pool_count": len(fallback_items),
+            "fallback_used_count": fallback_used,
+            "target_min_items": MIN_QUEUE_ITEMS,
+            "queue_limit": QUEUE_LIMIT,
         },
         "scoring_notes": {
             "freshness": "Based on published date recency bands (<=3d highest, >30d lowest).",
@@ -340,11 +367,13 @@ def main():
         f"Total included: {len(top)}",
         f"Excluded: {len(excluded)}",
         f"Date window (UTC): {queue['window_start_utc']} to {queue['window_end_utc']} (end exclusive)",
+        f"Fallback lookback (UTC): {queue['fallback_start_utc']} to {queue['window_start_utc']} (used when in-window volume < {MIN_QUEUE_ITEMS})",
         "",
         "## Source mix tuning",
         "",
         f"- Target mix: independent {mix_target.get('independent', 0):.0%} / official {mix_target.get('official', 0):.0%}",
         f"- Actual mix: independent {queue['mix_actual']['independent']:.1%} ({queue['mix_actual']['independent_count']}) / official {queue['mix_actual']['official']:.1%} ({queue['mix_actual']['official_count']})",
+        f"- In-window candidates: {queue['selection_stats']['in_window_count']} · fallback candidates: {queue['selection_stats']['fallback_pool_count']} · fallback used: {queue['selection_stats']['fallback_used_count']}",
         "",
         "## Freshness + quality scoring notes",
         "",

@@ -122,16 +122,16 @@ def main():
     for item in unique_items:
         sections[assign_section(item)].append(item)
 
+    publication_date = format_human_date(q.get("generated_at", ""))
     window_start = q.get("window_start_utc", "unknown")
     window_end = q.get("window_end_utc", "unknown")
-    publication_date = format_human_date(q.get("generated_at", ""))
 
     label = issue_label(args.issue_id)
 
     post = [
         f"# Microsoft Agentic AI Weekly — {label}",
         "",
-        f"_Published: {publication_date} · Coverage window (UTC): {window_start} to {window_end} (end exclusive). Requires human editorial approval before publishing._",
+        f"_Published: {publication_date}. Requires human editorial approval before publishing._",
         "",
         "Single weekly digest focused on high-signal agentic AI updates for Microsoft builders.",
         "",
