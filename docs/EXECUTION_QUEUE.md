@@ -656,3 +656,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 75 complete — top-domain policy block-type dominance + percentage parity added to source-audit outputs; see `docs/STAGE75_TOP_DOMAIN_POLICY_BLOCK_TYPE_DOMINANCE_PARITY.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 76 — Homepage Hero Clarity Refresh
+- Replace editorial/internal-sounding homepage hero framing with a clearer visitor-first value proposition.
+- Keep trust signal (AI discovery + human approval) while tightening scanability in one short paragraph.
+- Preserve existing layout/card structure to avoid regression risk.
+
+## Stage completion log (current cycle)
+- [x] Stage 76 complete — homepage hero framing refreshed for visitor clarity; see `docs/STAGE76_HOMEPAGE_HERO_CLARITY_REFRESH.md` (latest develop commit)
