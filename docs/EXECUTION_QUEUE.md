@@ -686,3 +686,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 78 complete — homepage freshness signal + nav CTA wording parity shipped; see `docs/STAGE78_HOMEPAGE_FRESHNESS_SIGNAL_NAV_CTA_WORDING_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 79 — Homepage Latest-Edition Card Emphasis
+- Make the latest edition card immediately obvious as the first-click path on homepage archive grid.
+- Add a concise “Start here · Latest edition” marker and subtle visual emphasis without changing layout structure.
+- Keep hero freshness signal explicit for first-time visitors.
+
+## Stage completion log (next cycle)
+- [x] Stage 79 complete — homepage latest-edition card emphasis + refreshed freshness line shipped; see `docs/STAGE79_HOMEPAGE_LATEST_EDITION_CARD_EMPHASIS.md` (latest develop commit)
