@@ -616,3 +616,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 71 complete — top-domain cohort-mix parity added to source-audit outputs; see `docs/STAGE71_CANDIDATE_PROMOTION_TOP_DOMAIN_COHORT_MIX_PARITY.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 72 — Candidate Promotion Top-Domain Cohort-Balance Severity Parity
+- Add top-domain candidate-add share/count summary fields so add-heavy concentration is explicit (not implied).
+- Emit deterministic top-domain cohort-mix severity labels (`candidate_add_heavy` / `balanced` / `candidate_reject_heavy`) in JSON + markdown outputs.
+- Regenerate audit artifacts and document parity behavior in runbook + dedicated stage note.
+
+## Stage completion log (current cycle)
+- [x] Stage 72 complete — top-domain cohort-balance severity parity added to source-audit outputs; see `docs/STAGE72_CANDIDATE_PROMOTION_TOP_DOMAIN_COHORT_BALANCE_SEVERITY_PARITY.md` (latest develop commit)

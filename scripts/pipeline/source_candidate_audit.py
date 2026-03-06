@@ -231,7 +231,10 @@ def audit_sources(sources_path: Path) -> dict:
             "promotion_opportunity_top_domain_candidate_reject_id_count": 0,
             "promotion_opportunity_top_domain_candidate_reject_share_percent": 0.0,
             "promotion_opportunity_top_domain_candidate_reject_ids": [],
+            "promotion_opportunity_top_domain_candidate_add_id_count": 0,
+            "promotion_opportunity_top_domain_candidate_add_share_percent": 0.0,
             "promotion_opportunity_top_domain_candidate_add_ids": [],
+            "promotion_opportunity_top_domain_cohort_mix_level": "none",
             "promotion_opportunity_domain_concentration_level": "none",
         },
     }
@@ -411,7 +414,9 @@ def audit_sources(sources_path: Path) -> dict:
             "ids": _sorted_unique(domain_ids.get(domain, [])),
             "candidate_add_ids": _sorted_unique(domain_candidate_add_ids.get(domain, [])),
             "candidate_reject_ids": _sorted_unique(domain_candidate_reject_ids.get(domain, [])),
+            "candidate_add_share_percent": round((len(domain_candidate_add_ids.get(domain, [])) / count) * 100, 1) if count else 0.0,
             "candidate_reject_share_percent": round((len(domain_candidate_reject_ids.get(domain, [])) / count) * 100, 1) if count else 0.0,
+            "cohort_mix_level": "candidate_reject_heavy" if (round((len(domain_candidate_reject_ids.get(domain, [])) / count) * 100, 1) if count else 0.0) >= 60.0 else ("candidate_add_heavy" if (round((len(domain_candidate_add_ids.get(domain, [])) / count) * 100, 1) if count else 0.0) >= 60.0 else "balanced"),
         }
         for domain, count in sorted_domains[:5]
     ]
@@ -433,8 +438,17 @@ def audit_sources(sources_path: Path) -> dict:
         results["summary"]["promotion_opportunity_top_domain_candidate_reject_ids"] = top_domain_row.get(
             "candidate_reject_ids", []
         )
+        results["summary"]["promotion_opportunity_top_domain_candidate_add_id_count"] = len(
+            top_domain_row.get("candidate_add_ids", [])
+        )
+        results["summary"]["promotion_opportunity_top_domain_candidate_add_share_percent"] = top_domain_row.get(
+            "candidate_add_share_percent", 0.0
+        )
         results["summary"]["promotion_opportunity_top_domain_candidate_add_ids"] = top_domain_row.get(
             "candidate_add_ids", []
+        )
+        results["summary"]["promotion_opportunity_top_domain_cohort_mix_level"] = top_domain_row.get(
+            "cohort_mix_level", "none"
         )
         if top_share >= 60.0:
             concentration_level = "high"
@@ -509,6 +523,12 @@ def write_markdown_report(report: dict, path: Path) -> None:
         f"  - Top-domain concentration: {s.get('promotion_opportunity_domain_concentration_level', 'none')} ({s.get('promotion_opportunity_top_domain_share_percent', 0.0):.1f}% / {s.get('promotion_opportunity_top_domain_id_count', 0)} ids)"
     )
     lines.append(
+        f"  - Top-domain cohort mix: {s.get('promotion_opportunity_top_domain_cohort_mix_level', 'none')}"
+    )
+    lines.append(
+        f"  - Top-domain candidate_add share: {s.get('promotion_opportunity_top_domain_candidate_add_share_percent', 0.0):.1f}% ({s.get('promotion_opportunity_top_domain_candidate_add_id_count', 0)} ids)"
+    )
+    lines.append(
         f"  - Top-domain candidate_reject share: {s.get('promotion_opportunity_top_domain_candidate_reject_share_percent', 0.0):.1f}% ({s.get('promotion_opportunity_top_domain_candidate_reject_id_count', 0)} ids)"
     )
     lines.append(
@@ -523,7 +543,7 @@ def write_markdown_report(report: dict, path: Path) -> None:
         lines.append("  - Promotion top-domain detail (domain/count/ids):")
         for domain_row in s.get("promotion_opportunity_top_domains", []):
             lines.append(
-                f"    - {domain_row.get('domain')}: {domain_row.get('count', 0)} ({domain_row.get('percent', 0.0):.1f}%) reject_share={domain_row.get('candidate_reject_share_percent', 0.0):.1f}% ({', '.join(domain_row.get('ids', [])) or 'none'})"
+                f"    - {domain_row.get('domain')}: {domain_row.get('count', 0)} ({domain_row.get('percent', 0.0):.1f}%) add_share={domain_row.get('candidate_add_share_percent', 0.0):.1f}% reject_share={domain_row.get('candidate_reject_share_percent', 0.0):.1f}% mix={domain_row.get('cohort_mix_level', 'balanced')} ({', '.join(domain_row.get('ids', [])) or 'none'})"
             )
     if s.get("promotion_opportunity_rows"):
         lines.append("  - Promotion queue detail (rank/cohort/items):")

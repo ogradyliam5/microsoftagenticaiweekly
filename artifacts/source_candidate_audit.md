@@ -1,6 +1,6 @@
 # Source Candidate Audit Report
 
-Generated: 2026-03-06T04:18:18Z
+Generated: 2026-03-06T05:48:38Z
 
 ## Summary
 - Candidate add feeds healthy: 11
@@ -42,15 +42,17 @@ Generated: 2026-03-06T04:18:18Z
 - Promotion opportunity top ids (5): azure-sdk-blog, benitezhere, lowcodelewis, allandecastro, benedikt-bergmann
 - Promotion opportunity top domains (5): medium.com, benediktbergmann.eu, benitezhere.blogspot.com, blog.allandecastro.com, d365goddess.com
   - Top-domain concentration: low (25.0% / 4 ids)
+  - Top-domain cohort mix: balanced
+  - Top-domain candidate_add share: 50.0% (2 ids)
   - Top-domain candidate_reject share: 50.0% (2 ids)
     - candidate_add ids: itnext-medium, towards-data-science-llm
     - candidate_reject ids: medium-tag-microsoft365, medium-tag-powerplatform
   - Promotion top-domain detail (domain/count/ids):
-    - medium.com: 4 (25.0%) reject_share=50.0% (itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm)
-    - benediktbergmann.eu: 1 (6.2%) reject_share=0.0% (benedikt-bergmann)
-    - benitezhere.blogspot.com: 1 (6.2%) reject_share=0.0% (benitezhere)
-    - blog.allandecastro.com: 1 (6.2%) reject_share=0.0% (allandecastro)
-    - d365goddess.com: 1 (6.2%) reject_share=100.0% (d365goddess)
+    - medium.com: 4 (25.0%) add_share=50.0% reject_share=50.0% mix=balanced (itnext-medium, medium-tag-microsoft365, medium-tag-powerplatform, towards-data-science-llm)
+    - benediktbergmann.eu: 1 (6.2%) add_share=100.0% reject_share=0.0% mix=candidate_add_heavy (benedikt-bergmann)
+    - benitezhere.blogspot.com: 1 (6.2%) add_share=100.0% reject_share=0.0% mix=candidate_add_heavy (benitezhere)
+    - blog.allandecastro.com: 1 (6.2%) add_share=100.0% reject_share=0.0% mix=candidate_add_heavy (allandecastro)
+    - d365goddess.com: 1 (6.2%) add_share=0.0% reject_share=100.0% mix=candidate_reject_heavy (d365goddess)
   - Promotion queue detail (rank/cohort/items):
     - #1: azure-sdk-blog (Azure SDK Blog) [candidate_add, items=25, domain=devblogs.microsoft.com, reason=machine_ingestable]
       - https://devblogs.microsoft.com/azure-sdk/feed/
