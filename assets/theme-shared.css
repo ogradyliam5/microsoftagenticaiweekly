@@ -1,0 +1,20 @@
+:root{--theme-bg:#020617;--theme-surface:#0f172a;--theme-border:#334155;--theme-text:#f8fafc;--theme-text-muted:#cbd5e1;--theme-link:#67e8f9;--theme-link-hover:#a5f3fc;--theme-accent:#22d3ee;--theme-header-bg:rgba(2,6,23,.88);--theme-toggle-border:#475569;--theme-toggle-text:#cbd5e1;--theme-toggle-text-hover:#f8fafc;color-scheme:dark}
+:root[data-theme=light],:root.theme-light{--theme-bg:#f8fafc;--theme-surface:#fff;--theme-border:#cbd5e1;--theme-text:#0f172a;--theme-text-muted:#334155;--theme-link:#0369a1;--theme-link-hover:#0c4a6e;--theme-accent:#0284c7;--theme-header-bg:rgba(248,250,252,.92);--theme-toggle-border:#94a3b8;--theme-toggle-text:#334155;--theme-toggle-text-hover:#0f172a;color-scheme:light}
+:root[data-theme=dark],:root.theme-dark{color-scheme:dark}
+header.sticky,.site-header{border-bottom-color:var(--theme-border)!important;background:var(--theme-header-bg)!important}
+header.sticky a,.site-header .brand,.site-header .nav a{color:var(--theme-text-muted)}
+header.sticky a:hover,.site-header .nav a:hover,.site-header .nav a.active{color:var(--theme-text)}
+.theme-toggle{border:1px solid var(--theme-toggle-border)!important;color:var(--theme-toggle-text)!important;background:transparent}
+.theme-toggle:hover{color:var(--theme-toggle-text-hover)!important}
+:root[data-theme=light] body{background-color:var(--theme-bg)!important;color:var(--theme-text)!important}
+:root[data-theme=light] .bg-slate-950{background-color:var(--theme-bg)!important}
+:root[data-theme=light] .bg-slate-950\/90{background-color:var(--theme-header-bg)!important}
+:root[data-theme=light] .bg-slate-900{background-color:var(--theme-surface)!important}
+:root[data-theme=light] .border-slate-800,:root[data-theme=light] .border-slate-800\/90,:root[data-theme=light] .border-slate-700,:root[data-theme=light] .border-slate-600{border-color:var(--theme-border)!important}
+:root[data-theme=light] .text-white,:root[data-theme=light] .text-slate-100,:root[data-theme=light] .text-slate-200{color:var(--theme-text)!important}
+:root[data-theme=light] .text-slate-300,:root[data-theme=light] .text-slate-400,:root[data-theme=light] .text-slate-500{color:var(--theme-text-muted)!important}
+:root[data-theme=light] .text-cyan-300{color:var(--theme-link)!important}
+:root[data-theme=light] .bg-cyan-300,:root[data-theme=light] .bg-cyan-400{background-color:var(--theme-accent)!important;color:#fff!important}
+:root[data-theme=light] .hover\:text-white:hover{color:var(--theme-text)!important}
+:root[data-theme=light] .hover\:text-cyan-200:hover{color:var(--theme-link-hover)!important}
+:root[data-theme=light] .hover\:bg-cyan-200:hover{background-color:var(--theme-accent)!important}
