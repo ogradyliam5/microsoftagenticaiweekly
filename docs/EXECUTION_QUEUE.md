@@ -726,3 +726,28 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (current cycle)
 - [x] Stage 82 complete — homepage freshness text + latest-card metadata parity checks added to release audit; see `docs/STAGE82_HOMEPAGE_FRESHNESS_TEXT_METADATA_PARITY.md` (latest develop commit)
+
+## Stage Plan (next cycle)
+
+### Stage 83 — Latest-Issue Content Depth + Sunday-Night Cadence Checkpoint
+- Remove visible `Coverage window (UTC)` line from the latest issue output.
+- Expand latest issue summaries to 2–4 sentence concrete narrative per post (no generic filler).
+- Ensure latest issue contains >3 posts (target 8–15 when available) with stronger weekly source pull.
+- Fix latest issue header/nav parity so post header styling matches homepage.
+- Switch publish cadence + displayed metadata to Sunday-night release framing.
+- STOP after latest issue checkpoint and request human review before global rollout.
+
+### Stage 84 — Sitewide Rollout After Checkpoint Approval
+- Apply approved header + summary + cadence formatting to all issue templates/pages.
+- Remove deprecated copy globally (`Skip the noise`, `signals worth shipping`, and variants).
+- Keep week/date display clear (week-of + full date) while preserving stable file paths.
+
+### Stage 85 — Source Breadth Expansion (Machine-Ingestable)
+- Expand practitioner source intake with broader machine-ingestable feeds (blogs, Medium RSS where valid, etc.).
+- Add explicit reject reasons for non-ingestable endpoints (including LinkedIn/manual-watch paths).
+- Regenerate source shortlist/audit artifacts and document quality controls.
+
+## Stage completion log (next cycle)
+- [ ] Stage 83 pending
+- [ ] Stage 84 pending
+- [ ] Stage 85 pending
