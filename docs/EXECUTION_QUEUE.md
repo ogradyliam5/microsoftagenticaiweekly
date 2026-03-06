@@ -676,3 +676,13 @@ Purpose: prevent stop/start drift and force delivery through ordered stages.
 
 ## Stage completion log (next cycle)
 - [x] Stage 77 complete — homepage hero CTA clarity pass shipped; see `docs/STAGE77_HOMEPAGE_HERO_CTA_CLARITY_PASS.md` (latest develop commit)
+
+## Stage Plan (current cycle)
+
+### Stage 78 — Homepage Freshness Signal + Nav CTA Wording Parity
+- Add an explicit latest-edition freshness line in the homepage hero so first-visit users can verify publication recency instantly.
+- Rename the top-nav "Latest" label to "Latest edition" for wording parity with hero CTA copy.
+- Keep layout and pipeline logic unchanged to avoid regression risk.
+
+## Stage completion log (current cycle)
+- [x] Stage 78 complete — homepage freshness signal + nav CTA wording parity shipped; see `docs/STAGE78_HOMEPAGE_FRESHNESS_SIGNAL_NAV_CTA_WORDING_PARITY.md` (latest develop commit)
