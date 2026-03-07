@@ -10,6 +10,10 @@ header.sticky a:hover,.site-header .nav a:hover,.site-header .nav a.active{color
 :root[data-theme=light] .bg-slate-950{background-color:var(--theme-bg)!important}
 :root[data-theme=light] .bg-slate-950\/90{background-color:var(--theme-header-bg)!important}
 :root[data-theme=light] .bg-slate-900{background-color:var(--theme-surface)!important}
+:root[data-theme=light] .from-slate-900,:root[data-theme=light] .via-slate-900{--tw-gradient-from:#ffffff var(--tw-gradient-from-position)!important;--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position)!important;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)!important}
+:root[data-theme=light] .to-slate-950{--tw-gradient-to:#f1f5f9 var(--tw-gradient-to-position)!important}
+:root[data-theme=light] .shadow-slate-950\/50,:root[data-theme=light] .shadow-slate-950\/40{--tw-shadow-color:rgb(148 163 184 / .28)!important;--tw-shadow:var(--tw-shadow-colored)!important}
+:root[data-theme=light] .shadow-cyan-900\/20{--tw-shadow-color:rgb(14 116 144 / .16)!important;--tw-shadow:var(--tw-shadow-colored)!important}
 :root[data-theme=light] .border-slate-800,:root[data-theme=light] .border-slate-800\/90,:root[data-theme=light] .border-slate-700,:root[data-theme=light] .border-slate-600{border-color:var(--theme-border)!important}
 :root[data-theme=light] .text-white,:root[data-theme=light] .text-slate-100,:root[data-theme=light] .text-slate-200{color:var(--theme-text)!important}
 :root[data-theme=light] .text-slate-300,:root[data-theme=light] .text-slate-400,:root[data-theme=light] .text-slate-500{color:var(--theme-text-muted)!important}
